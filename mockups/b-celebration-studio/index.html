@@ -7,11 +7,12 @@
   <meta name="description" content="A celebration studio in Clarksville, TN. Custom cakes, wedding tiers and dessert tables composed by hand — plus twelve signature cupcakes baked fresh each morning on Madison Street.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/reset.css">
   <link rel="stylesheet" href="../../assets/demo.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%82</text></svg>">
+  <link rel="icon" href="../../assets/smallcakes-logo-circle.png">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -29,14 +30,7 @@
   <!-- Header -->
   <header class="nav" id="top">
     <a class="brand" href="index.html" aria-label="Smallcakes Celebration Studio, Clarksville — home">
-      <span class="brand__mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="30" height="30" fill="none">
-          <circle cx="16" cy="16" r="14.4" stroke="#B9853B" stroke-width="1"/>
-          <path d="M11 21h10l-.8-5.2a1 1 0 0 0-1-.8h-6.4a1 1 0 0 0-1 .8z" stroke="#6C173A" stroke-width="1.2" stroke-linejoin="round"/>
-          <path d="M12 15c0-1.7 1.8-3 4-3s4 1.3 4 3" stroke="#6C173A" stroke-width="1.2"/>
-          <circle cx="16" cy="10.2" r="1.1" fill="#E83E8C"/>
-        </svg>
-      </span>
+      <img class="brand__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Cupcakery & Creamery" width="180" height="154">
       <span class="brand__name">Smallcakes<em>Celebration Studio · Clarksville</em></span>
     </a>
     <nav class="nav__links" aria-label="Primary">
@@ -47,9 +41,13 @@
       <a href="#visit">Visit</a>
     </nav>
     <button class="nav__order sc-btn sc-btn--primary" data-order>Order for Pickup</button>
-    <button class="nav__burger" aria-label="Menu" aria-expanded="false">☰</button>
+    <button class="nav__burger" aria-label="Menu" aria-expanded="false" data-burger>☰</button>
   </header>
   <nav class="drawer" aria-label="Mobile" hidden>
+    <div class="drawer__head">
+      <img class="brand__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Cupcakery & Creamery" width="180" height="154">
+      <button class="drawer__close" aria-label="Close menu" data-burger>✕</button>
+    </div>
     <a href="menu.html">The Collection</a>
     <a href="custom.html">Custom &amp; Weddings</a>
     <a href="#occasions">Occasions</a>
@@ -57,6 +55,7 @@
     <a href="#catering">Catering &amp; Events</a>
     <a href="#visit">Visit &amp; Hours</a>
     <a href="#faq">FAQ &amp; Food Info</a>
+    <button class="sc-btn sc-btn--primary drawer__order" data-order>Order for Pickup</button>
   </nav>
 
   <main id="main">
@@ -73,46 +72,11 @@
           </div>
           <p class="hero__meta"><span data-status></span> <span class="hero__meta-sep">·</span> By appointment or walk-in.</p>
         </div>
-        <div class="hero__art" aria-hidden="true">
-          <svg class="cakemark" viewBox="0 0 440 500" role="img">
-            <defs>
-              <radialGradient id="disc" cx="50%" cy="42%" r="62%">
-                <stop offset="0%" stop-color="#fffdfb"/>
-                <stop offset="62%" stop-color="#f3e4da"/>
-                <stop offset="100%" stop-color="#ecd8cb"/>
-              </radialGradient>
-            </defs>
-            <circle cx="220" cy="250" r="196" fill="url(#disc)"/>
-            <circle cx="220" cy="250" r="196" fill="none" stroke="#B9853B" stroke-width="1.4"/>
-            <circle cx="220" cy="250" r="206" fill="none" stroke="#B9853B" stroke-width="1" opacity="0.45"/>
-            <!-- cake stand -->
-            <ellipse cx="220" cy="416" rx="118" ry="15" fill="#fffdfb" stroke="#6C173A" stroke-width="1.4"/>
-            <path d="M196 416c2 18 10 28 24 30 14-2 22-12 24-30" fill="none" stroke="#6C173A" stroke-width="1.4"/>
-            <ellipse cx="220" cy="450" rx="46" ry="9" fill="#fffdfb" stroke="#6C173A" stroke-width="1.4"/>
-            <!-- base tier -->
-            <rect x="132" y="326" width="176" height="84" rx="6" fill="#fffdfb" stroke="#6C173A" stroke-width="1.4"/>
-            <path d="M132 344c22 10 154 10 176 0" fill="none" stroke="#B9853B" stroke-width="1.2" opacity="0.75"/>
-            <g fill="#B9853B"><circle cx="152" cy="342" r="2.2"/><circle cx="178" cy="345" r="2.2"/><circle cx="204" cy="346" r="2.2"/><circle cx="230" cy="346" r="2.2"/><circle cx="256" cy="345" r="2.2"/><circle cx="282" cy="342" r="2.2"/></g>
-            <!-- middle tier -->
-            <rect x="158" y="268" width="124" height="60" rx="5" fill="#fffdfb" stroke="#6C173A" stroke-width="1.4"/>
-            <path d="M158 284c16 8 108 8 124 0" fill="none" stroke="#B9853B" stroke-width="1.2" opacity="0.75"/>
-            <g fill="#B9853B"><circle cx="176" cy="283" r="2"/><circle cx="200" cy="285" r="2"/><circle cx="224" cy="285" r="2"/><circle cx="248" cy="283" r="2"/></g>
-            <!-- top tier -->
-            <rect x="182" y="220" width="76" height="50" rx="5" fill="#fffdfb" stroke="#6C173A" stroke-width="1.4"/>
-            <path d="M182 234c10 6 66 6 76 0" fill="none" stroke="#B9853B" stroke-width="1.2" opacity="0.75"/>
-            <!-- flower topper (the single restrained pink note) -->
-            <line x1="220" y1="220" x2="220" y2="196" stroke="#6C173A" stroke-width="1.2"/>
-            <g transform="translate(220 190)">
-              <g fill="#E83E8C" opacity="0.92">
-                <ellipse cx="0" cy="-6" rx="4" ry="6.4"/>
-                <ellipse cx="6" cy="-1.8" rx="4" ry="6.4" transform="rotate(72)"/>
-                <ellipse cx="3.7" cy="4.9" rx="4" ry="6.4" transform="rotate(144)"/>
-                <ellipse cx="-3.7" cy="4.9" rx="4" ry="6.4" transform="rotate(216)"/>
-                <ellipse cx="-6" cy="-1.8" rx="4" ry="6.4" transform="rotate(288)"/>
-              </g>
-              <circle r="3" fill="#B9853B"/>
-            </g>
-          </svg>
+        <div class="hero__art">
+          <figure class="framed hero__frame">
+            <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&q=80&w=760&h=950" alt="A hand-finished celebration cake from the Clarksville studio" width="760" height="950" fetchpriority="high">
+            <span class="hero__seal" aria-hidden="true"><b>12</b>flavors daily</span>
+          </figure>
         </div>
       </div>
     </section>
@@ -159,8 +123,16 @@
     <!-- The Studio process -->
     <section class="sec studio" id="studio">
       <div class="wrap">
-        <p class="kicker">03 — The studio</p>
-        <h2 class="sec__title">How a custom order comes together</h2>
+        <div class="studio__intro">
+          <div class="studio__lead">
+            <p class="kicker">03 — The studio</p>
+            <h2 class="sec__title">How a custom order comes together</h2>
+            <p class="studio__text">Consultations, sketches and hand-finishing all happen here on Madison Street — where the signature dozen is baked each morning and every celebration cake is composed by hand.</p>
+          </div>
+          <figure class="framed">
+            <img src="https://images.unsplash.com/photo-1587241321921-91a834d6d191?auto=format&fit=crop&q=80&w=800&h=600" alt="Inside the Smallcakes studio and display case on Madison Street" width="800" height="600" loading="lazy">
+          </figure>
+        </div>
         <ol class="process">
           <li class="step">
             <span class="step__num">01</span>
@@ -198,28 +170,32 @@
           <a class="txt-link" href="custom.html">Start yours →</a>
         </div>
         <div class="gallery">
-          <article class="tile tile--wedding">
+          <article class="tile">
+            <img class="tile__img" src="https://images.unsplash.com/photo-1551879403-6adb554966fd?auto=format&fit=crop&q=80&w=600&h=800" alt="A tiered wedding cake finished by hand" width="600" height="800" loading="lazy">
             <div class="tile__frame"></div>
             <div class="tile__label">
               <span class="tile__eyebrow">Weddings</span>
               <p>Tiered centerpieces &amp; dessert tables</p>
             </div>
           </article>
-          <article class="tile tile--birthday">
+          <article class="tile">
+            <img class="tile__img" src="https://images.unsplash.com/photo-1545696563-af8f6ec2295a?auto=format&fit=crop&q=80&w=600&h=800" alt="A decorated celebration cake for a birthday" width="600" height="800" loading="lazy">
             <div class="tile__frame"></div>
             <div class="tile__label">
               <span class="tile__eyebrow">Birthdays</span>
               <p>Smash cakes to grown-up showstoppers</p>
             </div>
           </article>
-          <article class="tile tile--corporate">
+          <article class="tile">
+            <img class="tile__img" src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?auto=format&fit=crop&q=80&w=600&h=800" alt="A catered dessert table of treats for a corporate event" width="600" height="800" loading="lazy">
             <div class="tile__frame"></div>
             <div class="tile__label">
               <span class="tile__eyebrow">Corporate</span>
               <p>Branded treats &amp; client gifting</p>
             </div>
           </article>
-          <article class="tile tile--shower">
+          <article class="tile">
+            <img class="tile__img" src="https://images.unsplash.com/photo-1561940329-7382e6704231?auto=format&fit=crop&q=80&w=600&h=800" alt="An elegantly styled dessert display for a shower" width="600" height="800" loading="lazy">
             <div class="tile__frame"></div>
             <div class="tile__label">
               <span class="tile__eyebrow">Showers</span>
@@ -232,11 +208,16 @@
 
     <!-- Catering & events band -->
     <section class="sec catering" id="catering">
-      <div class="wrap catering__inner">
-        <p class="kicker kicker--onburg">05 — Catering &amp; events</p>
-        <h2 class="sec__title">Sweeten the whole room</h2>
-        <p class="catering__lead">From office mornings and client gifts to wedding dessert tables, we compose cupcakes, minis, cakes and the creamery into displays built around your headcount — with delivery and setup on request.</p>
-        <a class="sc-btn sc-btn--onburg" href="custom.html">Request a catering quote →</a>
+      <div class="wrap catering__wrap">
+        <div class="catering__copy">
+          <p class="kicker kicker--onburg">05 — Catering &amp; events</p>
+          <h2 class="sec__title">Sweeten the whole room</h2>
+          <p class="catering__lead">From office mornings and client gifts to wedding dessert tables, we compose cupcakes, minis, cakes and the creamery into displays built around your headcount — with delivery and setup on request.</p>
+          <a class="sc-btn sc-btn--onburg" href="custom.html">Request a catering quote →</a>
+        </div>
+        <figure class="framed">
+          <img src="https://images.unsplash.com/photo-1508349307373-ab2edc239589?auto=format&fit=crop&q=80&w=800&h=620" alt="A styled dessert table of cupcakes and cakes catered for an event" width="800" height="620" loading="lazy">
+        </figure>
       </div>
     </section>
 
@@ -278,12 +259,14 @@
             <a class="sc-btn sc-btn--ghost" href="tel:+19315478361">Call the studio</a>
           </div>
         </div>
-        <div class="visit__map" aria-hidden="true">
-          <div class="visit__rings"></div>
-          <div class="visit__pin">
-            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#6C173A" stroke-width="1.5"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          </div>
-          <span class="visit__addr">1803 Madison St., Suite A</span>
+        <div class="visit__media">
+          <figure class="framed">
+            <img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?auto=format&fit=crop&q=80&w=800&h=620" alt="Cupcakes and cakes on the Smallcakes counter on Madison Street" width="800" height="620" loading="lazy">
+          </figure>
+          <a class="visit__pin" href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            1803 Madison St., Suite A
+          </a>
         </div>
       </div>
     </section>
@@ -317,6 +300,7 @@
   <footer class="foot">
     <div class="foot__grid">
       <div class="foot__brand">
+        <img class="foot__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Cupcakery & Creamery" width="180" height="154">
         <span class="brand__name brand__name--foot">Smallcakes<em>Celebration Studio · Clarksville</em></span>
         <p>1803 Madison St., Suite A<br>Clarksville, TN 37043<br><a href="tel:+19315478361">931-547-8361</a></p>
       </div>
