@@ -89,6 +89,35 @@ window.SCDemo = (function () {
     picks.forEach(f => container.appendChild(flavorCard(f)));
   }
 
+  /* ── Content rendered from data (categories, reviews, FAQ) ── */
+  function fillCategories(c) {
+    SC.CATEGORIES.forEach(cat => {
+      const card = el('a', 'sc-cat');
+      card.href = 'menu.html#' + cat.key;
+      card.innerHTML = `<h3 class="sc-cat__label">${cat.label}</h3>
+        <p class="sc-cat__note">${cat.note}</p><span class="sc-cat__go">View →</span>`;
+      c.appendChild(card);
+    });
+  }
+  function stars(n) { return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n); }
+  function fillReviews(c) {
+    SC.REVIEWS.forEach(r => {
+      const card = el('figure', 'sc-review');
+      card.innerHTML = `<div class="sc-review__stars" aria-label="${r.rating} out of 5">${stars(r.rating)}</div>
+        <blockquote class="sc-review__text">${r.text}</blockquote>
+        <figcaption class="sc-review__by">${r.name} · <span>${r.date}</span></figcaption>`;
+      c.appendChild(card);
+    });
+  }
+  function fillFaq(c) {
+    SC.FAQ.forEach((f, n) => {
+      const d = el('details', 'sc-faq__item');
+      if (n === 0) d.open = true;
+      d.innerHTML = `<summary class="sc-faq__q">${f.q}</summary><div class="sc-faq__a">${f.a}</div>`;
+      c.appendChild(d);
+    });
+  }
+
   /* ── Live open/closed status ──────────────────────────────── */
   function fillStatus(node) {
     const now = new Date();
@@ -215,17 +244,48 @@ window.SCDemo = (function () {
     paint();
   }
 
+  function fillHours(table) {
+    const todayIdx = (new Date().getDay() + 6) % 7; // 0=Mon in our array
+    table.innerHTML = SC.STORE.hours.map((r, n) =>
+      `<tr class="${n === todayIdx ? 'is-today' : ''}"><th scope="row">${r.d}</th><td>${r.h}</td></tr>`
+    ).join('');
+  }
+
   /* ── Auto-wire ────────────────────────────────────────────── */
   function boot() {
     document.querySelectorAll('[data-status]').forEach(fillStatus);
+    document.querySelectorAll('[data-hours]').forEach(fillHours);
+    document.querySelectorAll('[data-allergen]').forEach(n => (n.textContent = SC.ALLERGEN));
     document.querySelectorAll('[data-todays-flavors]').forEach(fillTodays);
     document.querySelectorAll('[data-flavors]').forEach(fillFlavors);
+    document.querySelectorAll('[data-categories]').forEach(fillCategories);
+    document.querySelectorAll('[data-reviews]').forEach(fillReviews);
+    document.querySelectorAll('[data-faq]').forEach(fillFaq);
     document.querySelectorAll('[data-menu]').forEach(initMenuFilter);
     document.querySelectorAll('[data-custom-form]').forEach(initCustomForm);
     document.addEventListener('click', e => {
       const b = e.target.closest('[data-order]');
       if (b) { e.preventDefault(); openOrder(b.getAttribute('data-order') || ''); }
+      const t = e.target.closest('[data-t]');
+      if (t) track(t.getAttribute('data-t'), { href: t.getAttribute('href') || null });
+      const burger = e.target.closest('[data-burger], .nav__burger');
+      if (burger) {
+        const drawer = document.querySelector('.drawer');
+        if (drawer) {
+          const open = drawer.hidden;
+          drawer.hidden = !open;
+          burger.setAttribute('aria-expanded', String(open));
+        }
+      }
     });
+    // Close mobile drawer after tapping a link inside it.
+    document.querySelectorAll('.drawer a').forEach(a =>
+      a.addEventListener('click', () => { const d = document.querySelector('.drawer'); if (d) d.hidden = true; }));
+    // Newsletter + any demo-only form that just needs a friendly confirmation.
+    document.querySelectorAll('[data-signup]').forEach(f => f.addEventListener('submit', e => {
+      e.preventDefault(); track('rewards_click', { kind: 'email_signup' });
+      f.reset(); toast('You’re on the list! (demo — no email stored)');
+    }));
     track('page_view', { path: location.pathname });
     if (location.search.includes('selfcheck')) selfcheck();
   }

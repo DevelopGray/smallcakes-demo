@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Start a Custom Order — Smallcakes Clarksville</title>
+  <meta name="description" content="Request a custom cake or cupcakes from Smallcakes Clarksville. Tell us the date, occasion and idea — we reply within one business day.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/reset.css">
+  <link rel="stylesheet" href="../../assets/demo.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%82</text></svg>">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="demo-ribbon">Concept demo — no real order is placed. <a href="../../index.html">← All three directions</a></p>
+
+  <header class="nav">
+    <a class="brand" href="index.html"><span class="brand__mark">🧁</span><span class="brand__name">Smallcakes<em>Clarksville</em></span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="menu.html">Menu &amp; Flavors</a>
+      <a href="custom.html" aria-current="page">Custom Orders</a>
+      <a href="index.html#catering">Catering</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#visit">Visit</a>
+    </nav>
+    <button class="nav__order sc-btn sc-btn--primary" data-order>Order for Pickup</button>
+    <button class="nav__burger" aria-label="Menu" aria-expanded="false">☰</button>
+  </header>
+  <nav class="drawer" aria-label="Mobile" hidden>
+    <a href="menu.html">Menu &amp; Flavors</a>
+    <a href="custom.html">Custom Orders</a>
+    <a href="index.html#catering">Catering</a>
+    <a href="index.html#about">About the Store</a>
+    <a href="index.html#visit">Visit &amp; Hours</a>
+  </nav>
+
+  <main id="main">
+    <section class="page-hero page-hero--tight">
+      <p class="eyebrow">Custom orders</p>
+      <h1>Let's design your celebration</h1>
+      <p class="page-hero__sub">Four quick steps. This starts a request — it doesn't reserve your date or confirm an order until we reply.</p>
+    </section>
+
+    <section class="section wizard-wrap">
+      <form class="wizard" data-custom-form novalidate>
+        <ol class="progress" data-progress aria-hidden="true">
+          <li data-dot class="is-on"></li><li data-dot></li><li data-dot></li><li data-dot></li>
+        </ol>
+
+        <!-- Step 1 · Fit & timing -->
+        <fieldset data-step>
+          <legend><span class="step-n">1</span> Fit &amp; timing</legend>
+          <p class="wizard__note">Custom orders generally need <strong>48–72 hours</strong> notice; tiered cakes about a week.</p>
+          <label>What are we making?
+            <select name="product" required>
+              <option value="">Choose one…</option>
+              <option>Celebration cake</option>
+              <option>Custom cupcakes</option>
+              <option>Smash cake</option>
+              <option>Cupcake tower / dessert display</option>
+              <option>Corporate / logo treats</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <div class="field-row">
+            <label>Event date <input type="date" name="date" required></label>
+            <label>Needed by <input type="time" name="time"></label>
+          </div>
+          <fieldset class="radios">
+            <legend>Pickup or delivery?</legend>
+            <label class="radio"><input type="radio" name="fulfil" value="pickup" checked> Pickup</label>
+            <label class="radio"><input type="radio" name="fulfil" value="delivery"> Delivery (we'll confirm area)</label>
+          </fieldset>
+          <div class="wizard__nav"><span></span><button class="sc-btn sc-btn--primary" data-next>Continue →</button></div>
+        </fieldset>
+
+        <!-- Step 2 · Scale & budget -->
+        <fieldset data-step hidden>
+          <legend><span class="step-n">2</span> Scale &amp; budget</legend>
+          <div class="field-row">
+            <label>Quantity / servings <input type="number" name="qty" min="1" placeholder="e.g. 24" required></label>
+            <label>Size
+              <select name="size">
+                <option value="">Not sure yet</option>
+                <option>Single</option><option>Half-dozen</option><option>Dozen</option>
+                <option>6" cake</option><option>8" cake</option><option>Tiered</option>
+              </select>
+            </label>
+          </div>
+          <label>Budget range
+            <select name="budget">
+              <option value="">Choose a range…</option>
+              <option>Under $50</option><option>$50–$100</option><option>$100–$250</option><option>$250+</option>
+            </select>
+          </label>
+          <label>Venue (if delivery) <input type="text" name="venue" placeholder="Optional"></label>
+          <div class="wizard__nav"><button class="sc-btn sc-btn--ghost" data-prev>← Back</button><button class="sc-btn sc-btn--primary" data-next>Continue →</button></div>
+        </fieldset>
+
+        <!-- Step 3 · Creative direction -->
+        <fieldset data-step hidden>
+          <legend><span class="step-n">3</span> Creative direction</legend>
+          <label>Favorite flavor
+            <select name="flavor">
+              <option value="">Surprise me</option>
+              <option>Pink Vanilla</option><option>“Famous” Red Velvet</option><option>Cookies-N-Cream</option>
+              <option>Chocolate Cream</option><option>Birthday Cake</option><option>Lemon Drop</option>
+            </select>
+          </label>
+          <label>Colors / theme <input type="text" name="theme" placeholder="e.g. blush + gold, dinosaurs, Titans"></label>
+          <label>Inscription <input type="text" name="inscription" placeholder="“Happy 1st Birthday, Ava!”"></label>
+          <label>Dietary concerns <input type="text" name="dietary" placeholder="Tell us — note our shared-kitchen policy below"></label>
+          <label class="upload">Reference image <input type="file" name="ref" accept="image/*"> <span>Optional · jpg/png</span></label>
+          <div class="wizard__nav"><button class="sc-btn sc-btn--ghost" data-prev>← Back</button><button class="sc-btn sc-btn--primary" data-next>Continue →</button></div>
+        </fieldset>
+
+        <!-- Step 4 · Contact & consent -->
+        <fieldset data-step hidden>
+          <legend><span class="step-n">4</span> Your details</legend>
+          <label>Name <input type="text" name="name" required></label>
+          <div class="field-row">
+            <label>Email <input type="email" name="email" required></label>
+            <label>Mobile <input type="tel" name="phone" required></label>
+          </div>
+          <label>Preferred contact
+            <select name="prefer"><option>Text</option><option>Call</option><option>Email</option></select>
+          </label>
+          <label class="check"><input type="checkbox" name="ack" required>
+            I understand submitting this form <strong>starts a request</strong> — it doesn't reserve my date or confirm an order until Smallcakes replies with acceptance and payment details.</label>
+          <p class="wizard__legal">We reply within <strong>1 business day</strong>. Your order is confirmed only after you receive acceptance and complete the required payment.</p>
+          <div class="wizard__nav"><button class="sc-btn sc-btn--ghost" data-prev>← Back</button><button class="sc-btn sc-btn--primary" type="submit">Send request</button></div>
+        </fieldset>
+
+        <div data-success></div>
+      </form>
+
+      <aside class="wizard-aside">
+        <h2>Why it's easy</h2>
+        <ul>
+          <li>✓ No payment now — we quote first</li>
+          <li>✓ A real person reviews every request</li>
+          <li>✓ Reference number so nothing gets lost</li>
+        </ul>
+        <p class="allergen allergen--aside"><strong>Allergen note:</strong> <span data-allergen></span></p>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot__grid">
+      <div>
+        <span class="brand__name brand__name--foot">Smallcakes<em>Clarksville</em></span>
+        <p>1803 Madison St., Suite A<br>Clarksville, TN 37043<br><a href="tel:+19315478361">931-547-8361</a></p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="menu.html">Menu &amp; Flavors</a>
+        <a href="custom.html">Custom Orders</a>
+        <a href="index.html#catering">Catering</a>
+        <a href="index.html#visit">Visit &amp; Hours</a>
+      </nav>
+      <p class="foot__tag">"Make every occasion Sweet with Smallcakes!"</p>
+    </div>
+    <p class="foot__fine">Concept demo by Stephen C. Gray. Not an official Smallcakes corporate document.</p>
+  </footer>
+
+  <div class="mobar">
+    <button data-order><span>🛍️</span>Order</button>
+    <a href="tel:+19315478361" data-t="phone_click"><span>📞</span>Call</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click"><span>📍</span>Directions</a>
+  </div>
+
+  <script src="../../assets/data.js"></script>
+  <script src="../../assets/demo.js"></script>
+</body>
+</html>
