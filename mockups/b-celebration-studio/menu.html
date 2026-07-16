@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Collection — Smallcakes Celebration Studio, Clarksville</title>
+  <meta name="description" content="Twelve signature cupcakes baked fresh daily, celebration cakes made to order, small-batch creamery ice cream and a monthly specialty flavor at Smallcakes Celebration Studio, Clarksville.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/reset.css">
+  <link rel="stylesheet" href="../../assets/demo.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8E%82</text></svg>">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="demo-ribbon">Concept demo — illustrative content, pending corporate approval. <a href="../../index.html">← All three directions</a></p>
+
+  <div class="util">
+    <span class="util__status" data-status></span>
+    <span class="util__links">
+      <a href="tel:+19315478361" data-t="phone_click">931-547-8361</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">Directions&#8202;↗</a>
+    </span>
+  </div>
+
+  <header class="nav">
+    <a class="brand" href="index.html" aria-label="Smallcakes Celebration Studio, Clarksville — home">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none">
+          <circle cx="16" cy="16" r="14.4" stroke="#B9853B" stroke-width="1"/>
+          <path d="M11 21h10l-.8-5.2a1 1 0 0 0-1-.8h-6.4a1 1 0 0 0-1 .8z" stroke="#6C173A" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M12 15c0-1.7 1.8-3 4-3s4 1.3 4 3" stroke="#6C173A" stroke-width="1.2"/>
+          <circle cx="16" cy="10.2" r="1.1" fill="#E83E8C"/>
+        </svg>
+      </span>
+      <span class="brand__name">Smallcakes<em>Celebration Studio · Clarksville</em></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="menu.html" aria-current="page">The Collection</a>
+      <a href="custom.html">Custom &amp; Weddings</a>
+      <a href="index.html#occasions">Occasions</a>
+      <a href="index.html#catering">Catering</a>
+      <a href="index.html#visit">Visit</a>
+    </nav>
+    <button class="nav__order sc-btn sc-btn--primary" data-order>Order for Pickup</button>
+    <button class="nav__burger" aria-label="Menu" aria-expanded="false">☰</button>
+  </header>
+  <nav class="drawer" aria-label="Mobile" hidden>
+    <a href="menu.html">The Collection</a>
+    <a href="custom.html">Custom &amp; Weddings</a>
+    <a href="index.html#occasions">Occasions</a>
+    <a href="index.html#catering">Catering &amp; Events</a>
+    <a href="index.html#visit">Visit &amp; Hours</a>
+    <a href="index.html#faq">FAQ &amp; Food Info</a>
+  </nav>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">The Collection</p>
+        <h1>Baked fresh, every single morning</h1>
+        <p class="page-hero__sub">Twelve signature cupcakes daily, a monthly specialty drop, celebration cakes made to order, and small-batch creamery ice cream from the same recipes. Select a flavor to add it to a pickup order.</p>
+        <div class="hero__cta"><button class="sc-btn sc-btn--primary" data-order>Order for pickup</button></div>
+      </div>
+    </section>
+
+    <div class="menu" data-menu>
+      <div class="wrap">
+        <div class="filterbar" role="group" aria-label="Filter the menu">
+          <button data-filter="all" aria-pressed="true">All</button>
+          <button data-filter="cupcakes" aria-pressed="false">Cupcakes</button>
+          <button data-filter="cakes" aria-pressed="false">Cakes</button>
+          <button data-filter="icecream" aria-pressed="false">Creamery</button>
+          <button data-filter="seasonal" aria-pressed="false">Specialty</button>
+        </div>
+
+        <p class="pricing">Illustrative starting prices — single <strong>$4</strong> · half-dozen <strong>$22</strong> · dozen <strong>$42</strong> · creamery from <strong>$5</strong>. Live prices confirm at checkout.</p>
+
+        <section data-cat="cupcakes" id="cupcakes" class="menu-sec">
+          <div class="menu-sec__head">
+            <p class="kicker">i — Signature</p>
+            <h2 class="sec__title">Signature cupcakes</h2>
+          </div>
+          <div class="flavor-grid" data-flavors="signature"></div>
+        </section>
+
+        <section data-cat="cakes" id="cakes" class="menu-sec">
+          <div class="menu-sec__head">
+            <p class="kicker">ii — Made to order</p>
+            <h2 class="sec__title">Celebration cakes</h2>
+          </div>
+          <div class="cake-note">
+            <p>6", 8", tiered, and first-birthday smash cakes — composed in any signature flavor and finished by hand in the studio.</p>
+            <a class="sc-btn sc-btn--primary" href="custom.html">Start a cake order →</a>
+          </div>
+        </section>
+
+        <section data-cat="icecream" id="icecream" class="menu-sec">
+          <div class="menu-sec__head">
+            <p class="kicker">iii — The creamery</p>
+            <h2 class="sec__title">Small-batch ice cream</h2>
+          </div>
+          <p class="menu-sec__note">Drawn from our famous cupcake recipes and churned in small batches.</p>
+          <div class="flavor-grid" data-flavors="icecream"></div>
+        </section>
+
+        <section data-cat="seasonal" id="seasonal" class="menu-sec">
+          <div class="menu-sec__head">
+            <p class="kicker">iv — Rotating</p>
+            <h2 class="sec__title">Specialty &amp; seasonal</h2>
+          </div>
+          <p class="menu-sec__note">New flavors drop monthly — here today, composed anew next month.</p>
+          <div class="flavor-grid" data-flavors="seasonal"></div>
+        </section>
+      </div>
+    </div>
+
+    <section class="sec faq faq--menu">
+      <div class="wrap">
+        <p class="allergen"><strong>Allergen note.</strong> <span data-allergen></span></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <span class="brand__name brand__name--foot">Smallcakes<em>Celebration Studio · Clarksville</em></span>
+        <p>1803 Madison St., Suite A<br>Clarksville, TN 37043<br><a href="tel:+19315478361">931-547-8361</a></p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="menu.html">The Collection</a>
+        <a href="custom.html">Custom &amp; Weddings</a>
+        <a href="index.html#catering">Catering &amp; Events</a>
+        <a href="index.html#visit">Visit &amp; Hours</a>
+        <a href="index.html#faq">FAQ &amp; Food Info</a>
+      </nav>
+      <p class="foot__tag">"Maybe a cupcake will help."</p>
+    </div>
+    <p class="foot__fine">Concept demo by Stephen C. Gray. Not an official Smallcakes corporate document. Flavors, hours, prices and reviews are illustrative and pending corporate approval.</p>
+  </footer>
+
+  <div class="mobar">
+    <button data-order>
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      Order
+    </button>
+    <a href="tel:+19315478361" data-t="phone_click">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h3l2 5-2 1a10 10 0 0 0 5 5l1-2 5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg>
+      Call
+    </a>
+    <a href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      Directions
+    </a>
+  </div>
+
+  <script src="../../assets/data.js"></script>
+  <script src="../../assets/demo.js"></script>
+</body>
+</html>
