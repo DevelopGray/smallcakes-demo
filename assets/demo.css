@@ -11,6 +11,10 @@
   --sc-shadow:   0 20px 50px rgba(60, 20, 40, .28);
 }
 
+/* Logo is a 180×154 oval — never let a square box distort it. object-fit
+   wins even when a site forces equal width/height on the box. */
+.brand__logo, .foot__logo, .drawer__head img, .logo { object-fit: contain; }
+
 /* Base button — sites can restyle .sc-btn or use their own classes. */
 .sc-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .4em;
