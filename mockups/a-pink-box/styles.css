@@ -1,0 +1,30 @@
+/* Direction A — Pink Box, Clarksville.
+   Editorial packaging system: cream canvas, pink action, burgundy type.
+   Palette + type scale for this direction; homepage sections go below. */
+:root {
+  --bg:      var(--brand-cream);
+  --ink:     var(--brand-charcoal);
+  --accent:  var(--brand-pink);
+  --heading: var(--brand-burgundy);
+  --line:    #efe2da;
+}
+
+body { background: var(--bg); color: var(--ink); }
+
+.demo-banner {
+  background: var(--heading); color: #fff; font-size: 0.8rem;
+  text-align: center; padding: 0.55rem 1rem;
+}
+.demo-banner a { color: #fff; font-weight: 700; }
+
+.scaffold { max-width: 40rem; margin: 0 auto; padding: 4rem 1.25rem; text-align: center; }
+.scaffold .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.72rem; font-weight: 700; color: var(--accent); }
+.scaffold h1 { font-size: clamp(2rem, 8vw, 3rem); color: var(--heading); margin: 0.5rem 0 1rem; }
+.scaffold p { color: #6b5b62; }
+
+/* ── Homepage sections (build here) ──────────────────────────
+   1 Utility/status bar   2 Hero   3 Choose your path
+   4 Current flavors      5 Product categories  6 Custom
+   7 Catering/wedding     8 Local story  9 Reviews
+   10 Visit  11 FAQ  12 Retention   + mobile bottom bar
+   See RESEARCH_NOTES.md for the full blueprint. */

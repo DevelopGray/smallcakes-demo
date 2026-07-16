@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smallcakes Clarksville — Website Concept Directions</title>
+  <meta name="description" content="Three website design directions for Smallcakes Cupcakery & Creamery, Clarksville TN. Unofficial concept demos pending corporate approval.">
+  <link rel="stylesheet" href="assets/reset.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%A7%81</text></svg>">
+  <style>
+    body {
+      background: var(--brand-cream);
+      color: var(--brand-charcoal);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.25rem 4rem;
+    }
+    .demo-banner {
+      width: 100%;
+      max-width: 60rem;
+      background: var(--brand-burgundy);
+      color: #fff;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 0.6rem 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    header { max-width: 40rem; text-align: center; margin-bottom: 2.5rem; }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--brand-pink);
+    }
+    h1 { font-size: clamp(1.9rem, 6vw, 3rem); margin: 0.4rem 0 0.75rem; color: var(--brand-burgundy); }
+    header p { font-size: 1.05rem; color: #6b5b62; }
+
+    .grid {
+      display: grid;
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 60rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 48rem) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border: 1px solid #efe2da;
+      border-radius: 1rem;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+    .card:hover, .card:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(108, 23, 58, 0.15);
+    }
+    .card__swatch { height: 8px; }
+    .card__body { padding: 1.4rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+    .card__tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-gold); }
+    .card__title { font-size: 1.3rem; color: var(--brand-burgundy); }
+    .card__desc { font-size: 0.92rem; color: #6b5b62; }
+    .card__best { font-size: 0.82rem; color: #8a7a80; margin-top: auto; }
+    .card__cta { margin-top: 0.75rem; font-weight: 700; color: var(--brand-pink); }
+
+    .a .card__swatch { background: linear-gradient(90deg, var(--brand-cream), var(--brand-pink), var(--brand-burgundy)); }
+    .b .card__swatch { background: linear-gradient(90deg, #f6ebe4, var(--brand-gold), var(--brand-burgundy)); }
+    .c .card__swatch { background: linear-gradient(90deg, var(--brand-pink), var(--brand-green), #ffd15c); }
+
+    footer { max-width: 40rem; text-align: center; margin-top: 3rem; font-size: 0.8rem; color: #9c8d92; }
+  </style>
+</head>
+<body>
+  <p class="demo-banner">
+    Concept demos — unofficial. Content, pricing &amp; flavors are illustrative and pending Smallcakes corporate approval.
+  </p>
+
+  <header>
+    <p class="eyebrow">Smallcakes Cupcakery &amp; Creamery · Clarksville, TN</p>
+    <h1>Three website directions</h1>
+    <p>Same store, same information — three different personalities. Open each on your phone. Pick the one that feels right.</p>
+  </header>
+
+  <main class="grid">
+    <a class="card a" href="mockups/a-pink-box/index.html">
+      <span class="card__swatch"></span>
+      <span class="card__body">
+        <span class="card__tag">Direction A · Recommended</span>
+        <span class="card__title">Pink Box, Clarksville</span>
+        <span class="card__desc">The packaging as an editorial system — cream canvas, pink action, confident type. Celebratory, clean, broad appeal.</span>
+        <span class="card__best">Best for: everyday pickup, families, gifts, custom celebrations.</span>
+        <span class="card__cta">View demo →</span>
+      </span>
+    </a>
+
+    <a class="card b" href="mockups/b-celebration-studio/index.html">
+      <span class="card__swatch"></span>
+      <span class="card__body">
+        <span class="card__tag">Direction B</span>
+        <span class="card__title">Celebration Studio</span>
+        <span class="card__desc">Premium and composed — macro detail, asymmetric grids, restrained metallic. Raises perceived custom &amp; event value.</span>
+        <span class="card__best">Best for: custom, weddings, corporate &amp; events.</span>
+        <span class="card__cta">View demo →</span>
+      </span>
+    </a>
+
+    <a class="card c" href="mockups/c-sweet-stop/index.html">
+      <span class="card__swatch"></span>
+      <span class="card__body">
+        <span class="card__tag">Direction C</span>
+        <span class="card__title">Sweet Stop · Everyday Joy</span>
+        <span class="card__desc">Bright and friendly — candid people, easy pickup, community moments. Fast, energetic, made for frequent visits.</span>
+        <span class="card__best">Best for: walk-ins, students, teams, everyday gifting.</span>
+        <span class="card__cta">View demo →</span>
+      </span>
+    </a>
+  </main>
+
+  <footer>
+    <p>1803 Madison St., Suite A, Clarksville, TN 37043 · 931-547-8361<br>
+    Prepared by Stephen C. Gray. Not an official Smallcakes corporate document.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+/* Direction B — Celebration Studio.
+   Premium, composed, event-focused: blush/cream, restrained metallic gold,
+   deep burgundy type, asymmetric editorial grids. */
+:root {
+  --bg:      #f7efe9;
+  --ink:     var(--brand-charcoal);
+  --accent:  var(--brand-gold);
+  --heading: var(--brand-burgundy);
+  --line:    #e7d8ce;
+}
+
+body { background: var(--bg); color: var(--ink); }
+
+.demo-banner {
+  background: var(--heading); color: #fff; font-size: 0.8rem;
+  text-align: center; padding: 0.55rem 1rem;
+}
+.demo-banner a { color: #fff; font-weight: 700; }
+
+.scaffold { max-width: 40rem; margin: 0 auto; padding: 4rem 1.25rem; text-align: center; }
+.scaffold .eyebrow { text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.72rem; font-weight: 700; color: var(--accent); }
+.scaffold h1 { font-size: clamp(2rem, 8vw, 3rem); color: var(--heading); margin: 0.5rem 0 1rem; }
+.scaffold p { color: #6b5b62; }
+
+/* ── Homepage sections (build here) — same 12-section blueprint as A,
+   premium/editorial execution. See RESEARCH_NOTES.md. */

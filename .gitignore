@@ -1,0 +1,9 @@
+# Keep source research + internal notes OUT of the public repo.
+# GitHub Pages needs a public repo; docs/ holds CONFIDENTIAL pricing PDFs and
+# RESEARCH_NOTES.md contains internal working notes. Do not publish them.
+docs/
+RESEARCH_NOTES.md
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
