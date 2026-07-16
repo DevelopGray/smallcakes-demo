@@ -3,21 +3,306 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Smallcakes Clarksville — Sweet Stop (Concept C)</title>
-  <meta name="description" content="Concept C: Sweet Stop, Everyday Joy. Unofficial demo pending corporate approval.">
+  <title>Smallcakes Clarksville — Your everyday sweet stop</title>
+  <meta name="description" content="Smallcakes Cupcakery & Creamery in Clarksville, TN. Twelve flavors baked fresh daily, small-batch ice cream, and custom cakes. Grab-and-go pickup on Madison Street — walk-ins welcome.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/reset.css">
+  <link rel="stylesheet" href="../../assets/demo.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%8D%A6</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%A7%81</text></svg>">
 </head>
 <body>
-  <p class="demo-banner">Concept demo — illustrative content, pending corporate approval. <a href="../../index.html">← All directions</a></p>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="demo-ribbon">Concept demo — illustrative content, pending corporate approval. <a href="../../index.html">← All three directions</a></p>
 
-  <main class="scaffold">
-    <p class="eyebrow">Direction C</p>
-    <h1>Sweet Stop · Everyday Joy</h1>
-    <p>Homepage build starts here. Skeleton wired to shared reset + brand tokens and this direction's palette.</p>
+  <!-- 1 · Utility / status bar -->
+  <div class="util">
+    <span data-status></span>
+    <span class="util__links">
+      <a href="tel:+19315478361" data-t="phone_click">📞 931-547-8361</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">📍 Directions</a>
+    </span>
+  </div>
+
+  <!-- 2 · Header -->
+  <header class="nav" id="top">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">🧁</span>
+      <span class="brand__name">Smallcakes<em>Clarksville</em></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="menu.html">Menu &amp; Flavors</a>
+      <a href="custom.html">Custom Orders</a>
+      <a href="#community">Community</a>
+      <a href="#about">About</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <button class="nav__order sc-btn sc-btn--primary" data-order>Order for Pickup</button>
+    <button class="nav__burger" aria-label="Menu" aria-expanded="false">☰</button>
+  </header>
+  <nav class="drawer" aria-label="Mobile" hidden>
+    <a href="menu.html">Menu &amp; Flavors</a>
+    <a href="custom.html">Custom Orders</a>
+    <a href="#community">Community</a>
+    <a href="#catering">Catering</a>
+    <a href="#about">About the Store</a>
+    <a href="#visit">Visit &amp; Hours</a>
+    <a href="#faq">FAQ &amp; Food Info</a>
+  </nav>
+
+  <main id="main">
+    <!-- 3 · Intent-split hero -->
+    <section class="hero">
+      <div class="wrap hero__top">
+        <div class="hero__copy">
+          <p class="eyebrow">Clarksville, Tennessee · Walk-ins welcome</p>
+          <h1>Your everyday <span>sweet stop.</span></h1>
+          <p class="hero__sub">Twelve flavors baked fresh every morning, small-batch creamery ice cream, and custom cakes for every occasion — grab-and-go joy on Madison Street.</p>
+          <p class="hero__status" data-status></p>
+        </div>
+        <div class="hero__art" aria-hidden="true">
+          <svg class="cupcake" viewBox="0 0 240 240" width="240" height="240" role="img">
+            <defs>
+              <linearGradient id="frost" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ff6fb0"/>
+                <stop offset="1" stop-color="#E83E8C"/>
+              </linearGradient>
+              <linearGradient id="liner" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffd15c"/>
+                <stop offset="1" stop-color="#f0b93f"/>
+              </linearGradient>
+            </defs>
+            <!-- floating sprinkles -->
+            <g class="sprinkles">
+              <rect x="30" y="40" width="16" height="6" rx="3" fill="#2D6A55" transform="rotate(24 38 43)"/>
+              <rect x="196" y="58" width="16" height="6" rx="3" fill="#E83E8C" transform="rotate(-30 204 61)"/>
+              <rect x="206" y="120" width="16" height="6" rx="3" fill="#ffd15c" transform="rotate(50 214 123)"/>
+              <rect x="20" y="120" width="16" height="6" rx="3" fill="#6C173A" transform="rotate(-14 28 123)"/>
+            </g>
+            <!-- liner -->
+            <path d="M74 150 h92 l-12 66 a6 6 0 0 1 -6 5 H92 a6 6 0 0 1 -6 -5 z" fill="url(#liner)"/>
+            <path d="M86 150 l4 71 M104 150 l2 71 M120 150 v71 M136 150 l-2 71 M154 150 l-4 71" stroke="#e0a52f" stroke-width="3" fill="none" opacity=".5"/>
+            <!-- frosting swirl -->
+            <path d="M64 152 c-20-6-26-34-6-46 -6-24 22-40 40-28 8-18 40-18 48 0 20-10 44 8 36 30 18 10 12 40-8 44 z" fill="url(#frost)"/>
+            <ellipse cx="120" cy="120" rx="42" ry="20" fill="#ff8bc2" opacity=".55"/>
+            <!-- cherry -->
+            <path d="M120 78 q10-22 26-24" stroke="#2D6A55" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <circle cx="120" cy="82" r="13" fill="#d12b45"/>
+            <circle cx="115" cy="78" r="4" fill="#ff7a8a" opacity=".8"/>
+            <!-- sprinkles on frosting -->
+            <g>
+              <rect x="86" y="128" width="14" height="5" rx="2.5" fill="#ffd15c" transform="rotate(20 93 130)"/>
+              <rect x="140" y="132" width="14" height="5" rx="2.5" fill="#2D6A55" transform="rotate(-24 147 134)"/>
+              <rect x="112" y="146" width="14" height="5" rx="2.5" fill="#fff" transform="rotate(8 119 148)"/>
+              <rect x="96" y="110" width="14" height="5" rx="2.5" fill="#6C173A" transform="rotate(-40 103 112)"/>
+              <rect x="134" y="112" width="14" height="5" rx="2.5" fill="#fff" transform="rotate(36 141 114)"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="wrap intent">
+        <button class="intent__card intent__card--now" data-order type="button">
+          <span class="intent__badge">Need it now</span>
+          <span class="intent__icon" aria-hidden="true">🛍️</span>
+          <span class="intent__title">Pickup today</span>
+          <span class="intent__text">Grab a half-dozen of this morning's fresh flavors. Order ahead and skip the line.</span>
+          <span class="intent__go">Order for pickup →</span>
+        </button>
+        <a class="intent__card intent__card--plan" href="custom.html">
+          <span class="intent__badge">Plan ahead</span>
+          <span class="intent__icon" aria-hidden="true">🎉</span>
+          <span class="intent__title">Order for an occasion</span>
+          <span class="intent__text">Birthday, custom cake, or treats for the whole crew. Tell us the date — we'll make it real.</span>
+          <span class="intent__go">Start an order →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 4 · Trust chips -->
+    <ul class="chips">
+      <li><span aria-hidden="true">🧁</span> 12 flavors, fresh daily</li>
+      <li><span aria-hidden="true">🚶</span> Walk-ins always welcome</li>
+      <li><span aria-hidden="true">⚡</span> Order ahead, skip the line</li>
+      <li><span aria-hidden="true">🎉</span> Custom cakes &amp; events</li>
+    </ul>
+
+    <!-- 5 · Today's flavors -->
+    <section class="band band--pink section">
+      <div class="wrap">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Fresh today</p>
+            <h2 class="section__title">What's fresh right now</h2>
+          </div>
+          <a class="section__more" href="menu.html">See all 12 flavors →</a>
+        </div>
+        <div class="flavor-grid" data-todays-flavors data-count="4"></div>
+        <p class="fineprint">Selections and decorations rotate daily — the ordering page confirms what's in the case today.</p>
+      </div>
+    </section>
+
+    <!-- 6 · Categories -->
+    <section class="band section" id="menu">
+      <div class="wrap">
+        <p class="eyebrow">The whole case</p>
+        <h2 class="section__title">More than cupcakes</h2>
+        <div class="cats__grid" data-categories></div>
+      </div>
+    </section>
+
+    <!-- 7 · Community band (signature green color-block) -->
+    <section class="band band--green section" id="community">
+      <div class="wrap">
+        <p class="eyebrow eyebrow--light">Your neighborhood, sweetened</p>
+        <h2 class="section__title">Made for the whole community</h2>
+        <p class="band__lead">From game-day teams to late-night study crews, we're the easy yes for everyday celebrations all over Clarksville. Big batch, quick turnaround, always a crowd-pleaser.</p>
+        <ul class="community__grid">
+          <li class="community__card"><span aria-hidden="true">🏈</span><h3>Teams &amp; offices</h3><p>Dozens and dessert boxes for practices, shifts and staff wins.</p></li>
+          <li class="community__card"><span aria-hidden="true">🎓</span><h3>Students</h3><p>Austin Peay study fuel and birthday treats — grab a box between classes.</p></li>
+          <li class="community__card"><span aria-hidden="true">💚</span><h3>Fundraising</h3><p>Sweet partners for school and club fundraisers around town.</p></li>
+          <li class="community__card"><span aria-hidden="true">🍎</span><h3>Classroom treats</h3><p>Minis by the dozen for parties, holidays and last-day celebrations.</p></li>
+        </ul>
+        <a class="sc-btn sc-btn--ondark" href="#catering">Treat your group →</a>
+      </div>
+    </section>
+
+    <!-- 8 · Custom teaser (upbeat) -->
+    <section class="band section">
+      <div class="wrap custom-teaser">
+        <div class="custom-teaser__art" aria-hidden="true">🎂</div>
+        <div class="custom-teaser__copy">
+          <p class="eyebrow">Custom celebrations</p>
+          <h2 class="section__title">Dreamed it up? We'll bake it!</h2>
+          <ol class="steps">
+            <li><strong>Tell us the plan</strong> — date, occasion, headcount.</li>
+            <li><strong>We confirm &amp; quote</strong> — availability, design, price.</li>
+            <li><strong>Pick it up</strong> — approved, paid, ready right on time.</li>
+          </ol>
+          <p class="fineprint">Most custom orders need just 48–72 hours' notice.</p>
+          <a class="sc-btn sc-btn--primary" href="custom.html">Start a custom order</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 · Catering / quote -->
+    <section class="band band--pink section" id="catering">
+      <div class="wrap catering">
+        <p class="eyebrow">Catering &amp; corporate</p>
+        <h2 class="section__title">Sweeten the whole room</h2>
+        <p class="catering__lead">Office mornings, client gifts, wedding dessert tables — we box up cupcakes, minis and cakes for groups of any size, with delivery and setup on request. Tell us your headcount and we'll build the package.</p>
+        <a class="sc-btn sc-btn--primary" href="custom.html">Request a catering quote →</a>
+      </div>
+    </section>
+
+    <!-- 10 · About / local story -->
+    <section class="band section" id="about">
+      <div class="wrap about">
+        <div class="about__art" aria-hidden="true">
+          <div class="storefront">
+            <span class="storefront__sign">🧁 Smallcakes</span>
+            <span class="storefront__awning"></span>
+            <span class="storefront__door"></span>
+          </div>
+        </div>
+        <div class="about__copy">
+          <p class="eyebrow">Your neighborhood cupcakery</p>
+          <h2 class="section__title">Baked fresh on Madison Street</h2>
+          <p>We're the Clarksville home of Smallcakes — a national favorite, baked one small batch at a time right here. Twelve signature flavors hit the oven every morning, and our creamery spins those same recipes into cupcake-infused ice cream.</p>
+          <p>Tuesday pick-me-up or a first birthday, we're the dependable, cheerful spot that makes the everyday a little sweeter.</p>
+          <a class="link-arrow" href="#visit">Come say hi →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · Reviews -->
+    <section class="band band--yellow section">
+      <div class="wrap">
+        <p class="eyebrow">Loved by the neighborhood</p>
+        <h2 class="section__title">Clarksville's sweet words</h2>
+        <div class="reviews__grid" data-reviews></div>
+        <p class="media">As seen on <strong>Cupcake Wars</strong> · <strong>The View</strong> · <strong>USA Today</strong></p>
+      </div>
+    </section>
+
+    <!-- 12 · Visit -->
+    <section class="band section" id="visit">
+      <div class="wrap visit">
+        <div class="visit__map" aria-hidden="true">
+          <div class="pin">📍</div>
+          <span>1803 Madison St., Suite A</span>
+        </div>
+        <div class="visit__info">
+          <p class="eyebrow">Visit us</p>
+          <h2 class="section__title">Find your Smallcakes</h2>
+          <address>
+            1803 Madison St., Suite A<br>Clarksville, TN 37043<br>
+            <a href="tel:+19315478361">931-547-8361</a>
+          </address>
+          <table class="hours" data-hours></table>
+          <p class="fineprint">Storefront parking right out front · wheelchair-accessible entrance.</p>
+          <div class="visit__cta">
+            <a class="sc-btn sc-btn--primary" href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">Get Directions</a>
+            <a class="sc-btn sc-btn--ghost" href="tel:+19315478361">Call the shop</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 · FAQ -->
+    <section class="band band--pink section" id="faq">
+      <div class="wrap">
+        <p class="eyebrow">Good to know</p>
+        <h2 class="section__title">Questions, answered</h2>
+        <div class="faq__list" data-faq></div>
+        <p class="allergen"><strong>Allergen note:</strong> <span data-allergen></span></p>
+      </div>
+    </section>
+
+    <!-- 14 · Newsletter -->
+    <section class="band band--signup section">
+      <div class="wrap signup">
+        <h2 class="section__title">First to know the new flavors</h2>
+        <p>One cheerful email a month — the rotating flavor drop and seasonal preorders. No spam, unsubscribe anytime.</p>
+        <form class="signup__form" data-signup>
+          <label class="visually-hidden" for="email">Email address</label>
+          <input id="email" type="email" name="email" placeholder="you@email.com" required>
+          <button class="sc-btn sc-btn--onpink" type="submit">Join the list</button>
+        </form>
+      </div>
+    </section>
   </main>
 
-  <script src="app.js"></script>
+  <!-- Footer -->
+  <footer class="foot">
+    <div class="foot__grid">
+      <div>
+        <span class="brand__name brand__name--foot">Smallcakes<em>Clarksville</em></span>
+        <p>1803 Madison St., Suite A<br>Clarksville, TN 37043<br><a href="tel:+19315478361">931-547-8361</a></p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="menu.html">Menu &amp; Flavors</a>
+        <a href="custom.html">Custom Orders</a>
+        <a href="#community">Community</a>
+        <a href="#catering">Catering</a>
+        <a href="#visit">Visit &amp; Hours</a>
+        <a href="#faq">FAQ &amp; Food Info</a>
+      </nav>
+      <p class="foot__tag">"Make every occasion Sweet with Smallcakes!"</p>
+    </div>
+    <p class="foot__fine">Concept demo by Stephen C. Gray. Not an official Smallcakes corporate document. Flavors, hours, prices and reviews are illustrative and pending corporate approval.</p>
+  </footer>
+
+  <!-- Sticky mobile action bar: the three one-tap destinations -->
+  <div class="mobar">
+    <button data-order><span aria-hidden="true">🛍️</span>Order</button>
+    <a href="tel:+19315478361" data-t="phone_click"><span aria-hidden="true">📞</span>Call</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click"><span aria-hidden="true">📍</span>Directions</a>
+  </div>
+
+  <script src="../../assets/data.js"></script>
+  <script src="../../assets/demo.js"></script>
 </body>
 </html>

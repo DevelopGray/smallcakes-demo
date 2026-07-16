@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu &amp; Flavors — Smallcakes Clarksville</title>
+  <meta name="description" content="Twelve signature cupcakes baked fresh daily, small-batch creamery ice cream, and rotating specialty flavors at Smallcakes Clarksville. Tap a flavor to start a pickup order.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/reset.css">
+  <link rel="stylesheet" href="../../assets/demo.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%A7%81</text></svg>">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="demo-ribbon">Concept demo — illustrative content, pending corporate approval. <a href="../../index.html">← All three directions</a></p>
+
+  <div class="util">
+    <span data-status></span>
+    <span class="util__links">
+      <a href="tel:+19315478361" data-t="phone_click">📞 931-547-8361</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">📍 Directions</a>
+    </span>
+  </div>
+
+  <header class="nav">
+    <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">🧁</span><span class="brand__name">Smallcakes<em>Clarksville</em></span></a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="menu.html" aria-current="page">Menu &amp; Flavors</a>
+      <a href="custom.html">Custom Orders</a>
+      <a href="index.html#community">Community</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#visit">Visit</a>
+    </nav>
+    <button class="nav__order sc-btn sc-btn--primary" data-order>Order for Pickup</button>
+    <button class="nav__burger" aria-label="Menu" aria-expanded="false">☰</button>
+  </header>
+  <nav class="drawer" aria-label="Mobile" hidden>
+    <a href="menu.html">Menu &amp; Flavors</a>
+    <a href="custom.html">Custom Orders</a>
+    <a href="index.html#community">Community</a>
+    <a href="index.html#about">About the Store</a>
+    <a href="index.html#visit">Visit &amp; Hours</a>
+  </nav>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Menu &amp; Flavors</p>
+        <h1>Baked fresh, every single morning</h1>
+        <p class="page-hero__sub">Twelve signature cupcakes daily, a monthly specialty drop, and small-batch creamery ice cream made from the same recipes. Tap any flavor to add it to a pickup order.</p>
+        <div class="hero__cta"><button class="sc-btn sc-btn--primary" data-order>Order for Pickup</button></div>
+      </div>
+    </section>
+
+    <div class="band section menu" data-menu>
+      <div class="wrap">
+        <div class="filterbar" role="group" aria-label="Filter menu">
+          <button data-filter="all" aria-pressed="true">All</button>
+          <button data-filter="cupcakes" aria-pressed="false">Cupcakes</button>
+          <button data-filter="cakes" aria-pressed="false">Cakes</button>
+          <button data-filter="icecream" aria-pressed="false">Creamery</button>
+          <button data-filter="seasonal" aria-pressed="false">Specialty</button>
+        </div>
+
+        <p class="pricing">Demo starting prices — single <strong>$4</strong> · half-dozen <strong>$22</strong> · dozen <strong>$42</strong> · ice cream from <strong>$5</strong>. Live prices confirm at checkout.</p>
+
+        <section data-cat="cupcakes" id="cupcakes" class="menu-sec">
+          <h2 class="section__title">Signature cupcakes</h2>
+          <p class="menu-sec__note">The dozen we bake fresh every morning.</p>
+          <div class="flavor-grid" data-flavors="signature"></div>
+        </section>
+
+        <section data-cat="cakes" id="cakes" class="menu-sec">
+          <h2 class="section__title">Celebration cakes</h2>
+          <div class="cake-note">
+            <p>6", 8", tiered, and first-birthday smash cakes — in any signature flavor. Cakes are made to order.</p>
+            <a class="sc-btn sc-btn--primary" href="custom.html">Start a cake order →</a>
+          </div>
+        </section>
+
+        <section data-cat="icecream" id="icecream" class="menu-sec">
+          <h2 class="section__title">The creamery</h2>
+          <p class="menu-sec__note">Small-batch ice cream, a scoopable nod to our famous cupcake recipes.</p>
+          <div class="flavor-grid" data-flavors="icecream"></div>
+        </section>
+
+        <section data-cat="seasonal" id="seasonal" class="menu-sec">
+          <h2 class="section__title">Specialty &amp; seasonal</h2>
+          <p class="menu-sec__note">Rotating flavors — new ones drop monthly. Here today, gone next month!</p>
+          <div class="flavor-grid" data-flavors="seasonal"></div>
+        </section>
+      </div>
+    </div>
+
+    <section class="band band--pink section">
+      <div class="wrap">
+        <p class="allergen"><strong>Allergen note:</strong> <span data-allergen></span></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot__grid">
+      <div>
+        <span class="brand__name brand__name--foot">Smallcakes<em>Clarksville</em></span>
+        <p>1803 Madison St., Suite A<br>Clarksville, TN 37043<br><a href="tel:+19315478361">931-547-8361</a></p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="menu.html">Menu &amp; Flavors</a>
+        <a href="custom.html">Custom Orders</a>
+        <a href="index.html#community">Community</a>
+        <a href="index.html#visit">Visit &amp; Hours</a>
+      </nav>
+      <p class="foot__tag">"Maybe a cupcake will help!"</p>
+    </div>
+    <p class="foot__fine">Concept demo by Stephen C. Gray. Not an official Smallcakes corporate document. Flavors, hours, prices and reviews are illustrative and pending corporate approval.</p>
+  </footer>
+
+  <div class="mobar">
+    <button data-order><span aria-hidden="true">🛍️</span>Order</button>
+    <a href="tel:+19315478361" data-t="phone_click"><span aria-hidden="true">📞</span>Call</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click"><span aria-hidden="true">📍</span>Directions</a>
+  </div>
+
+  <script src="../../assets/data.js"></script>
+  <script src="../../assets/demo.js"></script>
+</body>
+</html>
