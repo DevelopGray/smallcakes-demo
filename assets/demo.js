@@ -60,7 +60,15 @@ window.SCDemo = (function () {
   /* ── Flavor rendering ─────────────────────────────────────── */
   function flavorCard(f, kind) {
     const c = el('article', 'sc-flavor');
-    c.appendChild(el('span', 'sc-flavor__thumb', flavorSwatch(f.name)));
+    const thumb = el('div', 'sc-flavor__thumb');
+    if (f.img) {
+      const im = el('img');
+      im.src = SC.img(f.img, 500, 500);
+      im.alt = f.name + ' — Smallcakes ' + (kind === 'icecream' ? 'ice cream' : 'cupcake');
+      im.loading = 'lazy'; im.width = 500; im.height = 500;
+      thumb.appendChild(im);
+    } else { thumb.innerHTML = flavorSwatch(f.name); }
+    c.appendChild(thumb);
     const b = el('div', 'sc-flavor__body');
     b.appendChild(el('h3', 'sc-flavor__name', f.name));
     b.appendChild(el('p', 'sc-flavor__desc', f.desc));
@@ -90,12 +98,16 @@ window.SCDemo = (function () {
   }
 
   /* ── Content rendered from data (categories, reviews, FAQ) ── */
+  const CAT_IMG = { cupcakes: 'heroCupcakes', cakes: 'custom', icecream: 'icecream', seasonal: 'heroWide' };
   function fillCategories(c) {
     SC.CATEGORIES.forEach(cat => {
       const card = el('a', 'sc-cat');
       card.href = 'menu.html#' + cat.key;
-      card.innerHTML = `<h3 class="sc-cat__label">${cat.label}</h3>
-        <p class="sc-cat__note">${cat.note}</p><span class="sc-cat__go">View →</span>`;
+      const imgId = SC.IMAGES[CAT_IMG[cat.key]];
+      card.innerHTML =
+        `<span class="sc-cat__img"><img src="${SC.img(imgId, 700, 500)}" alt="${cat.label}" loading="lazy" width="700" height="500"></span>
+         <span class="sc-cat__body"><h3 class="sc-cat__label">${cat.label}</h3>
+         <span class="sc-cat__note">${cat.note}</span><span class="sc-cat__go">View →</span></span>`;
       c.appendChild(card);
     });
   }

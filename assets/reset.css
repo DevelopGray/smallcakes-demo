@@ -4,6 +4,9 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
+/* The [hidden] attribute must always win over any display rule (e.g. a
+   .drawer{display:flex} would otherwise keep a "closed" mobile menu visible). */
+[hidden] { display: none !important; }
 
 html { -webkit-text-size-adjust: 100%; }
 body {
@@ -13,6 +16,9 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 img, picture, svg, video { display: block; max-width: 100%; }
+/* width/height attrs give the intrinsic ratio (no layout shift); height:auto
+   lets CSS width drive sizing. Cards that need a fixed box override this. */
+img { height: auto; }
 input, button, textarea, select { font: inherit; color: inherit; }
 button { cursor: pointer; }
 a { color: inherit; }

@@ -22,16 +22,27 @@
 .sc-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
 .sc-btn--ghost { background: transparent; color: var(--sc-heading); box-shadow: inset 0 0 0 2px currentColor; }
 
-/* Flavor card */
-.sc-flavor { display: flex; gap: .9rem; align-items: flex-start; background: var(--sc-paper);
-  border-radius: var(--sc-radius); padding: 1rem; box-shadow: 0 6px 20px rgba(60,20,40,.06); }
-.sc-flavor__thumb { flex: 0 0 auto; }
-.sc-flavor__body { display: flex; flex-direction: column; gap: .3rem; }
+/* Flavor card — vertical product card with a real photo */
+.sc-flavor { display: flex; flex-direction: column; background: var(--sc-paper);
+  border-radius: var(--sc-radius); overflow: hidden; box-shadow: 0 8px 24px rgba(60,20,40,.08);
+  transition: transform .2s ease, box-shadow .2s ease; }
+.sc-flavor:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(60,20,40,.14); }
+.sc-flavor__thumb { aspect-ratio: 1 / 1; overflow: hidden; background: #f3e9ec; }
+.sc-flavor__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.sc-flavor:hover .sc-flavor__thumb img { transform: scale(1.05); }
+.sc-flavor__body { display: flex; flex-direction: column; gap: .3rem; padding: .9rem 1rem 1.1rem; flex: 1; }
 .sc-flavor__name { font-size: 1.05rem; color: var(--sc-heading); }
-.sc-flavor__desc { font-size: .88rem; color: #6b5b62; }
-.sc-flavor__add { align-self: flex-start; margin-top: .35rem; background: none; border: 0;
+.sc-flavor__desc { font-size: .85rem; color: #6b5b62; flex: 1; }
+.sc-flavor__add { align-self: flex-start; margin-top: .5rem; background: none; border: 0;
   color: var(--sc-accent); font-weight: 700; font-size: .85rem; padding: .2rem 0; cursor: pointer; }
 .sc-flavor__add:hover { text-decoration: underline; }
+
+/* Category card with photo (padding:0 on the card; body carries padding) */
+.sc-cat { overflow: hidden; padding: 0; }
+.sc-cat__img { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #f3e9ec; }
+.sc-cat__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.sc-cat:hover .sc-cat__img img { transform: scale(1.06); }
+.sc-cat__body { display: block; padding: 1rem 1.2rem 1.2rem; }
 
 /* Live status pill */
 .sc-status { display: inline-flex; align-items: center; gap: .45em; font-weight: 600; font-size: .82rem; }

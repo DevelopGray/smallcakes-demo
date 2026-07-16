@@ -7,11 +7,12 @@
   <meta name="description" content="Smallcakes Cupcakery & Creamery in Clarksville, TN. 12 signature cupcakes baked fresh daily, small-batch ice cream, custom celebration cakes. Order for pickup.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../assets/reset.css">
   <link rel="stylesheet" href="../../assets/demo.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%A7%81</text></svg>">
+  <link rel="icon" href="../../assets/smallcakes-logo-circle.png">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -21,16 +22,16 @@
   <div class="util">
     <span data-status></span>
     <span class="util__links">
-      <a href="tel:+19315478361" data-t="phone_click">📞 931-547-8361</a>
-      <a href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">📍 Directions</a>
+      <a href="tel:+19315478361" data-t="phone_click">📞 <span>931-547-8361</span></a>
+      <a href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">📍 <span>Directions</span></a>
     </span>
   </div>
 
   <!-- 2 · Header -->
   <header class="nav" id="top">
     <a class="brand" href="index.html">
-      <span class="brand__mark">🧁</span>
-      <span class="brand__name">Smallcakes<em>Clarksville</em></span>
+      <img class="brand__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Cupcakery & Creamery" width="52" height="52">
+      <span class="brand__loc">Clarksville</span>
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a href="menu.html">Menu &amp; Flavors</a>
@@ -40,15 +41,20 @@
       <a href="#visit">Visit</a>
     </nav>
     <button class="nav__order sc-btn sc-btn--primary" data-order>Order for Pickup</button>
-    <button class="nav__burger" aria-label="Menu" aria-expanded="false">☰</button>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false" data-burger>☰</button>
   </header>
   <nav class="drawer" aria-label="Mobile" hidden>
+    <div class="drawer__head">
+      <img src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes" width="46" height="46">
+      <button class="drawer__close" aria-label="Close menu" data-burger>✕</button>
+    </div>
     <a href="menu.html">Menu &amp; Flavors</a>
     <a href="custom.html">Custom Orders</a>
     <a href="#catering">Catering</a>
     <a href="#about">About the Store</a>
     <a href="#visit">Visit &amp; Hours</a>
     <a href="#faq">FAQ &amp; Food Info</a>
+    <button class="sc-btn sc-btn--primary drawer__order" data-order>Order for Pickup</button>
   </nav>
 
   <main id="main">
@@ -64,14 +70,9 @@
         </div>
         <p class="hero__meta"><span data-status></span></p>
       </div>
-      <div class="hero__art" aria-hidden="true">
-        <div class="pinkbox">
-          <div class="pinkbox__lid"></div>
-          <div class="pinkbox__cupcakes">
-            <span>🧁</span><span>🧁</span><span>🎂</span><span>🍦</span>
-          </div>
-          <div class="pinkbox__body"><span class="pinkbox__ribbon"></span>Smallcakes</div>
-        </div>
+      <div class="hero__art">
+        <img class="hero__img" src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&q=80&w=900" alt="A box of freshly frosted Smallcakes cupcakes" width="900" height="1200" fetchpriority="high">
+        <span class="hero__badge"><strong>12</strong> flavors<br>daily</span>
       </div>
     </section>
 
@@ -129,7 +130,9 @@
 
     <!-- 8 · Custom celebrations -->
     <section class="section custom-teaser">
-      <div class="custom-teaser__art" aria-hidden="true">🎂</div>
+      <div class="custom-teaser__img">
+        <img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&q=80&w=800" alt="A decorated custom celebration cake" loading="lazy" width="800" height="1000">
+      </div>
       <div class="custom-teaser__copy">
         <p class="eyebrow">Custom celebrations</p>
         <h2 class="section__title">Dreamed it up? We'll bake it.</h2>
@@ -149,13 +152,15 @@
         <p class="eyebrow">Catering &amp; corporate</p>
         <h2 class="section__title">Sweeten the whole room</h2>
         <p>From office mornings to client gifts and wedding dessert tables, we package cupcakes, minis, and cakes for groups of any size — with delivery and setup on request.</p>
-        <a class="sc-btn sc-btn--ghost" href="custom.html">Request a catering quote →</a>
+        <a class="sc-btn sc-btn--ondark" href="custom.html">Request a catering quote →</a>
       </div>
     </section>
 
     <!-- 10 · About / local story -->
     <section class="section about" id="about">
-      <div class="about__art" aria-hidden="true"><div class="storefront"></div></div>
+      <div class="about__img">
+        <img src="https://images.unsplash.com/photo-1587241321921-91a834d6d191?auto=format&fit=crop&q=80&w=800" alt="Inside a bright bakery with a full display case" loading="lazy" width="800" height="600">
+      </div>
       <div class="about__copy">
         <p class="eyebrow">Your neighborhood cupcakery</p>
         <h2 class="section__title">Made fresh on Madison Street</h2>
@@ -174,9 +179,9 @@
 
     <!-- 12 · Visit -->
     <section class="section visit" id="visit">
-      <div class="visit__map" aria-hidden="true">
-        <div class="pin">📍</div>
-        <span>1803 Madison St., Suite A</span>
+      <div class="visit__img">
+        <img src="https://images.unsplash.com/photo-1568254183919-78a4f43a2877?auto=format&fit=crop&q=80&w=800" alt="Cupcakes on a bakery counter" loading="lazy" width="800" height="600">
+        <a class="visit__pin" href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">📍 1803 Madison St., Suite A</a>
       </div>
       <div class="visit__info">
         <p class="eyebrow">Visit us</p>
@@ -219,7 +224,7 @@
   <footer class="foot">
     <div class="foot__grid">
       <div>
-        <span class="brand__name brand__name--foot">Smallcakes<em>Clarksville</em></span>
+        <img class="foot__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Clarksville" width="72" height="72">
         <p>1803 Madison St., Suite A<br>Clarksville, TN 37043<br><a href="tel:+19315478361">931-547-8361</a></p>
       </div>
       <nav aria-label="Footer">
@@ -231,7 +236,7 @@
       </nav>
       <p class="foot__tag">"Make every occasion Sweet with Smallcakes!"</p>
     </div>
-    <p class="foot__fine">Concept demo by Stephen C. Gray. Not an official Smallcakes corporate document. Flavors, hours, prices and reviews are illustrative and pending corporate approval.</p>
+    <p class="foot__fine">Concept demo by Stephen C. Gray. Not an official Smallcakes corporate document. Flavors, hours, prices, reviews and photography are illustrative and pending corporate approval.</p>
   </footer>
 
   <!-- Sticky mobile action bar: the three one-tap destinations -->

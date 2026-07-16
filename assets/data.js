@@ -29,43 +29,72 @@ window.SC = (function () {
     openRanges: [[12, 18], [10, 20], [10, 20], [10, 20], [10, 20], [10, 21], [10, 21]]
   };
 
-  // 12 signature cupcakes — real Smallcakes lineup.
+  // Unsplash image helper (free license, hotlinked CDN). id = "photo-…".
+  // DEMO imagery — not the store's real products; for concept presentation only.
+  function img(id, w, h) {
+    let u = 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&q=80&w=' + (w || 800);
+    if (h) u += '&h=' + h;
+    return u;
+  }
+
+  // 12 signature cupcakes — real Smallcakes lineup (images are illustrative).
   const SIGNATURE = [
-    { name: 'Pink Vanilla', desc: 'Vanilla cake frosted with our signature pink buttercream.' },
-    { name: 'Pink Chocolate', desc: 'Chocolate cake frosted with our signature pink buttercream.' },
-    { name: 'Chocoholic', desc: 'Chocolate cake, chocolate buttercream, chocolate shavings.' },
-    { name: 'Vanilla-N-Chocolate', desc: 'Vanilla cake frosted with our signature chocolate buttercream.' },
-    { name: 'Cookies-N-Cream', desc: 'Chocolate cake, cookie buttercream, chocolate cookie crumbles.' },
-    { name: 'Lemon Drop', desc: 'Vanilla cake, tangy lemon filling, lemon buttercream, a dollop of lemon.' },
-    { name: '“Famous” Red Velvet', desc: 'Grandma’s red velvet frosted with cream cheese, red velvet crumbles.' },
-    { name: 'Wedding Cake', desc: 'Almond cake, almond buttercream, sugar pearls.' },
-    { name: 'Hot Fudge Sundae', desc: 'Chocolate cake filled with fudge, buttercream, peanuts, fudge drizzle, a cherry.' },
-    { name: 'Peanut Butter Cup', desc: 'Chocolate cake, peanut butter cream cheese, crumbled peanut butter cups.' },
-    { name: 'Chocolate Cream', desc: 'Chocolate cake filled with buttercream, signature fudge, a buttercream swirl.' },
-    { name: 'Birthday Cake', desc: 'Vanilla cake, buttercream, rainbow sprinkles.' }
+    { name: 'Pink Vanilla', desc: 'Vanilla cake frosted with our signature pink buttercream.', img: 'photo-1614707267537-b85aaf00c4b7' },
+    { name: 'Pink Chocolate', desc: 'Chocolate cake frosted with our signature pink buttercream.', img: 'photo-1563729784474-d77dbb933a9e' },
+    { name: 'Chocoholic', desc: 'Chocolate cake, chocolate buttercream, chocolate shavings.', img: 'photo-1603532648955-039310d9ed75' },
+    { name: 'Vanilla-N-Chocolate', desc: 'Vanilla cake frosted with our signature chocolate buttercream.', img: 'photo-1599785209796-786432b228bc' },
+    { name: 'Cookies-N-Cream', desc: 'Chocolate cake, cookie buttercream, chocolate cookie crumbles.', img: 'photo-1576618148400-f54bed99fcfd' },
+    { name: 'Lemon Drop', desc: 'Vanilla cake, tangy lemon filling, lemon buttercream, a dollop of lemon.', img: 'photo-1486427944299-d1955d23e34d' },
+    { name: '“Famous” Red Velvet', desc: 'Grandma’s red velvet frosted with cream cheese, red velvet crumbles.', img: 'photo-1587668178277-295251f900ce' },
+    { name: 'Wedding Cake', desc: 'Almond cake, almond buttercream, sugar pearls.', img: 'photo-1495147466023-ac5c588e2e94' },
+    { name: 'Hot Fudge Sundae', desc: 'Chocolate cake filled with fudge, buttercream, peanuts, fudge drizzle, a cherry.', img: 'photo-1607478900766-efe13248b125' },
+    { name: 'Peanut Butter Cup', desc: 'Chocolate cake, peanut butter cream cheese, crumbled peanut butter cups.', img: 'photo-1550617931-e17a7b70dce2' },
+    { name: 'Chocolate Cream', desc: 'Chocolate cake filled with buttercream, signature fudge, a buttercream swirl.', img: 'photo-1621303837174-89787a7d4729' },
+    { name: 'Birthday Cake', desc: 'Vanilla cake, buttercream, rainbow sprinkles.', img: 'photo-1519869325930-281384150729' }
   ];
 
   const ICE_CREAM = [
-    { name: 'Birthday Cake', desc: 'Creamy vanilla ice cream layered with birthday sprinkles.' },
-    { name: 'Peanut Butter Cup', desc: 'Creamy peanut butter ice cream, peanut butter crumbles.' },
-    { name: 'Chocoholic', desc: 'Creamy chocolate ice cream, chocolate shavings and fudge.' },
-    { name: 'Cookies-N-Cream', desc: 'Creamy cookie ice cream, chocolate cookie crumbles.' },
-    { name: 'Salted Caramel', desc: 'Caramel ice cream infused with house-made caramel sauce.' },
-    { name: 'Vanilla Bean', desc: 'Creamy Madagascar bourbon vanilla ice cream.' },
-    { name: 'Blue Monster Cookie', desc: 'Blue vanilla ice cream, cookie crumbles and chocolate chip cookies.' }
+    { name: 'Birthday Cake', desc: 'Creamy vanilla ice cream layered with birthday sprinkles.', img: 'photo-1497034825429-c343d7c6a68f' },
+    { name: 'Peanut Butter Cup', desc: 'Creamy peanut butter ice cream, peanut butter crumbles.', img: 'photo-1562790879-dfde82829db0' },
+    { name: 'Chocoholic', desc: 'Creamy chocolate ice cream, chocolate shavings and fudge.', img: 'photo-1559703248-dcaaec9fab78' },
+    { name: 'Cookies-N-Cream', desc: 'Creamy cookie ice cream, chocolate cookie crumbles.', img: 'photo-1570197788417-0e82375c9371' },
+    { name: 'Salted Caramel', desc: 'Caramel ice cream infused with house-made caramel sauce.', img: 'photo-1477505982272-ead89926a577' },
+    { name: 'Vanilla Bean', desc: 'Creamy Madagascar bourbon vanilla ice cream.', img: 'photo-1534706936160-d5ee67737249' },
+    { name: 'Blue Monster Cookie', desc: 'Blue vanilla ice cream, cookie crumbles and chocolate chip cookies.', img: 'photo-1559703248-dcaaec9fab78' }
   ];
 
   // Rotating specialty/seasonal pool — the "new ones drop monthly" set.
   const SEASONAL = [
-    { name: 'Maple Bacon', desc: 'Maple cake, maple buttercream, candied bacon.' },
-    { name: 'Caramel Crunch', desc: 'Vanilla cake, caramel, toffee crunch.' },
-    { name: 'Cannoli', desc: 'Vanilla cake, sweet ricotta cream, mini chocolate chips.' },
-    { name: 'Strawberries N’ Crème', desc: 'Vanilla cake, strawberry filling, cream frosting.' },
-    { name: 'Tiramisu', desc: 'Espresso-soaked cake, mascarpone cream, cocoa dusting.' },
-    { name: 'French Toast', desc: 'Cinnamon cake, maple buttercream, a syrup drizzle.' },
-    { name: 'Pumpkin', desc: 'Spiced pumpkin cake, cream cheese frosting.' },
-    { name: 'Orange Creamsicle Marble', desc: 'Orange-vanilla marble cake, creamsicle buttercream.' }
+    { name: 'Maple Bacon', desc: 'Maple cake, maple buttercream, candied bacon.', img: 'photo-1606890737304-57a1ca8a5b62' },
+    { name: 'Caramel Crunch', desc: 'Vanilla cake, caramel, toffee crunch.', img: 'photo-1551879403-6adb554966fd' },
+    { name: 'Cannoli', desc: 'Vanilla cake, sweet ricotta cream, mini chocolate chips.', img: 'photo-1553135422-400ee5852b27' },
+    { name: 'Strawberries N’ Crème', desc: 'Vanilla cake, strawberry filling, cream frosting.', img: 'photo-1606983340126-99ab4feaa64a' },
+    { name: 'Tiramisu', desc: 'Espresso-soaked cake, mascarpone cream, cocoa dusting.', img: 'photo-1578922864601-79dcc7cbcea9' },
+    { name: 'French Toast', desc: 'Cinnamon cake, maple buttercream, a syrup drizzle.', img: 'photo-1588195538326-c5b1e9f80a1b' },
+    { name: 'Pumpkin', desc: 'Spiced pumpkin cake, cream cheese frosting.', img: 'photo-1545696563-af8f6ec2295a' },
+    { name: 'Orange Creamsicle Marble', desc: 'Orange-vanilla marble cake, creamsicle buttercream.', img: 'photo-1558301211-0d8c8ddee6ec' }
   ];
+
+  // Named scene images (illustrative, Unsplash). Use SC.img(id, w, h) for URLs.
+  const IMAGES = {
+    heroCupcakes: 'photo-1614707267537-b85aaf00c4b7',
+    heroWide:     'photo-1486427944299-d1955d23e34d',
+    storefront:   'photo-1568254183919-78a4f43a2877',
+    interior:     'photo-1587241321921-91a834d6d191',
+    counter:      'photo-1511018556340-d16986a1c194',
+    baker:        'photo-1546237769-6f84ec1a512a',
+    custom:       'photo-1558301211-0d8c8ddee6ec',
+    wedding:      'photo-1551879403-6adb554966fd',
+    catering:     'photo-1624353365286-3f8d62daad51',
+    icecream:     'photo-1497034825429-c343d7c6a68f',
+    // gallery pool for portfolio/occasion sections
+    gallery: [
+      'photo-1558301211-0d8c8ddee6ec', 'photo-1545696563-af8f6ec2295a',
+      'photo-1606983340126-99ab4feaa64a', 'photo-1624353365286-3f8d62daad51',
+      'photo-1561940329-7382e6704231', 'photo-1508349307373-ab2edc239589',
+      'photo-1551879403-6adb554966fd', 'photo-1614707267537-b85aaf00c4b7'
+    ]
+  };
 
   const CATEGORIES = [
     { key: 'cupcakes', label: 'Cupcakes', note: 'Single · half-dozen · dozen · minis' },
@@ -107,5 +136,7 @@ window.SC = (function () {
     { label: 'Visit', href: 'index.html#visit' }
   ];
 
-  return { STORE, SIGNATURE, ICE_CREAM, SEASONAL, CATEGORIES, ALLERGEN, FAQ, REVIEWS, NAV };
+  const LOGO = '../../assets/smallcakes-logo-circle.png';
+
+  return { STORE, SIGNATURE, ICE_CREAM, SEASONAL, CATEGORIES, ALLERGEN, FAQ, REVIEWS, NAV, IMAGES, LOGO, img };
 })();

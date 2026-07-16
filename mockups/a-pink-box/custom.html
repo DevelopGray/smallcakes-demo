@@ -18,7 +18,7 @@
   <p class="demo-ribbon">Concept demo — no real order is placed. <a href="../../index.html">← All three directions</a></p>
 
   <header class="nav">
-    <a class="brand" href="index.html"><span class="brand__mark">🧁</span><span class="brand__name">Smallcakes<em>Clarksville</em></span></a>
+    <a class="brand" href="index.html"><img class="brand__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Cupcakery & Creamery" width="52" height="52"><span class="brand__loc">Clarksville</span></a>
     <nav class="nav__links" aria-label="Primary">
       <a href="menu.html">Menu &amp; Flavors</a>
       <a href="custom.html" aria-current="page">Custom Orders</a>
@@ -27,14 +27,19 @@
       <a href="index.html#visit">Visit</a>
     </nav>
     <button class="nav__order sc-btn sc-btn--primary" data-order>Order for Pickup</button>
-    <button class="nav__burger" aria-label="Menu" aria-expanded="false">☰</button>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false" data-burger>☰</button>
   </header>
   <nav class="drawer" aria-label="Mobile" hidden>
+    <div class="drawer__head">
+      <img src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes" width="46" height="46">
+      <button class="drawer__close" aria-label="Close menu" data-burger>✕</button>
+    </div>
     <a href="menu.html">Menu &amp; Flavors</a>
     <a href="custom.html">Custom Orders</a>
     <a href="index.html#catering">Catering</a>
     <a href="index.html#about">About the Store</a>
     <a href="index.html#visit">Visit &amp; Hours</a>
+    <button class="sc-btn sc-btn--primary drawer__order" data-order>Order for Pickup</button>
   </nav>
 
   <main id="main">
@@ -152,7 +157,7 @@
   <footer class="foot">
     <div class="foot__grid">
       <div>
-        <span class="brand__name brand__name--foot">Smallcakes<em>Clarksville</em></span>
+        <img class="foot__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Clarksville" width="72" height="72">
         <p>1803 Madison St., Suite A<br>Clarksville, TN 37043<br><a href="tel:+19315478361">931-547-8361</a></p>
       </div>
       <nav aria-label="Footer">
