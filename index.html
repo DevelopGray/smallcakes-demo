@@ -5,67 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Smallcakes Clarksville — Website Concept Directions</title>
   <meta name="description" content="Three website design directions for Smallcakes Cupcakery & Creamery, Clarksville TN. Unofficial concept demos pending corporate approval.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/reset.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>%F0%9F%A7%81</text></svg>">
+  <link rel="icon" href="assets/smallcakes-logo-circle.png">
   <style>
-    body {
-      background: var(--brand-cream);
-      color: var(--brand-charcoal);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem 1.25rem 4rem;
-    }
-    .demo-banner {
-      width: 100%;
-      max-width: 60rem;
-      background: var(--brand-burgundy);
-      color: #fff;
-      font-size: 0.8rem;
-      text-align: center;
-      padding: 0.6rem 1rem;
-      border-radius: 0.5rem;
-      margin-bottom: 2rem;
-    }
-    header { max-width: 40rem; text-align: center; margin-bottom: 2.5rem; }
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--brand-pink);
-    }
-    h1 { font-size: clamp(1.9rem, 6vw, 3rem); margin: 0.4rem 0 0.75rem; color: var(--brand-burgundy); }
+    body { background: var(--brand-cream); color: var(--brand-charcoal);
+      font-family: "Inter", system-ui, sans-serif;
+      display: flex; flex-direction: column; align-items: center; padding: 1.5rem 1.25rem 4rem; }
+    h1, h2, h3 { font-family: "Fraunces", Georgia, serif; }
+    .demo-banner { width: 100%; max-width: 62rem; background: var(--brand-burgundy); color: #fff;
+      font-size: 0.8rem; text-align: center; padding: 0.6rem 1rem; border-radius: 0.6rem; margin-bottom: 2.5rem; }
+    header { max-width: 42rem; text-align: center; margin-bottom: 2.5rem; }
+    .logo { width: 96px; height: 96px; margin: 0 auto 1rem; }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; font-weight: 700; color: var(--brand-pink); }
+    h1 { font-size: clamp(1.9rem, 6vw, 3rem); font-weight: 600; margin: 0.4rem 0 0.75rem; color: var(--brand-burgundy); }
     header p { font-size: 1.05rem; color: #6b5b62; }
 
-    .grid {
-      display: grid;
-      gap: 1.25rem;
-      width: 100%;
-      max-width: 60rem;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 48rem) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    .grid { display: grid; gap: 1.5rem; width: 100%; max-width: 62rem; grid-template-columns: 1fr; }
+    @media (min-width: 52rem) { .grid { grid-template-columns: repeat(3, 1fr); } }
 
-    .card {
-      display: flex;
-      flex-direction: column;
-      background: #fff;
-      border: 1px solid #efe2da;
-      border-radius: 1rem;
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 200ms ease, box-shadow 200ms ease;
-    }
-    .card:hover, .card:focus-visible {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(108, 23, 58, 0.15);
-    }
-    .card__swatch { height: 8px; }
+    .card { display: flex; flex-direction: column; background: #fff; border: 1px solid #efe2da;
+      border-radius: 1.1rem; overflow: hidden; text-decoration: none; color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .card:hover, .card:focus-visible { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(108, 23, 58, 0.18); }
+    .card__photo { position: relative; aspect-ratio: 3/2; overflow: hidden; background: #f3e9ec; }
+    .card__photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .card:hover .card__photo img { transform: scale(1.05); }
+    .card__swatch { height: 6px; }
     .card__body { padding: 1.4rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
     .card__tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-gold); }
-    .card__title { font-size: 1.3rem; color: var(--brand-burgundy); }
+    .card__title { font-size: 1.35rem; color: var(--brand-burgundy); }
     .card__desc { font-size: 0.92rem; color: #6b5b62; }
     .card__best { font-size: 0.82rem; color: #8a7a80; margin-top: auto; }
     .card__cta { margin-top: 0.75rem; font-weight: 700; color: var(--brand-pink); }
@@ -74,15 +46,14 @@
     .b .card__swatch { background: linear-gradient(90deg, #f6ebe4, var(--brand-gold), var(--brand-burgundy)); }
     .c .card__swatch { background: linear-gradient(90deg, var(--brand-pink), var(--brand-green), #ffd15c); }
 
-    footer { max-width: 40rem; text-align: center; margin-top: 3rem; font-size: 0.8rem; color: #9c8d92; }
+    footer { max-width: 42rem; text-align: center; margin-top: 3rem; font-size: 0.8rem; color: #9c8d92; }
   </style>
 </head>
 <body>
-  <p class="demo-banner">
-    Concept demos — unofficial. Content, pricing &amp; flavors are illustrative and pending Smallcakes corporate approval.
-  </p>
+  <p class="demo-banner">Concept demos — unofficial. Content, pricing &amp; flavors are illustrative and pending Smallcakes corporate approval.</p>
 
   <header>
+    <img class="logo" src="assets/smallcakes-logo-circle.png" alt="Smallcakes Cupcakery & Creamery" width="96" height="96">
     <p class="eyebrow">Smallcakes Cupcakery &amp; Creamery · Clarksville, TN</p>
     <h1>Three website directions</h1>
     <p>Same store, same information — three different personalities. Open each on your phone. Pick the one that feels right.</p>
@@ -90,6 +61,7 @@
 
   <main class="grid">
     <a class="card a" href="mockups/a-pink-box/index.html">
+      <span class="card__photo"><img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&q=80&w=640" alt="Box of frosted cupcakes" width="640" height="427" loading="lazy"></span>
       <span class="card__swatch"></span>
       <span class="card__body">
         <span class="card__tag">Direction A · Recommended</span>
@@ -101,6 +73,7 @@
     </a>
 
     <a class="card b" href="mockups/b-celebration-studio/index.html">
+      <span class="card__photo"><img src="https://images.unsplash.com/photo-1551879403-6adb554966fd?auto=format&fit=crop&q=80&w=640" alt="Elegant tiered celebration cake" width="640" height="427" loading="lazy"></span>
       <span class="card__swatch"></span>
       <span class="card__body">
         <span class="card__tag">Direction B</span>
@@ -112,6 +85,7 @@
     </a>
 
     <a class="card c" href="mockups/c-sweet-stop/index.html">
+      <span class="card__photo"><img src="https://images.unsplash.com/photo-1559090337-ba4123bb1682?auto=format&fit=crop&q=80&w=640" alt="Colorful dessert table" width="640" height="427" loading="lazy"></span>
       <span class="card__swatch"></span>
       <span class="card__body">
         <span class="card__tag">Direction C</span>
