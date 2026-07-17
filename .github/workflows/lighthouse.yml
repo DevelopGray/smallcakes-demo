@@ -1,0 +1,15 @@
+# Performance regression gate for Direction D.
+# categories:seo is a warn (0.9) while the demo carries its deliberate
+# noindex meta — at launch, remove the noindex and promote it to
+# ["error", {"minScore": 1}] in lighthouserc.json.
+name: Lighthouse budget
+on: [push, pull_request]
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
