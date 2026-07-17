@@ -26,7 +26,7 @@ Behavior while placeholders remain: order buttons use the demo modal, gift-card 
 
 1. Buy `smallcakesclarksville.com` (~$11/yr). A `*.github.io` URL cannot win local SEO.
 2. GitHub Pages → custom domain → enforce HTTPS.
-3. Promote pages to directory URLs (`/cupcakes/`, `/custom-cakes/`, `/catering/`, `/visit/` — GitHub Pages has no redirects, URLs must be right at launch), un-comment the `<link rel="canonical">` in each page head, and fill the JSON-LD LAUNCH TODOs (url, image, geo, openingHoursSpecification).
+3. Directory URLs are already in place (`cupcakes/`, `custom-cakes/`, `catering/`, `visit/`) and the folder is fully self-contained — deploy `mockups/d-madison-street/` as the site root. Un-comment the `<link rel="canonical">` in each page head and fill the remaining JSON-LD LAUNCH TODOs.
 4. Copy `sitemap.xml`, `robots.txt`, `404.html` from this folder to the site root (fix domain if different).
 5. Remove the demo ribbon + demo pricing notes; replace Unsplash photos with the corporate/owner photo set (keep exact `width`/`height` attributes to avoid layout shift; name files like `smallcakes-clarksville-red-velvet-cupcake.jpg`).
 

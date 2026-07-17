@@ -17,10 +17,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com">
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/reset.css">
-  <link rel="stylesheet" href="../../assets/demo.css">
+  <link rel="stylesheet" href="assets/reset.css">
+  <link rel="stylesheet" href="assets/demo.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="../../assets/smallcakes-logo-circle.png">
+  <link rel="icon" href="assets/smallcakes-logo-circle.png">
   <link rel="preload" as="image" href="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&q=80&w=900" fetchpriority="high">
   <script type="application/ld+json">
   {
@@ -63,28 +63,28 @@
 
   <!-- 2 · Header — the Order button "wakes" when the hero CTA scrolls out -->
   <header class="nav" id="top">
-    <a class="brand" href="index.html">
-      <img class="brand__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Cupcakery & Creamery" width="180" height="154">
+    <a class="brand" href="./">
+      <img class="brand__logo" src="assets/smallcakes-logo-circle.png" alt="Smallcakes Cupcakery & Creamery" width="180" height="154">
       <span class="brand__loc">Clarksville</span>
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="menu.html">Menu &amp; Flavors</a>
-      <a href="custom.html">Custom Cakes</a>
-      <a href="catering.html">Catering</a>
-      <a href="visit.html">Visit</a>
+      <a href="cupcakes/">Menu &amp; Flavors</a>
+      <a href="custom-cakes/">Custom Cakes</a>
+      <a href="catering/">Catering</a>
+      <a href="visit/">Visit</a>
     </nav>
     <button class="nav__order sc-btn sc-btn--primary" data-order>Order for Pickup</button>
     <button class="nav__burger" aria-label="Open menu" aria-expanded="false" data-burger>☰</button>
   </header>
   <nav class="drawer" aria-label="Mobile" hidden>
     <div class="drawer__head">
-      <img src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes" width="180" height="154">
+      <img src="assets/smallcakes-logo-circle.png" alt="Smallcakes" width="180" height="154">
       <button class="drawer__close" aria-label="Close menu" data-burger>✕</button>
     </div>
-    <a href="menu.html">Menu &amp; Flavors</a>
-    <a href="custom.html">Custom Cakes</a>
-    <a href="catering.html">Catering</a>
-    <a href="visit.html">Visit &amp; Hours</a>
+    <a href="cupcakes/">Menu &amp; Flavors</a>
+    <a href="custom-cakes/">Custom Cakes</a>
+    <a href="catering/">Catering</a>
+    <a href="visit/">Visit &amp; Hours</a>
     <button class="sc-btn sc-btn--primary drawer__order" data-order>Order for Pickup</button>
   </nav>
 
@@ -105,7 +105,7 @@
             <button class="sc-btn sc-btn--primary" data-order data-cta-sentinel>Order for Pickup</button>
             <span class="trust">Baked fresh daily — when they’re gone, they’re gone.</span>
           </div>
-          <p class="hero__more"><a class="link-arrow" href="menu.html">See today’s flavors →</a></p>
+          <p class="hero__more"><a class="link-arrow" href="cupcakes/">See today’s flavors →</a></p>
         </div>
         <div class="hero__art">
           <img class="hero__img" src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&q=80&w=900" alt="Freshly frosted Smallcakes cupcakes in the signature pink box" width="900" height="1125" fetchpriority="high">
@@ -121,7 +121,7 @@
           <span class="intent__text">Today’s 12 flavors, boxed and ready. Order ahead and skip the line.</span>
           <span class="intent__go">Order for pickup →</span>
         </button>
-        <a class="intent__card intent__card--plan" href="custom.html">
+        <a class="intent__card intent__card--plan" href="custom-cakes/">
           <span class="intent__badge">Planning a party</span>
           <span class="intent__title">Custom cakes &amp; catering</span>
           <span class="intent__text">Birthdays, graduations, game days. Most custom orders need 48–72 hours.</span>
@@ -149,7 +149,7 @@
             <p class="eyebrow">Fresh today</p>
             <h2 class="section__title">This morning’s flavors</h2>
           </div>
-          <a class="link-arrow" href="menu.html">See all 12 flavors →</a>
+          <a class="link-arrow" href="cupcakes/">See all 12 flavors →</a>
         </div>
         <div class="flavor-grid" data-todays-flavors data-count="4"></div>
         <p class="fineprint">Selections rotate daily — the ordering page confirms what’s in the case right now.</p>
@@ -174,22 +174,22 @@
         <p class="eyebrow">The whole case</p>
         <h2 class="section__title">More than cupcakes</h2>
         <div class="cats__grid">
-          <a class="sc-cat" href="menu.html">
+          <a class="sc-cat" href="cupcakes/">
             <span class="sc-cat__img"><img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&q=80&w=700&h=500" alt="Signature cupcakes" loading="lazy" width="700" height="500"></span>
             <span class="sc-cat__body"><h3 class="sc-cat__label">Cupcakes</h3>
             <span class="sc-cat__note">Single · half-dozen · dozen · minis</span><span class="sc-cat__go">See flavors</span></span>
           </a>
-          <a class="sc-cat" href="custom.html">
+          <a class="sc-cat" href="custom-cakes/">
             <span class="sc-cat__img"><img src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&q=80&w=700&h=500" alt="Decorated custom celebration cake" loading="lazy" width="700" height="500"></span>
             <span class="sc-cat__body"><h3 class="sc-cat__label">Celebration Cakes</h3>
             <span class="sc-cat__note">6&quot; · 8&quot; · smash cakes · cupcake towers</span><span class="sc-cat__go">Start an order</span></span>
           </a>
-          <a class="sc-cat" href="menu.html#treats">
+          <a class="sc-cat" href="cupcakes/#treats">
             <span class="sc-cat__img"><img src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&q=80&w=700&h=500" alt="Colorful macarons stacked on a plate" loading="lazy" width="700" height="500"></span>
             <span class="sc-cat__body"><h3 class="sc-cat__label">Minis, Macarons &amp; More</h3>
             <span class="sc-cat__note">Mini cupcakes · macarons · cake pops</span><span class="sc-cat__go">See the treats</span></span>
           </a>
-          <a class="sc-cat" href="menu.html#seasonal">
+          <a class="sc-cat" href="cupcakes/#seasonal">
             <span class="sc-cat__img"><img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&q=80&w=700&h=500" alt="Rotating seasonal specialty cupcakes" loading="lazy" width="700" height="500"></span>
             <span class="sc-cat__body"><h3 class="sc-cat__label">Specialty &amp; Seasonal</h3>
             <span class="sc-cat__note">New flavors drop monthly</span><span class="sc-cat__go">What’s new</span></span>
@@ -212,7 +212,7 @@
           <p class="lead">Celebration cakes, custom cupcakes and cupcake towers — we don’t make tiered wedding cakes, and we’ll tell you straight who in town does.</p>
           <p class="fineprint" style="color:#F3DFE7">Most custom orders need 48–72 hours — tell us your date and we’ll confirm.</p>
           <div class="band__cta" style="text-align:left">
-            <a class="sc-btn sc-btn--inverse" href="custom.html">Start My Cake Order</a>
+            <a class="sc-btn sc-btn--inverse" href="custom-cakes/">Start My Cake Order</a>
             <span class="trust">We quote first — no payment now.</span>
           </div>
         </div>
@@ -228,7 +228,7 @@
         <p class="eyebrow">Little treats</p>
         <h2 class="section__title">Minis, macarons &amp; more</h2>
         <p class="lead">Mini cupcakes by the dozen, French macarons, and cake pops — the little extras that make a dessert table (or a Tuesday) feel like a party.</p>
-        <p style="margin-top:1.25rem"><a class="link-arrow" href="menu.html#treats">See the little treats →</a></p>
+        <p style="margin-top:1.25rem"><a class="link-arrow" href="cupcakes/#treats">See the little treats →</a></p>
       </div>
     </section>
 
@@ -246,7 +246,7 @@
         </ul>
         <div class="event-chips" data-events></div>
         <div class="cta-row">
-          <a class="sc-btn sc-btn--inverse" href="catering.html">Request a Catering Quote</a>
+          <a class="sc-btn sc-btn--inverse" href="catering/">Request a Catering Quote</a>
           <a class="sc-btn sc-btn--ghost" href="tel:+19315478361" data-t="phone_click">Call to Plan Your Event</a>
         </div>
         <span class="trust">A real baker answers the phone. 931-547-8361.</span>
@@ -297,7 +297,7 @@
           <p class="fineprint">Demo hours — owner-confirmed hours land here at launch. Storefront parking out front · wheelchair-accessible entrance.</p>
           <div class="cta-row">
             <a class="sc-btn sc-btn--ghost" href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">Get Directions</a>
-            <a class="link-arrow" href="visit.html">Hours, parking &amp; FAQ →</a>
+            <a class="link-arrow" href="visit/">Hours, parking &amp; FAQ →</a>
           </div>
         </div>
       </div>
@@ -321,9 +321,9 @@
         <span class="trust">Baked fresh daily — when they’re gone, they’re gone.</span>
         <a class="crescendo__phone" href="tel:+19315478361" data-t="phone_click">931-547-8361</a>
         <div class="crescendo__paths">
-          <a href="menu.html">Today’s flavors</a>
-          <a href="custom.html">Custom cakes</a>
-          <a href="catering.html">Catering</a>
+          <a href="cupcakes/">Today’s flavors</a>
+          <a href="custom-cakes/">Custom cakes</a>
+          <a href="catering/">Catering</a>
           <a data-sq="giftCards" data-sq-section href="#" target="_blank" data-t="gift_click">Send a gift card</a>
         </div>
       </div>
@@ -347,17 +347,17 @@
   <footer class="foot">
     <div class="foot__grid">
       <div>
-        <img class="foot__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Clarksville" width="180" height="154">
+        <img class="foot__logo" src="assets/smallcakes-logo-circle.png" alt="Smallcakes Clarksville" width="180" height="154">
         <p>Smallcakes Cupcakery &amp; Creamery — Clarksville<br>
         1803 Madison St, Suite A, Clarksville, TN 37043<br>
         <a href="tel:+19315478361">(931) 547-8361</a><br>
         <a href="https://www.facebook.com/profile.php?id=61589759725019" target="_blank" rel="noopener noreferrer" data-t="social_click">Facebook</a></p>
       </div>
       <nav aria-label="Footer">
-        <a href="menu.html">Menu &amp; Flavors</a>
-        <a href="custom.html">Custom Cakes</a>
-        <a href="catering.html">Catering</a>
-        <a href="visit.html">Visit, FAQ &amp; Policies</a>
+        <a href="cupcakes/">Menu &amp; Flavors</a>
+        <a href="custom-cakes/">Custom Cakes</a>
+        <a href="catering/">Catering</a>
+        <a href="visit/">Visit, FAQ &amp; Policies</a>
       </nav>
       <p class="foot__tag">“Maybe a cupcake will help.”</p>
     </div>
@@ -370,8 +370,8 @@
     <a class="sc-btn sc-btn--ghost mobar__call" href="tel:+19315478361" data-t="phone_click">📞 Call</a>
   </div>
 
-  <script src="../../assets/data.js"></script>
-  <script src="../../assets/demo.js"></script>
+  <script src="assets/data.js"></script>
+  <script src="assets/demo.js"></script>
   <script src="site.js"></script>
 </body>
 </html>

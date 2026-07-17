@@ -59,15 +59,6 @@ const EVENTS = [
   const SC = window.SC;
   const live = u => typeof u === 'string' && u.startsWith('https://');
 
-  /* This location bakes only — no creamery products. Patch the shared
-     demo content (used verbatim by the archived A/B/C demos) before
-     demo.js renders it on DOMContentLoaded. */
-  SC.REVIEWS[2].text = 'Ordered dessert boxes for our office and everyone raved. The minis and macarons disappeared before lunch.';
-  const faqCater = SC.FAQ.find(f => f.q.includes('cater'));
-  if (faqCater) {
-    faqCater.q = 'Do you cater events? What about wedding cakes?';
-    faqCater.a = 'We cater — office treats, parties, corporate boxes and dessert tables. We don’t make tiered wedding cakes, but cupcake towers and celebration cakes are our specialty. Request a quote with your date, headcount and idea.';
-  }
 
   /* ── Square link resolution ─────────────────────────────────
      [data-sq="giftCards"] / [data-sq="order.categories.cupcakes"] …

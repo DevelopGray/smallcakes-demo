@@ -1,0 +1,93 @@
+/* Shared styles for the functional demo overlays (order modal, toast, custom
+   wizard success, status pill, flavor cards, base button). Each site themes
+   these by setting the --sc-* vars below in its own :root. Fallbacks are the
+   brand palette so a site works even before theming. */
+:root {
+  --sc-accent:   var(--brand-pink, #E83E8C);
+  --sc-ink:      var(--brand-charcoal, #3D2E36);
+  --sc-heading:  var(--brand-burgundy, #6C173A);
+  --sc-paper:    #fff;
+  --sc-radius:   14px;
+  --sc-shadow:   0 20px 50px rgba(60, 20, 40, .28);
+}
+
+/* Logo is a 180×154 oval — never let a square box distort it. object-fit
+   wins even when a site forces equal width/height on the box. */
+.brand__logo, .foot__logo, .drawer__head img, .logo { object-fit: contain; }
+
+/* Base button — sites can restyle .sc-btn or use their own classes. */
+.sc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4em;
+  border: 0; border-radius: 999px; padding: .85em 1.5em;
+  font-weight: 700; font-size: 1rem; text-decoration: none; line-height: 1;
+  background: var(--sc-ink); color: #fff; transition: transform .15s ease, filter .15s ease;
+}
+.sc-btn--primary { background: var(--sc-accent); color: #fff; }
+.sc-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+.sc-btn--ghost { background: transparent; color: var(--sc-heading); box-shadow: inset 0 0 0 2px currentColor; }
+
+/* Flavor card — vertical product card with a real photo */
+.sc-flavor { display: flex; flex-direction: column; background: var(--sc-paper);
+  border-radius: var(--sc-radius); overflow: hidden; box-shadow: 0 8px 24px rgba(60,20,40,.08);
+  transition: transform .2s ease, box-shadow .2s ease; }
+.sc-flavor:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(60,20,40,.14); }
+.sc-flavor__thumb { aspect-ratio: 1 / 1; overflow: hidden; background: #f3e9ec; }
+.sc-flavor__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.sc-flavor:hover .sc-flavor__thumb img { transform: scale(1.05); }
+.sc-flavor__body { display: flex; flex-direction: column; gap: .3rem; padding: .9rem 1rem 1.1rem; flex: 1; }
+.sc-flavor__name { font-size: 1.05rem; color: var(--sc-heading); }
+.sc-flavor__desc { font-size: .85rem; color: #6b5b62; flex: 1; }
+.sc-flavor__add { align-self: flex-start; margin-top: .5rem; background: none; border: 0;
+  color: var(--sc-accent); font-weight: 700; font-size: .85rem; padding: .2rem 0; cursor: pointer; }
+.sc-flavor__add:hover { text-decoration: underline; }
+
+/* Category card with photo (padding:0 on the card; body carries padding) */
+.sc-cat { overflow: hidden; padding: 0; }
+.sc-cat__img { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #f3e9ec; }
+.sc-cat__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.sc-cat:hover .sc-cat__img img { transform: scale(1.06); }
+.sc-cat__body { display: block; padding: 1rem 1.2rem 1.2rem; }
+
+/* Live status pill */
+.sc-status { display: inline-flex; align-items: center; gap: .45em; font-weight: 600; font-size: .82rem; }
+.sc-status__dot { width: .6em; height: .6em; border-radius: 50%; background: #b9b0b4; }
+.sc-status.is-open .sc-status__dot { background: #2fae6a; box-shadow: 0 0 0 3px rgba(47,174,106,.25); }
+.sc-status.is-closed .sc-status__dot { background: #d9534f; }
+
+/* Modal */
+.sc-modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 1.2rem;
+  opacity: 0; transition: opacity .25s ease; }
+.sc-modal.is-on { opacity: 1; }
+.sc-modal__scrim { position: absolute; inset: 0; background: rgba(35, 12, 24, .5); backdrop-filter: blur(3px); }
+.sc-modal__card { position: relative; z-index: 1; width: min(30rem, 100%); background: var(--sc-paper);
+  border-radius: calc(var(--sc-radius) + 6px); padding: 2rem 1.6rem 1.6rem; box-shadow: var(--sc-shadow);
+  transform: translateY(12px) scale(.98); transition: transform .25s ease; text-align: center; }
+.sc-modal.is-on .sc-modal__card { transform: none; }
+.sc-modal__x { position: absolute; top: .6rem; right: .8rem; background: none; border: 0; font-size: 1.6rem;
+  line-height: 1; color: #b9b0b4; cursor: pointer; }
+.sc-modal__badge { display: inline-block; font-size: .68rem; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--sc-accent); background: color-mix(in srgb, var(--sc-accent) 12%, #fff);
+  padding: .3em .7em; border-radius: 999px; margin-bottom: .8rem; }
+.sc-modal__title { font-size: 1.4rem; color: var(--sc-heading); margin-bottom: .5rem; }
+.sc-modal__lead { color: var(--sc-ink); margin-bottom: .5rem; }
+.sc-modal__note { font-size: .85rem; color: #6b5b62; margin-bottom: 1.2rem; }
+.sc-modal__go { width: 100%; margin-bottom: .5rem; }
+.sc-modal__link { background: none; border: 0; color: #8a7a80; font-size: .85rem; cursor: pointer; text-decoration: underline; }
+.sc-modal__loading { padding: 2rem 0; display: grid; gap: 1rem; place-items: center; color: #6b5b62; }
+.sc-spinner { width: 2.2rem; height: 2.2rem; border-radius: 50%; border: 3px solid #eee;
+  border-top-color: var(--sc-accent); animation: sc-spin .8s linear infinite; }
+@keyframes sc-spin { to { transform: rotate(360deg); } }
+
+/* Toast */
+.sc-toast { position: fixed; left: 50%; bottom: 1.4rem; transform: translate(-50%, 2rem);
+  background: var(--sc-ink); color: #fff; padding: .8rem 1.2rem; border-radius: 999px; font-size: .9rem;
+  box-shadow: var(--sc-shadow); opacity: 0; transition: transform .3s ease, opacity .3s ease; z-index: 80; }
+.sc-toast.is-on { transform: translate(-50%, 0); opacity: 1; }
+
+/* Custom-wizard success */
+.sc-success { text-align: center; display: grid; gap: .8rem; justify-items: center; padding: 1rem 0; }
+.sc-success__check { width: 3.2rem; height: 3.2rem; border-radius: 50%; background: #2fae6a; color: #fff;
+  display: grid; place-items: center; font-size: 1.6rem; }
+.sc-success h2 { color: var(--sc-heading); }
+.sc-ref { font-family: ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .05em; color: var(--sc-accent); }
+.sc-success__fine { font-size: .8rem; color: #8a7a80; max-width: 32rem; }
