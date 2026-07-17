@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# Demo repository — not the live site. Remove this file at launch;
+# the production robots.txt lives in mockups/d-madison-street/launch-kit/.
