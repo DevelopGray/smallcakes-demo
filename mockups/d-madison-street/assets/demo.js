@@ -87,6 +87,7 @@ window.SCDemo = (function () {
       <circle cx="24" cy="7" r="2.4" fill="hsl(${(h + 180) % 360} 80% 60%)"/></svg>`;
   }
   function fillFlavors(container) {
+    if (container.children.length) return; // static HTML is the source; JS only hydrates empty grids
     const kind = container.getAttribute('data-flavors');
     const list = kind === 'seasonal' ? SC.SEASONAL : SC.SIGNATURE;
     list.forEach(f => container.appendChild(flavorCard(f, kind)));
@@ -109,6 +110,7 @@ window.SCDemo = (function () {
     });
   }
   function fillFaq(c) {
+    if (c.children.length) return; // static HTML is the source
     SC.FAQ.forEach((f, n) => {
       const d = el('details', 'sc-faq__item');
       if (n === 0) d.open = true;
@@ -247,10 +249,12 @@ window.SCDemo = (function () {
   }
 
   function fillHours(table) {
+    // Rows ship as static HTML; JS only adds the "today" highlight.
     const todayIdx = (SC.storeNow().getDay() + 6) % 7; // 0=Mon in our array
-    table.innerHTML = SC.STORE.hours.map((r, n) =>
-      `<tr class="${n === todayIdx ? 'is-today' : ''}"><th scope="row">${r.d}</th><td>${r.h}</td></tr>`
-    ).join('');
+    if (!table.rows.length) {
+      table.innerHTML = SC.STORE.hours.map(r => `<tr><th scope="row">${r.d}</th><td>${r.h}</td></tr>`).join('');
+    }
+    [...table.rows].forEach((row, n) => row.classList.toggle('is-today', n === todayIdx));
   }
 
   /* ── Auto-wire ────────────────────────────────────────────── */
