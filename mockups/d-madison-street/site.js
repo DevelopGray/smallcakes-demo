@@ -315,6 +315,12 @@ const EVENTS = [
     if (sel) [...sel.options].forEach(o => { if (o.text.toLowerCase().includes(type)) sel.value = o.text; });
   }
 
+  /* View-source delight - the console is a surface too. */
+  console.log('%c🧁 Maybe a cupcake will help.',
+    'font: 600 1.25em Georgia, serif; color: #D42A78;',
+    ['', 'Hand-rolled HTML/CSS/JS — no framework, no build step.',
+     'Try ?selfcheck · humans.txt · view source, steal freely.'].join('\n'));
+
   /* ponytail: one runnable check for this layer. Append ?selfcheck. */
   if (location.search.includes('selfcheck')) {
     console.assert(!live('PASTE_SQUARE_ORDER_URL'), 'placeholder not treated as live');

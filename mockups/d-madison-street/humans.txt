@@ -1,0 +1,13 @@
+/* TEAM */
+Developer: Stephen C. Gray
+Location: Clarksville, TN
+
+/* SITE */
+Name: Smallcakes Clarksville — "Madison Street Made"
+Stack: hand-rolled HTML/CSS/JS. No framework. No build step. No tracking
+       until the owner turns it on. Square handles every transaction.
+Fonts: Fraunces & Nunito, self-hosted.
+
+/* THANKS */
+Append ?selfcheck to any page for the console test suite.
+View source. Steal freely. Maybe a cupcake will help.
