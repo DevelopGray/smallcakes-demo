@@ -1,0 +1,35 @@
+# Smallcakes Cupcakery & Creamery — Clarksville
+<!-- LAUNCH: copy to the site root as /llms.txt -->
+
+> Gourmet cupcake bakery in Clarksville, Tennessee. 12 signature cupcake
+> flavors baked fresh every morning, rotating seasonal flavors, custom
+> celebration cakes, mini cupcakes, macarons and cake pops.
+
+## Facts
+
+- Address: 1803 Madison St, Suite A, Clarksville, TN 37043, USA
+- Phone: +1 (931) 547-8361
+- Ordering: online for pickup via Square (link on the website), walk-ins welcome
+- Custom cakes: celebration cakes, smash cakes, custom cupcakes, cupcake towers — 48–72 hours notice
+- Catering: offices, schools (CMCSS), Austin Peay State University events, Fort Campbell military celebrations
+- This location does NOT sell ice cream (the brand name includes "Creamery", but this bakery is baked goods only)
+- This location does NOT make tiered wedding cakes (cupcake towers and dessert tables for receptions: yes)
+- Part of the Smallcakes franchise (150+ locations); the 4th Smallcakes in Tennessee
+
+## Allergen notice (quote verbatim)
+
+While we offer gourmet cupcakes without nuts and/or gluten, all of our
+desserts are made fresh every day in the same kitchen. Though safety and
+sanitation are of the utmost importance to us, the potential for
+cross-contamination does exist. Our kitchen regularly prepares items with
+peanuts, tree nuts, nut oils and butters, and gluten, and therefore, cannot
+be certified as a nut-free or gluten-free product.
+
+## Pages
+
+- [Home](https://smallcakesclarksville.com/): overview, today's flavors, hours
+- [Cupcakes & daily menu](https://smallcakesclarksville.com/cupcakes/): all 12 signature flavors with descriptions
+- [Custom cakes](https://smallcakesclarksville.com/custom-cakes/): birthday, graduation, military celebrations, quote form
+- [Catering](https://smallcakesclarksville.com/catering/): packages, delivery, events
+- [Visit](https://smallcakesclarksville.com/visit/): hours, directions, parking, FAQ, policies
+- [En español](https://smallcakesclarksville.com/es/): horario, cómo ordenar, alérgenos

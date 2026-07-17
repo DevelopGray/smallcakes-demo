@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Print Kit — Smallcakes Clarksville (internal)</title>
+  <style>
+    /* Internal print tool — NOT part of the public site. Open with your
+       real links as URL params, then Ctrl+P:
+       print.html?review=GOOGLE_REVIEW_SHORTLINK&signup=SQUARE_SIGNUP_URL
+       QR images render via api.qrserver.com (internet needed while printing). */
+    * { box-sizing: border-box; margin: 0; }
+    body { font-family: "Segoe UI", system-ui, sans-serif; color: #3D2E36; background: #fff; padding: 24px; }
+    h1 { color: #6C173A; margin-bottom: 4px; }
+    .note { background: #FFF6E0; border: 1px solid #e5d5a5; border-radius: 8px; padding: 10px 14px; margin: 12px 0 24px; font-size: 14px; }
+    section { page-break-inside: avoid; margin-bottom: 36px; }
+    h2 { color: #6C173A; border-bottom: 2px solid #F0E2D6; padding-bottom: 4px; margin-bottom: 12px; }
+    .stickers { display: grid; grid-template-columns: repeat(4, 2in); gap: .25in; }
+    .sticker { width: 2in; height: 2in; border: 1px dashed #ccc; border-radius: 12px; text-align: center;
+      padding: .12in; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .06in; }
+    .sticker strong { font-size: 11px; color: #6C173A; }
+    .sticker small { font-size: 8.5px; }
+    .sticker img { width: 1.05in; height: 1.05in; }
+    .tent { width: 4in; border: 1px dashed #ccc; padding: .25in; text-align: center; }
+    .tent .fold { border-top: 1px dotted #999; margin: .2in 0; font-size: 9px; color: #999; }
+    .tent img { width: 1.6in; height: 1.6in; }
+    .tent h3 { color: #6C173A; }
+    .counter { width: 5in; border: 2px solid #D42A78; border-radius: 16px; padding: .3in; text-align: center; }
+    .counter h3 { color: #D42A78; font-size: 22px; }
+    .missing { color: #b00; font-weight: 700; }
+    @media print { .note, h1 + p { display: none; } body { padding: 0; } }
+  </style>
+</head>
+<body>
+  <h1>Smallcakes Clarksville — Print Kit</h1>
+  <p>Box stickers · table tent · counter card</p>
+  <div class="note">Open as <code>print.html?review=YOUR_GOOGLE_REVIEW_LINK&amp;signup=YOUR_SQUARE_SIGNUP_LINK</code> — QR codes fill in automatically (needs internet). Print stickers on 2&quot; square label sheets.</div>
+
+  <section>
+    <h2>Box stickers — the review engine (2&quot; labels)</h2>
+    <div class="stickers" id="stickers"></div>
+  </section>
+
+  <section>
+    <h2>Table tent — Flavor Calendar signups (fold at dotted line)</h2>
+    <div class="tent">
+      <h3>🧁 First to know the new flavors</h3>
+      <p style="font-size:12px">One email a month. No spam, just sprinkles.</p>
+      <img data-qr="signup" alt="Signup QR">
+      <div class="fold">fold</div>
+      <h3>🧁 Get the Flavor Calendar</h3>
+      <img data-qr="signup" alt="Signup QR">
+    </div>
+  </section>
+
+  <section>
+    <h2>Counter card</h2>
+    <div class="counter">
+      <h3>Made your day?</h3>
+      <p>30 seconds → ★★★★★ helps our small bakery more than you know.</p>
+      <img data-qr="review" style="width:1.8in;height:1.8in" alt="Review QR">
+      <p style="font-size:12px;margin-top:8px">Smallcakes Clarksville · 1803 Madison St, Suite A · (931) 547-8361</p>
+    </div>
+  </section>
+
+  <script>
+    const q = new URLSearchParams(location.search);
+    const qr = data => 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=6C173A&data=' + encodeURIComponent(data);
+    const review = q.get('review'), signup = q.get('signup');
+    const grid = document.getElementById('stickers');
+    for (let i = 0; i < 8; i++) {
+      const d = document.createElement('div');
+      d.className = 'sticker';
+      d.innerHTML = review
+        ? `<strong>Made your day?</strong><img src="${qr(review)}" alt="Review QR"><small>30 seconds → ★★★★★<br>Smallcakes Clarksville</small>`
+        : `<strong>Made your day?</strong><div class="missing">add ?review=LINK</div><small>30 seconds → ★★★★★</small>`;
+      grid.appendChild(d);
+    }
+    document.querySelectorAll('[data-qr]').forEach(img => {
+      const val = img.getAttribute('data-qr') === 'review' ? review : signup;
+      if (val) img.src = qr(val);
+      else { img.replaceWith(Object.assign(document.createElement('div'), { className: 'missing', textContent: 'add ?' + img.getAttribute('data-qr') + '=LINK' })); }
+    });
+  </script>
+</body>
+</html>

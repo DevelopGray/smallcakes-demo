@@ -3,6 +3,12 @@
 Everything needed to take `mockups/d-madison-street/` from demo to the live site.
 The site is a **routing layer over Square** — it never touches payments or PII itself.
 
+## 0 · Step zero (do these first)
+
+- **Remove the `noindex` meta** from every page head (search for `DEMO ONLY`) and delete the repo-root `robots.txt` — the demo ships un-indexable on purpose.
+- Remove the demo ribbon (`.demo-ribbon`) from every page and the "demo pricing" notes.
+- Update the two static hours tables (English `visit/` + home, Spanish `es/`) if the owner's hours differ from the demo defaults in `site.js` `HOURS`.
+
 ## 1 · One-file go-live switch (`site.js`)
 
 Fill the `SQUARE` object and `SITE` flags at the top of `site.js`:
@@ -19,6 +25,8 @@ Fill the `SQUARE` object and `SITE` flags at the top of `site.js`:
 | `SITE.sameDayCutoffHour` | e.g. `14` once the owner confirms a same-day cutoff. Stays `null` = line hidden |
 | `SITE.priceAnchor` | e.g. `'Dozens from $42'` once pricing is confirmed |
 | `SITE.reviewsLive` | `false` at launch (hides sample reviews) until real Google reviews exist |
+| `SITE.ga4` | GA4 measurement id (`G-…`) — every tracked intent (order_click, phone_click, custom_form_submit…) flows to Analytics. Create the property at analytics.google.com; add a short "we use Google Analytics" line to the privacy note |
+| `HOURS` / `CLOSED_DATES` / `EVENTS` | the owner-editable block right below the flags — hours single-source, holiday closures, dated event chips |
 
 Behavior while placeholders remain: order buttons use the demo modal, gift-card / booking links hide themselves, signup shows a demo toast. Nothing breaks.
 
@@ -27,7 +35,7 @@ Behavior while placeholders remain: order buttons use the demo modal, gift-card 
 1. Buy `smallcakesclarksville.com` (~$11/yr). A `*.github.io` URL cannot win local SEO.
 2. GitHub Pages → custom domain → enforce HTTPS.
 3. Directory URLs are already in place (`cupcakes/`, `custom-cakes/`, `catering/`, `visit/`) and the folder is fully self-contained — deploy `mockups/d-madison-street/` as the site root. Un-comment the `<link rel="canonical">` in each page head and fill the remaining JSON-LD LAUNCH TODOs.
-4. Copy `sitemap.xml`, `robots.txt`, `404.html` from this folder to the site root (fix domain if different).
+4. Copy `sitemap.xml`, `robots.txt`, `404.html` and `llms.txt` from this folder to the site root (fix domain if different).
 5. Remove the demo ribbon + demo pricing notes; replace Unsplash photos with the corporate/owner photo set (keep exact `width`/`height` attributes to avoid layout shift; name files like `smallcakes-clarksville-red-velvet-cupcake.jpg`).
 
 ## 3 · Google Business Profile (32% of local-pack ranking)
@@ -58,3 +66,39 @@ Apple Business Connect · Bing Places · Yelp · Nextdoor · TripAdvisor · visi
 - Allergen wording verbatim from `assets/data.js` — never "nut-free", "gluten-free", or "safe".
 - Never claim "award-winning", exact hours, delivery areas, or lead times until owner-confirmed.
 - No aggregateRating/review schema. No FAQ schema (rich results deprecated 2026 — visible FAQ text only).
+
+## 6 · Ownership & yearly costs (the year-2 disaster preventer)
+
+Everything must live under accounts **the owner controls** — the developer is a
+collaborator, never the owner:
+
+| Asset | Owner account | Developer role |
+|---|---|---|
+| Domain registrar | Owner's email | tech contact |
+| GitHub repo (the site) | Owner's GitHub org/account | collaborator |
+| Google Business Profile | Owner = Primary owner | manager |
+| Google Analytics + Search Console | Owner's Google account | user |
+| Square (everything transactional) | Owner | — |
+| Facebook/Instagram pages | Owner | editor |
+
+Yearly cash costs: domain ~$11. Hosting $0 (GitHub Pages). Fonts/images $0
+(self-hosted). Square: standard processing rates + optional add-ons
+(Marketing, Loyalty) only if chosen. Everything else on this site is code —
+no subscriptions to forget.
+
+## 7 · The annual ritual (every January, ~30 minutes)
+
+1. Refresh `EVENTS` in `site.js` with the new year's dates (Riverfest,
+   Oktoberfest, APSU calendar, CMCSS calendar, Fright on Franklin).
+2. Refresh `CLOSED_DATES` with this year's holidays.
+3. Renew the domain (set auto-renew and this is a no-op).
+4. Skim GSC: which queries grew? Consider promoting a `/custom-cakes/` H2
+   (e.g. Birthday Cakes) to its own page if the data supports it.
+5. Re-run Lighthouse (CI does it on every push anyway).
+
+## 8 · Print & paper
+
+`print.html` in this folder generates box stickers (review QR), a table tent
+(Flavor Calendar QR) and a counter card — open it with your real links:
+`print.html?review=GOOGLE_REVIEW_LINK&signup=SQUARE_SIGNUP_LINK`, then Ctrl+P.
+`STAFF-CARD.md` is the counter script; `MARKETING-KIT.md` is 12 months of posts.

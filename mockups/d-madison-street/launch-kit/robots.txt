@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# AI assistants welcome - structured facts also at /llms.txt
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://smallcakesclarksville.com/sitemap.xml
