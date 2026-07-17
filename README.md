@@ -1,7 +1,13 @@
 # Smallcakes Clarksville — Website Concept Directions
 
-Three website design directions for **Smallcakes Cupcakery & Creamery, Clarksville, TN**,
+Four website design directions for **Smallcakes Cupcakery & Creamery, Clarksville, TN**,
 under one hub page. Static HTML/CSS/JS only (GitHub Pages compatible — no build step, no framework).
+
+> **Direction D — "Madison Street Made"** is the production candidate: A + C blended,
+> rebuilt around a strict CTA system, wired for Square (fill one config in
+> `mockups/d-madison-street/site.js` to go live — see `launch-kit/README-LAUNCH.md`).
+> Note: the Clarksville store bakes only — **no ice cream** (despite the corporate
+> brand name) and **no tiered wedding cakes**. D reflects that; A/B/C predate it.
 
 > **Unofficial concept demos.** Nothing here is live or corporate-approved. Flavors, prices,
 > reviews, and claims are illustrative and pending Smallcakes corporate approval. Orders are
@@ -17,10 +23,13 @@ assets/
   data.js                  Shared content: 12 signature flavors, ice cream, seasonal, NAP, allergen, FAQ, reviews
   demo.js                  Shared behaviour: order→Square modal, custom wizard, flavor rotation, filter, live status
 mockups/
-  a-pink-box/              Direction A — Pink Box, Clarksville (recommended)
+  a-pink-box/              Direction A — Pink Box, Clarksville (owners liked)
   b-celebration-studio/    Direction B — Celebration Studio (premium / events)
-  c-sweet-stop/            Direction C — Sweet Stop, Everyday Joy (bright / community)
+  c-sweet-stop/            Direction C — Sweet Stop, Everyday Joy (owners liked)
     index.html · menu.html · custom.html · styles.css
+  d-madison-street/        Direction D — Madison Street Made (RECOMMENDED, production candidate)
+    index.html · menu.html · custom.html · catering.html · visit.html
+    styles.css · site.js (Square config + honesty engine) · launch-kit/
 ```
 
 Each direction is its own multi-page mobile-first site sharing the same store info,

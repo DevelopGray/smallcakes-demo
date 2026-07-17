@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cupcake Flavors &amp; Daily Menu — Smallcakes Clarksville</title>
+  <meta name="description" content="Today's cupcake menu in Clarksville, TN: 12 signature flavors baked fresh every morning plus rotating seasonal flavors. Order on Square for same-day pickup.">
+  <!-- LAUNCH TODO: <link rel="canonical" href="https://smallcakesclarksville.com/cupcakes/"> -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Cupcake Flavors & Daily Menu — Smallcakes Clarksville">
+  <meta property="og:description" content="12 signature flavors baked fresh every morning, plus rotating seasonal drops. Order for same-day pickup.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&q=80&w=1200&h=630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/reset.css">
+  <link rel="stylesheet" href="../../assets/demo.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="../../assets/smallcakes-logo-circle.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "index.html" },
+      { "@type": "ListItem", "position": 2, "name": "Cupcakes & Daily Menu", "item": "menu.html" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <p class="demo-ribbon">Concept demo — illustrative content, pending corporate approval. <a href="../../index.html">← All four directions</a></p>
+
+  <div class="util">
+    <span data-status></span>
+    <span class="util__links">
+      <a href="tel:+19315478361" data-t="phone_click">📞 931-547-8361</a>
+      <a href="https://www.google.com/maps/search/?api=1&query=1803+Madison+St+Clarksville+TN+37043" target="_blank" rel="noopener" data-t="directions_click">📍 Directions</a>
+    </span>
+  </div>
+
+  <header class="nav">
+    <a class="brand" href="index.html">
+      <img class="brand__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Cupcakery & Creamery" width="180" height="154">
+      <span class="brand__loc">Clarksville</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="menu.html" aria-current="page">Menu &amp; Flavors</a>
+      <a href="custom.html">Custom Cakes</a>
+      <a href="catering.html">Catering</a>
+      <a href="visit.html">Visit</a>
+    </nav>
+    <button class="nav__order sc-btn sc-btn--primary" data-order>Order for Pickup</button>
+    <button class="nav__burger" aria-label="Open menu" aria-expanded="false" data-burger>☰</button>
+  </header>
+  <nav class="drawer" aria-label="Mobile" hidden>
+    <div class="drawer__head">
+      <img src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes" width="180" height="154">
+      <button class="drawer__close" aria-label="Close menu" data-burger>✕</button>
+    </div>
+    <a href="menu.html">Menu &amp; Flavors</a>
+    <a href="custom.html">Custom Cakes</a>
+    <a href="catering.html">Catering</a>
+    <a href="visit.html">Visit &amp; Hours</a>
+    <button class="sc-btn sc-btn--primary drawer__order" data-order>Order for Pickup</button>
+  </nav>
+
+  <main id="main">
+    <section class="page-hero">
+      <p class="eyebrow">Menu &amp; flavors</p>
+      <h1>Cupcakes in Clarksville, baked fresh daily</h1>
+      <p class="page-hero__sub">Twelve signature flavors every morning, a rotating specialty drop, and celebration cakes made to order. Tap any flavor to start a pickup order.</p>
+      <p class="hero__meta"><span data-status></span> <span data-cutoff></span></p>
+      <div class="hero__cta" style="max-width:26rem">
+        <button class="sc-btn sc-btn--primary" data-order data-cta-sentinel>Order for Pickup</button>
+        <span class="trust">Secure checkout by Square. No account needed.</span>
+      </div>
+    </section>
+
+    <div class="section wrap menu" data-menu style="padding-top:1.5rem">
+      <div class="filterbar" role="group" aria-label="Filter menu">
+        <button data-filter="all" aria-pressed="true">All</button>
+        <button data-filter="cupcakes" aria-pressed="false">Signature</button>
+        <button data-filter="seasonal" aria-pressed="false">Specialty</button>
+        <button data-filter="cakes" aria-pressed="false">Cakes</button>
+        <button data-filter="treats" aria-pressed="false">Little Treats</button>
+      </div>
+
+      <p class="pricing">Demo starting prices — single <strong>$4</strong> · half-dozen <strong>$22</strong> · dozen <strong>$42</strong>. Live prices confirm at checkout on Square.</p>
+
+      <section data-cat="cupcakes" id="cupcakes" class="menu-sec">
+        <h2 class="section__title">The 12 signature flavors</h2>
+        <p class="menu-sec__note">Baked and frosted fresh every single morning.</p>
+        <div class="flavor-grid" data-flavors="signature"></div>
+        <div class="band__cta">
+          <button class="sc-btn sc-btn--primary" data-order>Order Today’s Flavors</button>
+          <span class="trust">Baked fresh daily — when they’re gone, they’re gone.</span>
+        </div>
+      </section>
+
+      <section data-cat="seasonal" id="seasonal" class="menu-sec">
+        <h2 class="section__title">Specialty &amp; seasonal</h2>
+        <p class="menu-sec__note">Rotating flavors — new ones drop monthly. Here today, gone next month.</p>
+        <div class="flavor-grid" data-flavors="seasonal"></div>
+      </section>
+
+      <section data-cat="cakes" id="cakes" class="menu-sec">
+        <h2 class="section__title">Celebration cakes</h2>
+        <div class="cake-note">
+          <p>6&quot;, 8&quot;, first-birthday smash cakes and cupcake towers — in any signature flavor, decorated to your theme. Cakes are made to order with 48–72 hours’ notice.</p>
+          <a class="sc-btn sc-btn--primary" href="custom.html">Start My Cake Order</a>
+          <span class="trust">We quote first — no payment now.</span>
+        </div>
+      </section>
+
+      <section data-cat="treats" id="treats" class="menu-sec">
+        <h2 class="section__title">Minis, macarons &amp; more</h2>
+        <p class="menu-sec__note">The little extras — lineup varies by day; call or check the ordering page for today’s case. <span class="fineprint">(Demo lineup — owner-confirmed at launch.)</span></p>
+        <div class="pack-grid">
+          <div class="pack"><h3>Mini cupcakes</h3><p>Any signature flavor, by the dozen — party trays and classroom favorites.</p></div>
+          <div class="pack"><h3>French macarons</h3><p>Delicate shells in rotating flavors and colors — beautiful boxed as gifts.</p></div>
+          <div class="pack"><h3>Cake pops &amp; more</h3><p>Cake pops, big cookies and seasonal extras straight from the case.</p></div>
+        </div>
+        <button class="sc-btn sc-btn--primary" data-order>Order Little Treats</button>
+        <span class="trust">Secure checkout by Square. No account needed.</span>
+      </section>
+    </div>
+
+    <section class="section wrap" style="padding-top:0">
+      <p class="allergen"><strong>Allergen note:</strong> <span data-allergen></span></p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot__grid">
+      <div>
+        <img class="foot__logo" src="../../assets/smallcakes-logo-circle.png" alt="Smallcakes Clarksville" width="180" height="154">
+        <p>Smallcakes Cupcakery &amp; Creamery — Clarksville<br>
+        1803 Madison St, Suite A, Clarksville, TN 37043<br>
+        <a href="tel:+19315478361">(931) 547-8361</a><br>
+        <a href="https://www.facebook.com/profile.php?id=61589759725019" target="_blank" rel="noopener noreferrer" data-t="social_click">Facebook</a></p>
+      </div>
+      <nav aria-label="Footer">
+        <a href="menu.html">Menu &amp; Flavors</a>
+        <a href="custom.html">Custom Cakes</a>
+        <a href="catering.html">Catering</a>
+        <a href="visit.html">Visit, FAQ &amp; Policies</a>
+      </nav>
+      <p class="foot__tag">“Maybe a cupcake will help.”</p>
+    </div>
+    <p class="foot__fine">Concept demo by Stephen C. Gray. Not an official Smallcakes corporate document.</p>
+  </footer>
+
+  <div class="mobar">
+    <button class="sc-btn sc-btn--primary mobar__order" data-order>Order for Pickup</button>
+    <a class="sc-btn sc-btn--ghost mobar__call" href="tel:+19315478361" data-t="phone_click">📞 Call</a>
+  </div>
+
+  <script src="../../assets/data.js"></script>
+  <script src="../../assets/demo.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

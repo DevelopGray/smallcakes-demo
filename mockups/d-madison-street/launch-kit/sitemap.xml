@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- LAUNCH: copy to site root; confirm domain + lastmod dates. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://smallcakesclarksville.com/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://smallcakesclarksville.com/cupcakes/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://smallcakesclarksville.com/custom-cakes/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://smallcakesclarksville.com/catering/</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://smallcakesclarksville.com/visit/</loc><lastmod>2026-07-17</lastmod></url>
+</urlset>
