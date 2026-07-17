@@ -86,10 +86,42 @@ const EVENTS = [
   { label: '💐 Mother’s Day · May 9',            until: '2027-05-09' }
 ];
 
+/* Directions routing: open each visitor's own map app automatically.
+   Android → geo: (hands off to whatever map app they set as default),
+   iPhone/iPad/Mac → Apple Maps, other desktop → Google Maps. Pure so it
+   can be asserted in ?selfcheck. */
+function scDirections(ua, touchPoints) {
+  ua = ua || '';
+  const enc = encodeURIComponent('1803 Madison St, Clarksville, TN 37043');
+  const geo = 'geo:36.5257,-87.3283?q=36.5257,-87.3283(Smallcakes Clarksville)';
+  const apple = 'https://maps.apple.com/?daddr=' + enc + '&dirflg=d';
+  const google = 'https://www.google.com/maps/dir/?api=1&destination=' + enc;
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && (touchPoints || 0) > 1); // iPadOS reports as Mac
+  const isMac = /Macintosh|Mac OS X/i.test(ua);
+  if (isAndroid) return { url: geo, sameTab: true };     // their default map app
+  if (isIOS)     return { url: apple, sameTab: true };    // iPhone/iPad → Apple Maps (app handoff)
+  if (isMac)     return { url: apple, sameTab: false };   // Mac desktop → Apple Maps (new tab)
+  return { url: google, sameTab: false };                 // Windows/Linux/other → Google Maps
+}
+
 (function () {
   const SC = window.SC;
   const live = u => typeof u === 'string' && u.startsWith('https://');
   const BASE = (document.currentScript?.src || '').replace(/site\.js.*$/, '');
+
+  /* Wire every directions link/button to the visitor's own map app. The
+     <a href> (Google Maps) stays as the no-JS fallback. */
+  document.addEventListener('click', e => {
+    const d = e.target.closest('[data-t="directions_click"]');
+    if (!d) return;
+    e.preventDefault();
+    e.stopPropagation();                 // track once; skip demo.js's generic [data-t] logger
+    const t = scDirections(navigator.userAgent, navigator.maxTouchPoints);
+    if (window.SCDemo) window.SCDemo.track('directions_click', { target: t.url.split(':')[0] });
+    if (t.sameTab) location.href = t.url;
+    else window.open(t.url, '_blank', 'noopener,noreferrer');
+  }, true);
 
   /* Hours single-source: derive the display strings and open ranges the
      shared layer uses, and honor holiday closures. Runs before boot. */
@@ -357,6 +389,11 @@ const EVENTS = [
     console.assert('order.categories.cupcakes'.split('.').reduce((o, k) => o && o[k], SQUARE) === 'PASTE_CUPCAKES_CATEGORY_URL', 'data-sq path resolution');
     console.assert(EVENTS.every(ev => /^\d{4}-\d{2}-\d{2}$/.test(ev.until)), 'event dates ISO');
     console.assert(window.SC.storeNow() instanceof Date && !isNaN(window.SC.storeNow()), 'storeNow valid');
+    console.assert(scDirections('Mozilla/5.0 (Linux; Android 14)').url.startsWith('geo:'), 'android → geo');
+    console.assert(scDirections('Mozilla/5.0 (iPhone; CPU iPhone OS 17_0)').url.includes('maps.apple.com'), 'iphone → apple');
+    console.assert(scDirections('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15)').url.includes('maps.apple.com'), 'mac → apple');
+    console.assert(scDirections('Mozilla/5.0 (Macintosh; …)', 5).url.includes('maps.apple.com'), 'ipados → apple');
+    console.assert(scDirections('Mozilla/5.0 (Windows NT 10.0)').url.includes('google.com/maps'), 'windows → google');
     console.log('%c[site] selfcheck passed', 'color:#2D6A55');
   }
 })();
