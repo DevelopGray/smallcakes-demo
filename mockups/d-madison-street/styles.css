@@ -468,3 +468,30 @@ html { scroll-behavior: smooth; }
   }
 }
 @keyframes rise { from { opacity: 0; translate: 0 16px; } }
+
+/* ── Touch feedback — phones get :active, not :hover ─────────── */
+.sc-btn:active, .sc-flavor__add:active, .sc-flavor__share:active, .hero__badge:active { scale: .96; }
+.intent__card:active, .sc-flavor:active, .sc-cat:active { translate: 0 -1px; scale: .99; }
+
+/* Drawer eases in instead of snapping (exit is instant by design). */
+.drawer:not([hidden]) { opacity: 1; translate: 0 0; transition: opacity .22s ease, translate .22s ease; }
+@starting-style { .drawer:not([hidden]) { opacity: 0; translate: 0 -14px; } }
+
+/* Wizard confirmation reads like a pink-box ticket — the screenshot moment. */
+.sc-success { background: var(--blush); border: 2px dashed var(--pink); border-radius: var(--r);
+  padding: 1.5rem 1.25rem; }
+
+/* ── Print: the menu and visit pages are exactly what people print ── */
+@media print {
+  .nav, .mobar, .demo-ribbon, .util, .marquee, .crescendo, .signup, .drawer,
+  .hero__badge, .sc-flavor__row, .filterbar, .intent, .band__cta { display: none !important; }
+  .band { background: #fff !important; }
+  .on-dark, .on-dark h2, .on-dark h3, .on-dark .lead, .on-dark .eyebrow { color: #000 !important; }
+  body { background: #fff; color: #000; }
+}
+
+/* ── Windows High Contrast: buttons keep boundaries (shadows vanish) ── */
+@media (forced-colors: active) {
+  .sc-btn, .sc-flavor__add, .sc-flavor__share, .sc-cat__go, .filterbar button,
+  .crescendo__paths a, .intent__card, .signup__form input { border: 2px solid ButtonText; }
+}
