@@ -63,9 +63,11 @@ window.SCDemo = (function () {
     const thumb = el('div', 'sc-flavor__thumb');
     if (f.img) {
       const im = el('img');
-      im.src = SC.img(f.img, 500, 500);
+      im.src = SC.img(f.img, 480);
+      im.srcset = SC.img(f.img, 480) + ' 480w, ' + SC.img(f.img, 960) + ' 960w';
+      im.sizes = '(min-width: 40rem) 18rem, 92vw';
       im.alt = f.name + ' — Smallcakes cupcake';
-      im.loading = 'lazy'; im.width = 500; im.height = 500;
+      im.loading = 'lazy'; im.decoding = 'async'; im.width = 480; im.height = 480;
       thumb.appendChild(im);
     } else { thumb.innerHTML = flavorSwatch(f.name); }
     c.appendChild(thumb);

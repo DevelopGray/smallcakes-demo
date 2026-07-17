@@ -37,63 +37,42 @@ window.SC = (function () {
     return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }));
   }
 
-  // Unsplash image helper (free license, hotlinked CDN). id = "photo-…".
-  // DEMO imagery — not the store's real products; for concept presentation only.
-  function img(id, w, h) {
-    let u = 'https://images.unsplash.com/' + id + '?auto=format&fit=crop&q=80&w=' + (w || 800);
-    if (h) u += '&h=' + h;
-    return u;
+  // Local flavor image helper. Files live in assets/img/ as
+  // flavor-{slug}-{480|960}.webp; BASE makes it work from any page depth.
+  const BASE = (document.currentScript?.src || '').replace(/assets\/data\.js.*$/, '');
+  function img(slugName, w) {
+    return BASE + 'assets/img/flavor-' + slugName + '-' + (w >= 960 ? 960 : 480) + '.webp';
   }
 
   // 12 signature cupcakes — real Smallcakes lineup (images are illustrative).
   const SIGNATURE = [
-    { name: 'Pink Vanilla', desc: 'Vanilla cake frosted with our signature pink buttercream.', img: 'photo-1614707267537-b85aaf00c4b7' },
-    { name: 'Pink Chocolate', desc: 'Chocolate cake frosted with our signature pink buttercream.', img: 'photo-1563729784474-d77dbb933a9e' },
-    { name: 'Chocoholic', desc: 'Chocolate cake, chocolate buttercream, chocolate shavings.', img: 'photo-1603532648955-039310d9ed75' },
-    { name: 'Vanilla-N-Chocolate', desc: 'Vanilla cake frosted with our signature chocolate buttercream.', img: 'photo-1599785209796-786432b228bc' },
-    { name: 'Cookies-N-Cream', desc: 'Chocolate cake, cookie buttercream, chocolate cookie crumbles.', img: 'photo-1576618148400-f54bed99fcfd' },
-    { name: 'Lemon Drop', desc: 'Vanilla cake, tangy lemon filling, lemon buttercream, a dollop of lemon.', img: 'photo-1486427944299-d1955d23e34d' },
-    { name: '“Famous” Red Velvet', desc: 'Grandma’s red velvet frosted with cream cheese, red velvet crumbles.', img: 'photo-1587668178277-295251f900ce' },
-    { name: 'Wedding Cake', desc: 'Almond cake, almond buttercream, sugar pearls.', img: 'photo-1495147466023-ac5c588e2e94' },
-    { name: 'Hot Fudge Sundae', desc: 'Chocolate cake filled with fudge, buttercream, peanuts, fudge drizzle, a cherry.', img: 'photo-1607478900766-efe13248b125' },
-    { name: 'Peanut Butter Cup', desc: 'Chocolate cake, peanut butter cream cheese, crumbled peanut butter cups.', img: 'photo-1550617931-e17a7b70dce2' },
-    { name: 'Chocolate Cream', desc: 'Chocolate cake filled with buttercream, signature fudge, a buttercream swirl.', img: 'photo-1621303837174-89787a7d4729' },
-    { name: 'Birthday Cake', desc: 'Vanilla cake, buttercream, rainbow sprinkles.', img: 'photo-1519869325930-281384150729' }
+    { name: 'Pink Vanilla', desc: 'Vanilla cake frosted with our signature pink buttercream.', img: 'pink-vanilla' },
+    { name: 'Pink Chocolate', desc: 'Chocolate cake frosted with our signature pink buttercream.', img: 'pink-chocolate' },
+    { name: 'Chocoholic', desc: 'Chocolate cake, chocolate buttercream, chocolate shavings.', img: 'chocoholic' },
+    { name: 'Vanilla-N-Chocolate', desc: 'Vanilla cake frosted with our signature chocolate buttercream.', img: 'vanilla-n-chocolate' },
+    { name: 'Cookies-N-Cream', desc: 'Chocolate cake, cookie buttercream, chocolate cookie crumbles.', img: 'cookies-n-cream' },
+    { name: 'Lemon Drop', desc: 'Vanilla cake, tangy lemon filling, lemon buttercream, a dollop of lemon.', img: 'lemon-drop' },
+    { name: '“Famous” Red Velvet', desc: 'Grandma’s red velvet frosted with cream cheese, red velvet crumbles.', img: 'famous-red-velvet' },
+    { name: 'Wedding Cake', desc: 'Almond cake, almond buttercream, sugar pearls.', img: 'wedding-cake' },
+    { name: 'Hot Fudge Sundae', desc: 'Chocolate cake filled with fudge, buttercream, peanuts, fudge drizzle, a cherry.', img: 'hot-fudge-sundae' },
+    { name: 'Peanut Butter Cup', desc: 'Chocolate cake, peanut butter cream cheese, crumbled peanut butter cups.', img: 'peanut-butter-cup' },
+    { name: 'Chocolate Cream', desc: 'Chocolate cake filled with buttercream, signature fudge, a buttercream swirl.', img: 'chocolate-cream' },
+    { name: 'Birthday Cake', desc: 'Vanilla cake, buttercream, rainbow sprinkles.', img: 'birthday-cake' }
   ];
 
 
   // Rotating specialty/seasonal pool — the "new ones drop monthly" set.
   const SEASONAL = [
-    { name: 'Maple Bacon', desc: 'Maple cake, maple buttercream, candied bacon.', img: 'photo-1606890737304-57a1ca8a5b62' },
-    { name: 'Caramel Crunch', desc: 'Vanilla cake, caramel, toffee crunch.', img: 'photo-1551879403-6adb554966fd' },
-    { name: 'Cannoli', desc: 'Vanilla cake, sweet ricotta cream, mini chocolate chips.', img: 'photo-1553135422-400ee5852b27' },
-    { name: 'Strawberries N’ Crème', desc: 'Vanilla cake, strawberry filling, cream frosting.', img: 'photo-1606983340126-99ab4feaa64a' },
-    { name: 'Tiramisu', desc: 'Espresso-soaked cake, mascarpone cream, cocoa dusting.', img: 'photo-1578922864601-79dcc7cbcea9' },
-    { name: 'French Toast', desc: 'Cinnamon cake, maple buttercream, a syrup drizzle.', img: 'photo-1588195538326-c5b1e9f80a1b' },
-    { name: 'Pumpkin', desc: 'Spiced pumpkin cake, cream cheese frosting.', img: 'photo-1545696563-af8f6ec2295a' },
-    { name: 'Orange Creamsicle Marble', desc: 'Orange-vanilla marble cake, creamsicle buttercream.', img: 'photo-1558301211-0d8c8ddee6ec' }
+    { name: 'Maple Bacon', desc: 'Maple cake, maple buttercream, candied bacon.', img: 'maple-bacon' },
+    { name: 'Caramel Crunch', desc: 'Vanilla cake, caramel, toffee crunch.', img: 'caramel-crunch' },
+    { name: 'Cannoli', desc: 'Vanilla cake, sweet ricotta cream, mini chocolate chips.', img: 'cannoli' },
+    { name: 'Strawberries N’ Crème', desc: 'Vanilla cake, strawberry filling, cream frosting.', img: 'strawberries-n-creme' },
+    { name: 'Tiramisu', desc: 'Espresso-soaked cake, mascarpone cream, cocoa dusting.', img: 'tiramisu' },
+    { name: 'French Toast', desc: 'Cinnamon cake, maple buttercream, a syrup drizzle.', img: 'french-toast' },
+    { name: 'Pumpkin', desc: 'Spiced pumpkin cake, cream cheese frosting.', img: 'pumpkin' },
+    { name: 'Orange Creamsicle Marble', desc: 'Orange-vanilla marble cake, creamsicle buttercream.', img: 'orange-creamsicle-marble' }
   ];
 
-  // Named scene images (illustrative, Unsplash). Use SC.img(id, w, h) for URLs.
-  const IMAGES = {
-    heroCupcakes: 'photo-1614707267537-b85aaf00c4b7',
-    heroWide:     'photo-1486427944299-d1955d23e34d',
-    storefront:   'photo-1568254183919-78a4f43a2877',
-    interior:     'photo-1587241321921-91a834d6d191',
-    counter:      'photo-1511018556340-d16986a1c194',
-    baker:        'photo-1546237769-6f84ec1a512a',
-    custom:       'photo-1558301211-0d8c8ddee6ec',
-    wedding:      'photo-1551879403-6adb554966fd',
-    catering:     'photo-1624353365286-3f8d62daad51',
-    icecream:     'photo-1497034825429-c343d7c6a68f',
-    // gallery pool for portfolio/occasion sections
-    gallery: [
-      'photo-1558301211-0d8c8ddee6ec', 'photo-1545696563-af8f6ec2295a',
-      'photo-1606983340126-99ab4feaa64a', 'photo-1624353365286-3f8d62daad51',
-      'photo-1561940329-7382e6704231', 'photo-1508349307373-ab2edc239589',
-      'photo-1551879403-6adb554966fd', 'photo-1614707267537-b85aaf00c4b7'
-    ]
-  };
 
   const CATEGORIES = [
     { key: 'cupcakes', label: 'Cupcakes', note: 'Single · half-dozen · dozen · minis' },
@@ -127,15 +106,7 @@ window.SC = (function () {
     { name: 'Dana & Cole', rating: 5, date: 'Apr 2026', text: 'Ordered dessert boxes for our office and everyone raved. The minis and macarons disappeared before lunch.' }
   ];
 
-  const NAV = [
-    { label: 'Menu & Flavors', href: 'menu.html' },
-    { label: 'Custom Orders', href: 'custom.html' },
-    { label: 'Catering', href: 'index.html#catering' },
-    { label: 'About', href: 'index.html#about' },
-    { label: 'Visit', href: 'index.html#visit' }
-  ];
 
-  const LOGO = '../../assets/smallcakes-logo-circle.png';
 
-  return { STORE, SIGNATURE, SEASONAL, CATEGORIES, ALLERGEN, FAQ, REVIEWS, NAV, IMAGES, LOGO, img, storeNow };
+  return { STORE, SIGNATURE, SEASONAL, CATEGORIES, ALLERGEN, FAQ, REVIEWS, img, storeNow };
 })();
