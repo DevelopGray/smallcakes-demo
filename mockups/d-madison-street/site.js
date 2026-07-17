@@ -22,6 +22,11 @@ const SQUARE = {
       cupcakes: 'PASTE_CUPCAKES_CATEGORY_URL',
       cakes:    'PASTE_CAKES_CATEGORY_URL',
       treats:   'PASTE_TREATS_CATEGORY_URL'   // minis, macarons, cake pops
+    },
+    // Optional per-flavor deep links — /product/{slug}/{id}. Any flavor
+    // listed here sends its "Add to order" button straight to the item.
+    items: {
+      // 'Birthday Cake': 'https://smallcakes-clarksville.square.site/product/birthday-cake/12',
     }
   },
   // Items & services → Gift cards → eGift Cards → Configure → copy URL.
@@ -75,15 +80,24 @@ const EVENTS = [
   });
 
   /* Real ordering override: when the Square ordering URL is live, every
-     [data-order] button routes straight there (same-tab — fewest taps)
-     instead of opening the demo modal. Capture phase beats demo.js. */
+     [data-order] button routes to Square (same-tab — fewest taps) instead
+     of the demo modal — and it keeps the shopper's intent: flavor item
+     link if configured, else the section's category (a data-order-cat
+     ancestor), else the general ordering page. Capture beats demo.js. */
+  function orderUrl(b) {
+    const item = b.getAttribute('data-order') || null;
+    const cat = b.closest('[data-order-cat]')?.getAttribute('data-order-cat');
+    if (item && live(SQUARE.order.items[item])) return SQUARE.order.items[item];
+    if (cat && live(SQUARE.order.categories[cat])) return SQUARE.order.categories[cat];
+    return SQUARE.order.orderNow;
+  }
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-order]');
     if (!b || !live(SQUARE.order.orderNow)) return;
     e.preventDefault();
     e.stopPropagation();
     window.SCDemo.track('order_click', { item: b.getAttribute('data-order') || null, live: true });
-    location.href = SQUARE.order.orderNow;
+    location.href = orderUrl(b);
   }, true);
 
   /* Email signup: live hosted page wins over the demo toast. */
