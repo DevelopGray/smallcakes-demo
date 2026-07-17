@@ -30,6 +30,13 @@ window.SC = (function () {
     openRanges: [[12, 18], [10, 20], [10, 20], [10, 20], [10, 20], [10, 21], [10, 21]]
   };
 
+  // The store's wall clock, wherever the visitor is. Every "open now",
+  // cutoff and rotation decision uses this — a family checking from
+  // Germany must see Clarksville truth, not their own 3am.
+  function storeNow() {
+    return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }));
+  }
+
   // Unsplash image helper (free license, hotlinked CDN). id = "photo-…".
   // DEMO imagery — not the store's real products; for concept presentation only.
   function img(id, w, h) {
@@ -130,5 +137,5 @@ window.SC = (function () {
 
   const LOGO = '../../assets/smallcakes-logo-circle.png';
 
-  return { STORE, SIGNATURE, SEASONAL, CATEGORIES, ALLERGEN, FAQ, REVIEWS, NAV, IMAGES, LOGO, img };
+  return { STORE, SIGNATURE, SEASONAL, CATEGORIES, ALLERGEN, FAQ, REVIEWS, NAV, IMAGES, LOGO, img, storeNow };
 })();

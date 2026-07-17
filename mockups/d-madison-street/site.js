@@ -128,7 +128,7 @@ const EVENTS = [
      is true right now, and only once the owner confirms a cutoff. */
   document.querySelectorAll('[data-cutoff]').forEach(el => {
     if (!SITE.launched) { el.textContent = 'Opening soon on Madison St. — follow us on Facebook for the date.'; return; }
-    const now = new Date();
+    const now = SC.storeNow();
     const [open, close] = SC.STORE.openRanges[now.getDay()];
     const hr = now.getHours() + now.getMinutes() / 60;
     const fmt = h => (h % 12 || 12) + (h < 12 ? 'am' : 'pm');
@@ -179,6 +179,7 @@ const EVENTS = [
     console.assert(live('https://x.square.site/s/order'), 'https URL treated as live');
     console.assert('order.categories.cupcakes'.split('.').reduce((o, k) => o && o[k], SQUARE) === 'PASTE_CUPCAKES_CATEGORY_URL', 'data-sq path resolution');
     console.assert(EVENTS.every(ev => /^\d{4}-\d{2}-\d{2}$/.test(ev.until)), 'event dates ISO');
+    console.assert(window.SC.storeNow() instanceof Date && !isNaN(window.SC.storeNow()), 'storeNow valid');
     console.log('%c[site] selfcheck passed', 'color:#2D6A55');
   }
 })();

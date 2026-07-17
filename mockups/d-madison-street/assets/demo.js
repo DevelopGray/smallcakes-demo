@@ -21,7 +21,7 @@ window.SCDemo = (function () {
 
   // Deterministic per-day index so "today's flavors" are stable within a day.
   function daySeed() {
-    const n = new Date();
+    const n = SC.storeNow();
     return n.getFullYear() * 372 + n.getMonth() * 31 + n.getDate();
   }
   function pickRotating(list, count, seed = daySeed()) {
@@ -132,7 +132,7 @@ window.SCDemo = (function () {
 
   /* ── Live open/closed status ──────────────────────────────── */
   function fillStatus(node) {
-    const now = new Date();
+    const now = SC.storeNow();
     const [open, close] = SC.STORE.openRanges[now.getDay()];
     const hr = now.getHours() + now.getMinutes() / 60;
     const isOpen = hr >= open && hr < close;
@@ -257,7 +257,7 @@ window.SCDemo = (function () {
   }
 
   function fillHours(table) {
-    const todayIdx = (new Date().getDay() + 6) % 7; // 0=Mon in our array
+    const todayIdx = (SC.storeNow().getDay() + 6) % 7; // 0=Mon in our array
     table.innerHTML = SC.STORE.hours.map((r, n) =>
       `<tr class="${n === todayIdx ? 'is-today' : ''}"><th scope="row">${r.d}</th><td>${r.h}</td></tr>`
     ).join('');
