@@ -116,6 +116,35 @@ const EVENTS = [
     window.scAnalytics = (ev, detail) => window.gtag('event', ev, detail || {});
   }
 
+  /* Theme toggle: the visitor chooses light/dark instead of being locked
+     to the OS. The <head> init already applied any saved choice pre-paint;
+     here we sync the button icons and handle clicks. */
+  (function () {
+    const root = document.documentElement;
+    const prefersDark = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const effective = () => root.getAttribute('data-theme') || (prefersDark() ? 'dark' : 'light');
+    const btns = document.querySelectorAll('[data-theme-toggle]');
+    function sync() {
+      const dark = effective() === 'dark';
+      btns.forEach(b => {
+        b.textContent = dark ? '☀️' : '🌙';
+        b.setAttribute('aria-pressed', String(dark));
+        b.title = dark ? 'Switch to light theme' : 'Switch to dark theme';
+      });
+    }
+    btns.forEach(b => b.addEventListener('click', () => {
+      const next = effective() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('sc-theme', next); } catch (e) {}
+      if (window.SCDemo) window.SCDemo.track('theme_toggle', { theme: next });
+      sync();
+    }));
+    // Follow OS changes only until the visitor makes an explicit choice.
+    if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', () => { if (!root.getAttribute('data-theme')) sync(); });
+    sync();
+  })();
+
   /* Offline shell (secure contexts only — GitHub Pages/localhost). */
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
     navigator.serviceWorker.register(BASE + 'sw.js').catch(() => {});

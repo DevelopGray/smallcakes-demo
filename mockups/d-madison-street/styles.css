@@ -45,6 +45,9 @@
   --paper:     light-dark(#FFFFFF, #2C1A23);
   --heading:   light-dark(#6C173A, #EFC5D8);   /* burgundy as TEXT — readable both modes */
   --pink-soft: #FFE0EF;   /* on-dark eyebrows */
+  --on-dark:   #FFF8F3;   /* FIXED light — text/borders on the permanent dark
+                             bands (burgundy/green/crescendo). NEVER --cream:
+                             that flips to near-black in dark mode. */
   --r: 20px; --r-lg: 28px;
   --shadow-soft: 0 10px 30px rgba(108, 23, 58, .08);
   --shadow-card: 0 16px 38px rgba(108, 23, 58, .14);
@@ -60,6 +63,10 @@
   --sc-muted: var(--muted);
   --sc-radius: 20px;
 }
+/* Manual theme override wins over the OS: the toggle sets data-theme,
+   which pins color-scheme so light-dark() resolves to the chosen side. */
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
 
 body {
   background: var(--cream);
@@ -100,14 +107,14 @@ h1, h2, h3 { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; color
 /* TIER 2 — burgundy outline. */
 .sc-btn--ghost { color: var(--heading); box-shadow: inset 0 0 0 2px var(--heading); }
 .sc-btn--ghost:hover { background: var(--burg); color: #FFF8F3; }
-.on-dark .sc-btn--ghost { color: var(--cream); box-shadow: inset 0 0 0 2px var(--cream); }
-.on-dark .sc-btn--ghost:hover { background: var(--cream); color: var(--burg); }
+.on-dark .sc-btn--ghost { color: var(--on-dark); box-shadow: inset 0 0 0 2px var(--on-dark); }
+.on-dark .sc-btn--ghost:hover { background: var(--on-dark); color: var(--burg); }
 /* TIER 3 — underlined arrow links. */
 .link-arrow { font-weight: 700; color: var(--heading); text-decoration: underline; text-underline-offset: 3px; }
 .link-arrow:hover { color: var(--pink); }
 .on-dark .link-arrow { color: var(--pink-soft); }
 :focus-visible { outline: 3px solid var(--heading); outline-offset: 2px; }
-.on-dark :focus-visible { outline-color: var(--cream); }
+.on-dark :focus-visible { outline-color: var(--on-dark); }
 /* Trust microline: 8px under every Tier-1. */
 .trust { display: block; font-size: .8125rem; font-weight: 600; color: var(--ink); margin-top: .5rem; }
 .on-dark .trust { color: var(--pink-soft); }
@@ -116,9 +123,12 @@ h1, h2, h3 { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; color
 .util { display: flex; justify-content: space-between; align-items: center; gap: 1rem;
   max-width: var(--wrap); margin-inline: auto; padding: .45rem 1.25rem; font-size: .82rem;
   border-bottom: 2px solid var(--line); }
-.util__links { display: flex; gap: 1.1rem; }
+.util__links { display: flex; align-items: center; gap: 1.1rem; }
 .util__links a { text-decoration: none; font-weight: 700; color: var(--heading); }
 .util__links a:hover { text-decoration: underline; }
+.theme-toggle { background: none; border: 0; cursor: pointer; font-size: 1rem; line-height: 1;
+  padding: .25rem .35rem; border-radius: 8px; color: var(--heading); }
+.theme-toggle:hover { background: var(--blush); }
 
 /* ── Nav ───────────────────────────────────────────────────── */
 .nav { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; gap: 1.2rem;
@@ -222,7 +232,7 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .band--butter { background: var(--butter); }
 .band--green { background: var(--green); }
 .band--dark { background: linear-gradient(150deg, var(--burg), var(--burg-dk)); }
-.on-dark, .on-dark h2, .on-dark h3 { color: var(--cream); }
+.on-dark, .on-dark h2, .on-dark h3 { color: var(--on-dark); }
 /* Piped-frosting top edge: circles of the band color poking up. */
 .scallop { margin-top: 14px; }
 .scallop::before { content: ""; position: absolute; top: -13px; left: 0; right: 0; height: 14px;
@@ -300,7 +310,7 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .community__card p { font-size: .88rem; color: var(--muted); }
 .event-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
 .event-chip { background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .35);
-  color: var(--cream); border-radius: 999px; padding: .35em .9em; font-size: .82rem; font-weight: 700; }
+  color: var(--on-dark); border-radius: 999px; padding: .35em .9em; font-size: .82rem; font-weight: 700; }
 .cta-row { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
 
 /* ── About ─────────────────────────────────────────────────── */
@@ -348,7 +358,7 @@ address { font-style: normal; margin-bottom: 1rem; }
   color: var(--pink-soft); text-decoration: none; margin-top: 1.4rem; }
 .crescendo__phone:hover { text-decoration: underline; }
 .crescendo__paths { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin-top: 1.6rem; }
-.crescendo__paths a { color: var(--cream); font-weight: 700; font-size: .95rem;
+.crescendo__paths a { color: var(--on-dark); font-weight: 700; font-size: .95rem;
   border: 1px solid rgba(255, 248, 243, .4); border-radius: 999px; padding: .5em 1.2em; text-decoration: none; }
 .crescendo__paths a:hover { background: rgba(255, 248, 243, .12); }
 
