@@ -56,7 +56,9 @@
 
 /* Modal — a native <dialog>: the platform supplies the focus trap,
    Escape handling, top layer and ::backdrop. */
-dialog.sc-modal { border: 0; padding: 0; background: transparent; overflow: visible; }
+/* margin:auto re-centers the modal: the global `* { margin: 0 }` reset
+   otherwise kills the UA dialog's own centering and it sticks top-left. */
+dialog.sc-modal { border: 0; padding: 0; background: transparent; overflow: visible; margin: auto; }
 dialog.sc-modal::backdrop { background: rgba(35, 12, 24, .5); backdrop-filter: blur(3px); }
 dialog.sc-modal[open] { animation: sc-pop .25s ease; }
 @keyframes sc-pop { from { opacity: 0; transform: translateY(12px) scale(.98); } }
