@@ -27,21 +27,23 @@
   size-adjust: 101%; ascent-override: 102%; descent-override: 32%; line-gap-override: 0%; }
 
 :root {
-  --cream:     #FFF8F3;   /* page canvas */
+  color-scheme: light dark;   /* "evening bake" theme for free via light-dark() */
+  --cream:     light-dark(#FFF8F3, #201218);   /* page canvas */
   --money:     #D42A78;   /* Tier-1 CTAs ONLY — white text 4.77:1 AA */
   --money-dk:  #B81B63;   /* hover/active + "need it today" card 6.22:1 */
   --pink:      #E83E8C;   /* decorative brand pink — never a button */
   --burg:      #6C173A;   /* headings, Tier-2, dark band start */
   --burg-dk:   #4A0F28;   /* dark band gradient end */
-  --ink:       #3D2E36;
-  --muted:     #6B5B62;
+  --ink:       light-dark(#3D2E36, #F0E3EA);
+  --muted:     light-dark(#6B5B62, #C4B0B9);
   --gold:      #B9853B;   /* eyebrows, stars — never white-text fills */
   --green:     #2D6A55;   /* plan-ahead card + community band, 6.4:1 */
-  --blush:     #FFF0F6;   /* flavor + signup band tint */
-  --butter:    #FFF6E0;   /* creamery band tint */
-  --glow:      #FFD7E7;   /* hero radial */
-  --line:      #F0E2D6;   /* chunky 2px hairlines */
-  --paper:     #fff;
+  --blush:     light-dark(#FFF0F6, #33202A);   /* flavor + signup band tint */
+  --butter:    light-dark(#FFF6E0, #322A1C);   /* little-treats band tint */
+  --glow:      light-dark(#FFD7E7, #47202F);   /* hero radial */
+  --line:      light-dark(#F0E2D6, #493440);   /* chunky 2px hairlines */
+  --paper:     light-dark(#FFFFFF, #2C1A23);
+  --heading:   light-dark(#6C173A, #EFC5D8);   /* burgundy as TEXT — readable both modes */
   --pink-soft: #FFE0EF;   /* on-dark eyebrows */
   --r: 20px; --r-lg: 28px;
   --shadow-soft: 0 10px 30px rgba(108, 23, 58, .08);
@@ -53,7 +55,9 @@
      so it wears the money color. */
   --sc-accent: var(--money);
   --sc-ink: var(--ink);
-  --sc-heading: var(--burg);
+  --sc-heading: var(--heading);
+  --sc-paper: var(--paper);
+  --sc-muted: var(--muted);
   --sc-radius: 20px;
 }
 
@@ -64,7 +68,7 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
 }
-h1, h2, h3 { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--burg); }
+h1, h2, h3 { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--heading); }
 
 /* ── Utilities ─────────────────────────────────────────────── */
 .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 1.25rem; }
@@ -91,18 +95,18 @@ h1, h2, h3 { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; color
 .sc-btn--primary { background: var(--money); color: #fff; box-shadow: var(--shadow-money); }
 .sc-btn--primary:hover { background: var(--money-dk); filter: none; }
 /* TIER 1 inverse for dark bands — cream on burgundy, never pink on burgundy. */
-.sc-btn--inverse { background: var(--cream); color: var(--burg); box-shadow: 0 10px 26px rgba(0, 0, 0, .25); }
+.sc-btn--inverse { background: #FFF8F3; color: #6C173A; box-shadow: 0 10px 26px rgba(0, 0, 0, .25); }
 .sc-btn--inverse:hover { background: #fff; }
 /* TIER 2 — burgundy outline. */
-.sc-btn--ghost { color: var(--burg); box-shadow: inset 0 0 0 2px var(--burg); }
-.sc-btn--ghost:hover { background: var(--burg); color: var(--cream); }
+.sc-btn--ghost { color: var(--heading); box-shadow: inset 0 0 0 2px var(--heading); }
+.sc-btn--ghost:hover { background: var(--burg); color: #FFF8F3; }
 .on-dark .sc-btn--ghost { color: var(--cream); box-shadow: inset 0 0 0 2px var(--cream); }
 .on-dark .sc-btn--ghost:hover { background: var(--cream); color: var(--burg); }
 /* TIER 3 — underlined arrow links. */
-.link-arrow { font-weight: 700; color: var(--burg); text-decoration: underline; text-underline-offset: 3px; }
-.link-arrow:hover { color: var(--money-dk); }
+.link-arrow { font-weight: 700; color: var(--heading); text-decoration: underline; text-underline-offset: 3px; }
+.link-arrow:hover { color: var(--pink); }
 .on-dark .link-arrow { color: var(--pink-soft); }
-:focus-visible { outline: 3px solid var(--burg); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--heading); outline-offset: 2px; }
 .on-dark :focus-visible { outline-color: var(--cream); }
 /* Trust microline: 8px under every Tier-1. */
 .trust { display: block; font-size: .8125rem; font-weight: 600; color: var(--ink); margin-top: .5rem; }
@@ -113,7 +117,7 @@ h1, h2, h3 { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; color
   max-width: var(--wrap); margin-inline: auto; padding: .45rem 1.25rem; font-size: .82rem;
   border-bottom: 2px solid var(--line); }
 .util__links { display: flex; gap: 1.1rem; }
-.util__links a { text-decoration: none; font-weight: 700; color: var(--burg); }
+.util__links a { text-decoration: none; font-weight: 700; color: var(--heading); }
 .util__links a:hover { text-decoration: underline; }
 
 /* ── Nav ───────────────────────────────────────────────────── */
@@ -122,7 +126,7 @@ h1, h2, h3 { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; color
   max-width: 100%; padding: .6rem clamp(1.25rem, 4vw, 2.5rem); border-bottom: 2px solid var(--line); }
 .brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; margin-right: auto; }
 .brand__logo { height: 48px; width: auto; }
-.brand__loc { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; font-weight: 600; font-size: 1.15rem; color: var(--burg); }
+.brand__loc { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; font-weight: 600; font-size: 1.15rem; color: var(--heading); }
 .nav__links { display: none; gap: 1.4rem; }
 .nav__links a { text-decoration: none; font-weight: 700; font-size: .95rem; color: var(--ink); padding: .3rem 0; }
 .nav__links a:hover { color: var(--money-dk); }
@@ -130,9 +134,9 @@ h1, h2, h3 { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; color
 /* The waking nav: quiet outline until the hero CTA scrolls away. */
 .nav__order { display: none; }
 .nav .sc-btn { min-height: 42px; padding: .7em 1.4em; font-size: .95rem; }
-body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; color: var(--burg);
-  box-shadow: inset 0 0 0 2px var(--burg); }
-.nav__burger { background: none; border: 0; font-size: 1.5rem; color: var(--burg); padding: .2rem .4rem; }
+body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; color: var(--heading);
+  box-shadow: inset 0 0 0 2px var(--heading); }
+.nav__burger { background: none; border: 0; font-size: 1.5rem; color: var(--heading); padding: .2rem .4rem; }
 @media (min-width: 64rem) {
   .nav__links { display: flex; }
   .nav__order { display: inline-flex; }
@@ -144,9 +148,9 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
   display: flex; flex-direction: column; gap: .35rem; overflow-y: auto; }
 .drawer__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
 .drawer__head img { height: 44px; width: auto; }
-.drawer__close { background: none; border: 0; font-size: 1.5rem; color: var(--burg); }
+.drawer__close { background: none; border: 0; font-size: 1.5rem; color: var(--heading); }
 .drawer a { text-decoration: none; font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; font-weight: 600;
-  font-size: 1.5rem; color: var(--burg); padding: .55rem 0; border-bottom: 1px solid var(--line); }
+  font-size: 1.5rem; color: var(--heading); padding: .55rem 0; border-bottom: 1px solid var(--line); }
 .drawer__order { margin-top: 1.25rem; }
 
 /* ── Hero: the decision happens in the first viewport ──────── */
@@ -169,7 +173,7 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .hero__badge { position: absolute; top: -1.1rem; right: .9rem; width: 96px; height: 96px;
   border-radius: 50%; background: var(--cream); border: 3px solid var(--pink);
   outline: 3px solid var(--gold); outline-offset: 3px;
-  font: 700 .78rem/1.25 "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--burg); text-align: center;
+  font: 700 .78rem/1.25 "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--heading); text-align: center;
   display: grid; place-items: center; padding: .4rem; rotate: -8deg; cursor: pointer;
   transition: rotate .2s ease, translate .2s ease; }
 .hero__badge:hover { rotate: -4deg; translate: 0 -3px; }
@@ -209,7 +213,7 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .chips li { background: var(--paper); border: 2px solid var(--line); border-radius: 999px;
   padding: .45em 1em; font-size: .85rem; font-weight: 700; }
 .media { font-size: .85rem; color: var(--muted); }
-.media strong { color: var(--burg); }
+.media strong { color: var(--heading); }
 .media .stars { color: var(--gold); letter-spacing: .1em; }
 
 /* ── Color-block bands + frosting scallop edges ────────────── */
@@ -238,8 +242,8 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
    grids are the sanctioned exception to one-Tier-1-per-viewport). */
 .sc-flavor__add { align-self: stretch; text-align: center; border-radius: 999px; min-height: 44px;
   display: inline-flex; align-items: center; justify-content: center;
-  box-shadow: inset 0 0 0 2px var(--burg); color: var(--burg); font-size: .95rem; padding: .55em 1em; }
-.sc-flavor__add:hover { background: var(--burg); color: var(--cream); text-decoration: none; }
+  box-shadow: inset 0 0 0 2px var(--heading); color: var(--heading); font-size: .95rem; padding: .55em 1em; }
+.sc-flavor__add:hover { background: var(--burg); color: #FFF8F3; text-decoration: none; }
 .band__cta { text-align: center; margin-top: 1.75rem; }
 
 /* ── Hometown marquee ──────────────────────────────────────── */
@@ -266,9 +270,9 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .sc-cat__label { font-size: 1.2rem; }
 .sc-cat__note { display: block; font-size: .85rem; color: var(--muted); margin: .15rem 0 .6rem; }
 .sc-cat__go { display: inline-flex; align-items: center; justify-content: center; min-height: 38px;
-  padding: .4em 1.1em; border-radius: 999px; box-shadow: inset 0 0 0 2px var(--burg);
-  color: var(--burg); font-weight: 800; font-size: .88rem; }
-.sc-cat:hover .sc-cat__go { background: var(--burg); color: var(--cream); }
+  padding: .4em 1.1em; border-radius: 999px; box-shadow: inset 0 0 0 2px var(--heading);
+  color: var(--heading); font-weight: 800; font-size: .88rem; }
+.sc-cat:hover .sc-cat__go { background: var(--burg); color: #FFF8F3; }
 
 /* ── Steps (custom band) ───────────────────────────────────── */
 .steps { margin: 1rem 0 1.25rem; padding-left: 1.2rem; display: grid; gap: .5rem; }
@@ -283,7 +287,7 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
   grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr)); margin-block: 1.5rem; }
 .community__card { background: var(--paper); border-radius: var(--r); padding: 1.1rem 1.2rem; color: var(--ink); }
 .community__card span { font-size: 1.4rem; }
-.community__card h3 { font-size: 1.1rem; color: var(--burg); margin: .3rem 0 .2rem; }
+.community__card h3 { font-size: 1.1rem; color: var(--heading); margin: .3rem 0 .2rem; }
 .community__card p { font-size: .88rem; color: var(--muted); }
 .event-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
 .event-chip { background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .35);
@@ -291,7 +295,7 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .cta-row { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
 
 /* ── About ─────────────────────────────────────────────────── */
-.pull { font: italic 500 1.35rem "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--burg); margin-top: 1rem; }
+.pull { font: italic 500 1.35rem "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--heading); margin-top: 1rem; }
 
 /* ── Reviews ───────────────────────────────────────────────── */
 .reviews__grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); margin-block: 1.25rem; }
@@ -305,11 +309,11 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .visit__photo { position: relative; }
 .visit__photo img { border-radius: var(--r-lg); border: 4px solid #fff; box-shadow: var(--shadow-card); width: 100%; object-fit: cover; }
 .visit__pin { position: absolute; left: 1rem; bottom: 1rem; background: var(--paper); border-radius: 999px;
-  padding: .5em 1em; font-size: .85rem; font-weight: 800; text-decoration: none; color: var(--burg);
+  padding: .5em 1em; font-size: .85rem; font-weight: 800; text-decoration: none; color: var(--heading);
   box-shadow: var(--shadow-soft); }
 address { font-style: normal; margin-bottom: 1rem; }
 .hours { border-collapse: collapse; margin-block: 1rem; font-size: .95rem; }
-.hours th { text-align: left; padding: .3rem 1.4rem .3rem 0; font-weight: 700; color: var(--burg); }
+.hours th { text-align: left; padding: .3rem 1.4rem .3rem 0; font-weight: 700; color: var(--heading); }
 .hours td { padding: .3rem 0; }
 .hours .is-today th, .hours .is-today td { background: var(--blush); font-weight: 800; }
 .hours .is-today th { border-radius: 6px 0 0 6px; padding-left: .4rem; }
@@ -318,7 +322,7 @@ address { font-style: normal; margin-bottom: 1rem; }
 /* ── FAQ ───────────────────────────────────────────────────── */
 .faq__list { display: grid; gap: .6rem; max-width: 46rem; }
 .sc-faq__item { background: var(--paper); border: 2px solid var(--line); border-radius: 14px; padding: .9rem 1.1rem; }
-.sc-faq__q { font-weight: 800; cursor: pointer; color: var(--burg); }
+.sc-faq__q { font-weight: 800; cursor: pointer; color: var(--heading); }
 .sc-faq__a { padding-top: .5rem; color: var(--muted); font-size: .95rem; }
 .allergen { font-size: .82rem; color: var(--muted); max-width: 46rem; margin-top: 1.25rem; }
 
@@ -345,10 +349,10 @@ address { font-style: normal; margin-bottom: 1rem; }
 .signup__form { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: 1.1rem; }
 .signup__form input { border: 2px solid var(--line); border-radius: 999px; padding: .8em 1.2em;
   min-width: min(20rem, 100%); background: var(--paper); }
-.signup__form input:focus-visible { outline-offset: 0; border-color: var(--burg); }
+.signup__form input:focus-visible { outline-offset: 0; border-color: var(--heading); }
 
 /* ── Footer ────────────────────────────────────────────────── */
-.foot { background: var(--ink); color: #EDE3E8; font-size: .92rem; padding: 2.5rem 1.25rem 5.5rem; }
+.foot { background: #2A1B22; color: #EDE3E8; font-size: .92rem; padding: 2.5rem 1.25rem 5.5rem; }
 .foot a { color: #fff; }
 .foot__grid { max-width: var(--wrap); margin-inline: auto; display: grid; gap: 1.6rem; }
 .foot__logo { height: 64px; width: auto; margin-bottom: .6rem; }
@@ -385,8 +389,8 @@ body.cta-armed .mobar { translate: 0 0; }
   padding: .7rem 0; margin-bottom: 1rem; }
 .filterbar button { border: 2px solid var(--line); background: var(--paper); border-radius: 999px;
   padding: .45em 1.1em; font-weight: 800; font-size: .88rem; color: var(--ink); }
-.filterbar button[aria-pressed="true"] { background: var(--burg); border-color: var(--burg); color: var(--cream); }
-.pricing { background: var(--butter); border: 2px solid #F3E2B8; border-radius: 14px;
+.filterbar button[aria-pressed="true"] { background: var(--burg); border-color: var(--burg); color: #FFF8F3; }
+.pricing { background: var(--butter); border: 2px solid var(--line); border-radius: 14px;
   padding: .8rem 1.1rem; font-size: .9rem; margin-bottom: 1.75rem; }
 .menu-sec { margin-bottom: 2.75rem; }
 .menu-sec__note { color: var(--muted); margin-bottom: 1rem; }
@@ -402,13 +406,13 @@ body.cta-armed .mobar { translate: 0 0; }
 .progress li { flex: 1; height: 6px; border-radius: 999px; background: var(--line); }
 .progress li.is-on { background: var(--pink); }
 .wizard fieldset { border: 0; padding: 0; display: grid; gap: 1rem; }
-.wizard legend { font: 600 1.45rem "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--burg); margin-bottom: 1rem; }
+.wizard legend { font: 600 1.45rem "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--heading); margin-bottom: 1rem; }
 .step-n { display: inline-grid; place-items: center; width: 1.7em; height: 1.7em; border-radius: 50%;
   background: var(--blush); color: var(--money-dk); font: 800 .8rem "Nunito", "Nunito Fallback", sans-serif; margin-right: .4rem; }
 .wizard label { display: grid; gap: .3rem; font-weight: 700; font-size: .92rem; }
 .wizard input, .wizard select, .wizard textarea { border: 2px solid var(--line); border-radius: 12px;
-  padding: .7em .9em; background: #fff; font-weight: 400; }
-.wizard input:focus-visible, .wizard select:focus-visible { outline-offset: 0; border-color: var(--burg); }
+  padding: .7em .9em; background: var(--paper); font-weight: 400; }
+.wizard input:focus-visible, .wizard select:focus-visible { outline-offset: 0; border-color: var(--heading); }
 .field-row { display: grid; gap: 1rem; } @media (min-width: 40rem) { .field-row { grid-template-columns: 1fr 1fr; } }
 .radios { border: 0; padding: 0; } .radios legend { font: 700 .92rem "Nunito", "Nunito Fallback", sans-serif; color: var(--ink); margin-bottom: .4rem; }
 .radio { display: inline-flex; flex-direction: row; align-items: center; gap: .45rem; margin-right: 1.2rem; font-weight: 600; }
@@ -430,7 +434,7 @@ body.cta-armed .mobar { translate: 0 0; }
 .pack { background: var(--paper); border: 2px solid var(--line); border-radius: var(--r); padding: 1.3rem; }
 .pack h3 { font-size: 1.2rem; margin-bottom: .3rem; }
 .pack p { font-size: .92rem; color: var(--muted); }
-.pack .from { display: block; font-weight: 800; color: var(--burg); margin-top: .6rem; font-size: .9rem; }
+.pack .from { display: block; font-weight: 800; color: var(--heading); margin-top: .6rem; font-size: .9rem; }
 
 /* ── Cross-document view transitions — the MPA feels like an SPA.
       The logo morphs between pages; unsupporting browsers ignore. ── */
