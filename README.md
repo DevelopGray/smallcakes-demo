@@ -28,8 +28,16 @@ mockups/
   c-sweet-stop/            Direction C — Sweet Stop, Everyday Joy (owners liked)
     index.html · menu.html · custom.html · styles.css
   d-madison-street/        Direction D — Madison Street Made (RECOMMENDED, production candidate)
-    index.html · menu.html · custom.html · catering.html · visit.html
-    styles.css · site.js (Square config + honesty engine) · launch-kit/
+    Fully self-contained launch tree — deploy this folder as the site root.
+    index.html · cupcakes/ · custom-cakes/ · catering/ · visit/ · es/ (Spanish)
+    styles.css · site.js (Square config, honesty engine, GA4 bridge, owner content)
+    sw.js (offline) · manifest.webmanifest · humans.txt
+    assets/ (own fork: data/behaviour/fonts/58 local WebP images/icons/OG cards)
+    launch-kit/ (README-LAUNCH · sitemap · robots · llms.txt · 404 ·
+                 print.html QR kit · MARKETING-KIT · STAFF-CARD)
+    Highlights: static-HTML SEO content with JS hydration, view transitions,
+    prerender speculation, dark mode, dialog-based a11y, share/deep-link
+    flavors, nut chips, CSP, store-timezone honesty, Lighthouse CI budget.
 ```
 
 Each direction is its own multi-page mobile-first site sharing the same store info,

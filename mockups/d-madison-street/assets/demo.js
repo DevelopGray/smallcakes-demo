@@ -7,7 +7,7 @@
                                optional data-order="Flavor" prefills the item.
    • [data-status]           → filled with a live Open/Closed pill.
    • [data-todays-flavors]   → filled with today's rotating picks.
-   • [data-flavors="signature|icecream|seasonal"] → filled with that list.
+   • [data-flavors="signature|seasonal"] → filled with that list.
    • [data-menu]             → container; [data-filter="key"] buttons filter
                                children [data-cat="key"].
    • [data-custom-form]      → <form> with [data-step] sections, [data-next],
