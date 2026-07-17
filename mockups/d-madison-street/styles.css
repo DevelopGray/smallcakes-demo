@@ -126,13 +126,20 @@ h1, h2, h3 { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; color
 .util { display: flex; justify-content: space-between; align-items: center; gap: 1rem;
   padding: .4rem clamp(1.25rem, 4vw, 2.5rem); font-size: .82rem;
   border-bottom: 1px solid var(--line); }
-.util__links { display: flex; align-items: center; gap: 1.1rem; }
-.util__links a { text-decoration: none; font-weight: 700; color: var(--heading); }
+.util { flex-wrap: nowrap; }
+.util [data-status] { min-width: 0; overflow: hidden; }        /* status shrinks, never wraps */
+.sc-status { min-width: 0; }
+.sc-status__label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.util__links { display: flex; align-items: center; gap: 1.1rem; flex: none; }  /* Directions+theme keep full width */
+.util__links a { text-decoration: none; font-weight: 700; color: var(--heading);
+  display: inline-flex; align-items: center; white-space: nowrap; }
 .util__links a:hover { text-decoration: underline; }
-/* Mobile: keep the bar to one clean line — status + theme toggle only.
-   Phone lives in the sticky Call bar; Directions in Visit + footer. */
-.util__links a { display: none; }
-@media (min-width: 40rem) { .util__links a { display: inline-flex; align-items: center; } }
+/* Mobile: Directions + theme stay (Directions is the key one-tap action);
+   phone hides — it's in the sticky Call bar. Tighter gaps free up room, and
+   the status ellipsis-truncates before the bar could ever break to two lines. */
+.util__links a[data-t="phone_click"] { display: none; }
+@media (max-width: 39.99rem) { .util { gap: .55rem; } .util__links { gap: .55rem; } }
+@media (min-width: 40rem) { .util__links a[data-t="phone_click"] { display: inline-flex; } }
 .theme-toggle { background: none; border: 0; cursor: pointer; font-size: 1rem; line-height: 1;
   padding: .25rem .35rem; border-radius: 8px; color: var(--heading); }
 .theme-toggle:hover { background: var(--blush); }

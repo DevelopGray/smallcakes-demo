@@ -144,8 +144,9 @@ window.SCDemo = (function () {
     node.classList.toggle('is-open', isOpen);
     node.classList.toggle('is-closed', !isOpen);
     const today = SC.STORE.hours[(now.getDay() + 6) % 7];
-    node.innerHTML = `<span class="sc-status__dot"></span>` +
-      (isOpen ? `Open now · until ${today.h.split('–')[1].trim()}` : `Closed now · ${today.d} ${today.h}`);
+    node.innerHTML = `<span class="sc-status__dot"></span><span class="sc-status__label">` +
+      (isOpen ? `Open now · until ${today.h.split('–')[1].trim()}` : `Closed now · ${today.d} ${today.h}`) +
+      `</span>`;
   }
 
   /* ── Order handoff modal — native <dialog>: focus trap, Escape,
