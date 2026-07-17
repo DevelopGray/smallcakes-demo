@@ -54,15 +54,17 @@
 .sc-status.is-open .sc-status__dot { background: #2fae6a; box-shadow: 0 0 0 3px rgba(47,174,106,.25); }
 .sc-status.is-closed .sc-status__dot { background: #d9534f; }
 
-/* Modal */
-.sc-modal { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 1.2rem;
-  opacity: 0; transition: opacity .25s ease; }
-.sc-modal.is-on { opacity: 1; }
-.sc-modal__scrim { position: absolute; inset: 0; background: rgba(35, 12, 24, .5); backdrop-filter: blur(3px); }
-.sc-modal__card { position: relative; z-index: 1; width: min(30rem, 100%); background: var(--sc-paper);
+/* Modal — a native <dialog>: the platform supplies the focus trap,
+   Escape handling, top layer and ::backdrop. */
+dialog.sc-modal { border: 0; padding: 0; background: transparent; overflow: visible; }
+dialog.sc-modal::backdrop { background: rgba(35, 12, 24, .5); backdrop-filter: blur(3px); }
+dialog.sc-modal[open] { animation: sc-pop .25s ease; }
+@keyframes sc-pop { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+.sc-modal__card { position: relative; width: min(30rem, calc(100vw - 2.4rem)); background: var(--sc-paper);
   border-radius: calc(var(--sc-radius) + 6px); padding: 2rem 1.6rem 1.6rem; box-shadow: var(--sc-shadow);
-  transform: translateY(12px) scale(.98); transition: transform .25s ease; text-align: center; }
-.sc-modal.is-on .sc-modal__card { transform: none; }
+  text-align: center; }
+/* Scroll locks the platform can't give us: one selector each. */
+body:has(.drawer:not([hidden])), body:has(dialog.sc-modal[open]) { overflow: hidden; }
 .sc-modal__x { position: absolute; top: .6rem; right: .8rem; background: none; border: 0; font-size: 1.6rem;
   line-height: 1; color: #b9b0b4; cursor: pointer; }
 .sc-modal__badge { display: inline-block; font-size: .68rem; font-weight: 800; letter-spacing: .1em;

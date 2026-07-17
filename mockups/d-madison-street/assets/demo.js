@@ -98,19 +98,6 @@ window.SCDemo = (function () {
   }
 
   /* ── Content rendered from data (categories, reviews, FAQ) ── */
-  const CAT_IMG = { cupcakes: 'heroCupcakes', cakes: 'custom', treats: 'catering', seasonal: 'heroWide' };
-  function fillCategories(c) {
-    SC.CATEGORIES.forEach(cat => {
-      const card = el('a', 'sc-cat');
-      card.href = 'menu.html#' + cat.key;
-      const imgId = SC.IMAGES[CAT_IMG[cat.key]];
-      card.innerHTML =
-        `<span class="sc-cat__img"><img src="${SC.img(imgId, 700, 500)}" alt="${cat.label}" loading="lazy" width="700" height="500"></span>
-         <span class="sc-cat__body"><h3 class="sc-cat__label">${cat.label}</h3>
-         <span class="sc-cat__note">${cat.note}</span><span class="sc-cat__go">View →</span></span>`;
-      c.appendChild(card);
-    });
-  }
   function stars(n) { return '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n); }
   function fillReviews(c) {
     SC.REVIEWS.forEach(r => {
@@ -144,22 +131,24 @@ window.SCDemo = (function () {
       (isOpen ? `Open now · until ${today.h.split('–')[1].trim()}` : `Closed now · ${today.d} ${today.h}`);
   }
 
-  /* ── Order handoff modal (simulated Square) ───────────────── */
+  /* ── Order handoff modal — native <dialog>: focus trap, Escape,
+        top layer and ::backdrop all come from the platform. ───── */
   function modal(html) {
-    const wrap = el('div', 'sc-modal');
-    wrap.innerHTML = `<div class="sc-modal__scrim" data-close></div>
-      <div class="sc-modal__card" role="dialog" aria-modal="true" aria-label="Order for pickup">
-        <button class="sc-modal__x" data-close aria-label="Close">×</button>${html}</div>`;
-    document.body.appendChild(wrap);
-    requestAnimationFrame(() => wrap.classList.add('is-on'));
-    const close = () => { wrap.classList.remove('is-on'); setTimeout(() => wrap.remove(), 250); };
-    wrap.addEventListener('click', e => { if (e.target.hasAttribute('data-close')) close(); });
-    document.addEventListener('keydown', function esc(e) {
-      if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc); }
+    const dlg = el('dialog', 'sc-modal');
+    dlg.setAttribute('aria-label', 'Order for pickup');
+    dlg.innerHTML = `<div class="sc-modal__card">
+      <button class="sc-modal__x" data-close aria-label="Close">×</button>${html}</div>`;
+    document.body.appendChild(dlg);
+    const close = () => dlg.close();
+    dlg.addEventListener('click', e => {
+      // click on the backdrop (the dialog element itself) or any [data-close]
+      if (e.target === dlg || e.target.hasAttribute('data-close')) close();
     });
-    const first = wrap.querySelector('.sc-modal__card button:not(.sc-modal__x)') || wrap.querySelector('.sc-modal__x');
+    dlg.addEventListener('close', () => dlg.remove());
+    dlg.showModal();
+    const first = dlg.querySelector('.sc-modal__card button:not(.sc-modal__x)') || dlg.querySelector('.sc-modal__x');
     if (first) first.focus();
-    return { wrap, close };
+    return { wrap: dlg, close };
   }
   function openOrder(item) {
     track('order_click', { item: item || null });
@@ -270,7 +259,6 @@ window.SCDemo = (function () {
     document.querySelectorAll('[data-allergen]').forEach(n => (n.textContent = SC.ALLERGEN));
     document.querySelectorAll('[data-todays-flavors]').forEach(fillTodays);
     document.querySelectorAll('[data-flavors]').forEach(fillFlavors);
-    document.querySelectorAll('[data-categories]').forEach(fillCategories);
     document.querySelectorAll('[data-reviews]').forEach(fillReviews);
     document.querySelectorAll('[data-faq]').forEach(fillFaq);
     document.querySelectorAll('[data-menu]').forEach(initMenuFilter);
@@ -281,18 +269,33 @@ window.SCDemo = (function () {
       const t = e.target.closest('[data-t]');
       if (t) track(t.getAttribute('data-t'), { href: t.getAttribute('href') || null });
       const burger = e.target.closest('[data-burger], .nav__burger');
-      if (burger) {
-        const drawer = document.querySelector('.drawer');
-        if (drawer) {
-          const open = drawer.hidden;
-          drawer.hidden = !open;
-          burger.setAttribute('aria-expanded', String(open));
-        }
+      if (burger) toggleDrawer(document.querySelector('.drawer')?.hidden);
+    });
+    // Drawer state lives in one place: aria-expanded always on the header
+    // burger (the opener), focus moves in on open and back on close.
+    function toggleDrawer(open) {
+      const drawer = document.querySelector('.drawer');
+      const opener = document.querySelector('.nav__burger');
+      if (!drawer) return;
+      drawer.hidden = !open;
+      if (opener) opener.setAttribute('aria-expanded', String(!!open));
+      if (open) (drawer.querySelector('.drawer__close') || drawer).focus();
+      else if (opener) opener.focus();
+    }
+    document.addEventListener('keydown', e => {
+      const drawer = document.querySelector('.drawer');
+      if (!drawer || drawer.hidden) return;
+      if (e.key === 'Escape') { toggleDrawer(false); return; }
+      if (e.key === 'Tab') { // wrap focus inside the full-screen drawer
+        const f = drawer.querySelectorAll('a, button');
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
+        else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
       }
     });
     // Close mobile drawer after tapping a link inside it.
     document.querySelectorAll('.drawer a').forEach(a =>
-      a.addEventListener('click', () => { const d = document.querySelector('.drawer'); if (d) d.hidden = true; }));
+      a.addEventListener('click', () => toggleDrawer(false)));
     // Newsletter + any demo-only form that just needs a friendly confirmation.
     document.querySelectorAll('[data-signup]').forEach(f => f.addEventListener('submit', e => {
       e.preventDefault(); track('rewards_click', { kind: 'email_signup' });
