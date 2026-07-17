@@ -182,6 +182,14 @@ const EVENTS = [
     document.body.classList.add('cta-armed');
   }
 
+  /* Marquee costs nothing while off-screen. */
+  const mq = document.querySelector('.marquee__track');
+  if (mq && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) =>
+      mq.classList.toggle('is-paused', !en.isIntersecting)
+    ).observe(mq.parentElement);
+  }
+
   /* ── Truth-driven urgency line ([data-cutoff]) ──────────────
      Computed from real hours (SC.STORE.openRanges); renders only what
      is true right now, and only once the owner confirms a cutoff. */

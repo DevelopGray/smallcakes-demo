@@ -48,6 +48,7 @@
   --shadow-card: 0 16px 38px rgba(108, 23, 58, .14);
   --shadow-money: 0 10px 26px rgba(212, 42, 120, .35);
   --wrap: 71rem;
+  --nav-h: 66px;
   /* Shared overlay theming (assets/demo.css) — modal is an order surface,
      so it wears the money color. */
   --sc-accent: var(--money);
@@ -243,14 +244,17 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 
 /* ── Hometown marquee ──────────────────────────────────────── */
 .marquee { overflow: hidden; border-block: 2px solid var(--line); padding-block: .8rem; background: var(--cream); }
-.marquee__track { display: flex; gap: 2.2rem; width: max-content; animation: marquee 46s linear infinite; }
-.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__track { display: flex; width: max-content; animation: marquee 46s linear infinite; }
+.marquee__set { display: flex; gap: 2.2rem; padding-right: 2.2rem; }
+.marquee:hover .marquee__track, .marquee__track.is-paused { animation-play-state: paused; }
 .marquee__track span { font: italic 600 1.15rem "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--burg); white-space: nowrap; }
 .marquee__track span::after { content: "·"; color: var(--gold); margin-left: 2.2rem; font-style: normal; }
 .marquee__track span:nth-child(odd) { color: var(--pink); }
 @keyframes marquee { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
-  .marquee__track { animation: none; flex-wrap: wrap; width: auto; }
+  .marquee__track { animation: none; width: auto; }
+  .marquee__set { flex-wrap: wrap; }
+  .marquee__set:nth-child(2) { display: none; }  /* no doubled content when static */
 }
 
 /* ── Categories ────────────────────────────────────────────── */
@@ -376,7 +380,7 @@ body.cta-armed .mobar { translate: 0 0; }
 .page-hero .sc-btn--primary { min-height: 56px; }
 
 /* ── Menu page ─────────────────────────────────────────────── */
-.filterbar { position: sticky; top: 66px; z-index: 40; display: flex; flex-wrap: wrap; gap: .5rem;
+.filterbar { position: sticky; top: var(--nav-h); z-index: 40; display: flex; flex-wrap: wrap; gap: .5rem;
   background: color-mix(in srgb, var(--cream) 94%, transparent); backdrop-filter: blur(6px);
   padding: .7rem 0; margin-bottom: 1rem; }
 .filterbar button { border: 2px solid var(--line); background: var(--paper); border-radius: 999px;
@@ -427,3 +431,27 @@ body.cta-armed .mobar { translate: 0 0; }
 .pack h3 { font-size: 1.2rem; margin-bottom: .3rem; }
 .pack p { font-size: .92rem; color: var(--muted); }
 .pack .from { display: block; font-weight: 800; color: var(--burg); margin-top: .6rem; font-size: .9rem; }
+
+/* ── Cross-document view transitions — the MPA feels like an SPA.
+      The logo morphs between pages; unsupporting browsers ignore. ── */
+@view-transition { navigation: auto; }
+.brand__logo { view-transition-name: sc-logo; }
+.hero h1, .page-hero h1 { view-transition-name: sc-title; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
+
+/* ── Anchors land below the sticky nav, never under it. ───────── */
+html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: calc(var(--nav-h) + 1rem); }
+
+/* ── Scroll-driven reveals — cards rise as they enter. Pure CSS;
+      reset.css's reduced-motion guard collapses them to final state. ── */
+@supports (animation-timeline: view()) {
+  .sc-flavor, .sc-cat, .community__card, .pack {
+    animation: rise both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+@keyframes rise { from { opacity: 0; translate: 0 16px; } }
