@@ -100,14 +100,19 @@ const EVENTS = [
     location.href = orderUrl(b);
   }, true);
 
-  /* Email signup: live hosted page wins over the demo toast. */
-  document.querySelectorAll('[data-signup]').forEach(f => f.addEventListener('submit', e => {
+  /* Email signup: when the Square hosted page is live, swap the form for
+     a direct link. Square's page asks for the address anyway — collecting
+     it here first would make people type it twice. */
+  document.querySelectorAll('[data-signup]').forEach(f => {
     if (!live(SQUARE.emailSignup)) return;               // demo toast handles it
-    e.preventDefault();
-    e.stopPropagation();
-    window.SCDemo.track('rewards_click', { kind: 'email_signup', live: true });
-    location.href = SQUARE.emailSignup;
-  }, true));
+    const a = document.createElement('a');
+    a.className = 'sc-btn sc-btn--ghost';
+    a.href = SQUARE.emailSignup;
+    a.rel = 'noopener noreferrer';
+    a.textContent = 'Join the Flavor Calendar →';
+    a.addEventListener('click', () => window.SCDemo.track('rewards_click', { kind: 'email_signup', live: true }));
+    f.replaceChildren(a);
+  });
 
   /* Custom wizard → explicit, reliable delivery. No hidden redirects:
      once the confirmation renders, the shopper gets real actions —
