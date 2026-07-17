@@ -63,6 +63,30 @@ const EVENTS = [
 (function () {
   const SC = window.SC;
   const live = u => typeof u === 'string' && u.startsWith('https://');
+  const BASE = (document.currentScript?.src || '').replace(/site\.js.*$/, '');
+
+  /* Offline shell (secure contexts only — GitHub Pages/localhost). */
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    navigator.serviceWorker.register(BASE + 'sw.js').catch(() => {});
+  }
+
+  /* When the store is closed, stop pushing dead-end actions: the mobar's
+     Call segment shows when we open instead. Runs post-boot so the
+     status pill's math and this stay in lockstep. */
+  document.addEventListener('DOMContentLoaded', () => {
+    const now = SC.storeNow();
+    const [open, close] = SC.STORE.openRanges[now.getDay()];
+    const hr = now.getHours() + now.getMinutes() / 60;
+    const isOpen = hr >= open && hr < close;
+    document.body.classList.toggle('store-closed', !isOpen);
+    const call = document.querySelector('.mobar__call');
+    if (!isOpen && call) {
+      const fmt = h => (h % 12 || 12) + (h < 12 ? 'am' : 'pm');
+      call.textContent = hr < open
+        ? '☀️ Opens ' + fmt(open)
+        : '☀️ Opens ' + fmt(SC.STORE.openRanges[(now.getDay() + 1) % 7][0]) + ' tmrw';
+    }
+  });
 
 
   /* ── Square link resolution ─────────────────────────────────
