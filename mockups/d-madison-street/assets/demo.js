@@ -239,7 +239,8 @@ window.SCDemo = (function () {
         <h2>Request received, ${name.split(' ')[0]}!</h2>
         <p>Your reference number is <strong class="sc-ref">${ref}</strong>. We’ll review availability, design and pricing and reply within <strong>1 business day</strong>.</p>
         <p class="sc-success__fine">This starts a request — it doesn’t reserve your date or confirm an order. Your order is confirmed only after you receive acceptance and complete payment. Urgent? Call <a href="${SC.STORE.phoneHref}">${SC.STORE.phone}</a>.</p>
-        <a class="sc-btn sc-btn--primary" href="../">Back to home</a></div>`;
+        <div class="sc-success__actions" data-request-actions></div>
+        <a class="link-arrow" href="../">Back to home</a></div>`;
       panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
     paint();

@@ -404,6 +404,7 @@ body.cta-armed .mobar { translate: 0 0; }
 .wizard-aside h2 { font-size: 1.3rem; }
 .wizard-aside ul { list-style: none; padding: 0; display: grid; gap: .5rem; font-weight: 700; font-size: .95rem; }
 .allergen--aside { margin-top: .75rem; }
+.sc-success__actions { display: grid; gap: .6rem; width: 100%; margin-top: .4rem; }
 
 /* ── Catering page extras ──────────────────────────────────── */
 .pack-grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); margin-block: 1.5rem; }

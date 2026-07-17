@@ -109,19 +109,59 @@ const EVENTS = [
     location.href = SQUARE.emailSignup;
   }, true));
 
-  /* Custom wizard → owner's inbox. When the owner email is set, a valid
-     submit also opens a pre-filled email with every answer (no backend
-     needed); the on-page confirmation still shows the reference number. */
-  document.querySelectorAll('[data-custom-form]').forEach(form => form.addEventListener('submit', () => {
-    if (!SQUARE.email.includes('@') || !form.checkValidity()) return;
-    const fd = new FormData(form);
-    const lines = [];
-    fd.forEach((v, k) => { if (v && typeof v === 'string') lines.push(k + ': ' + v); });
-    const mail = 'mailto:' + SQUARE.email +
-      '?subject=' + encodeURIComponent('Custom order request — smallcakesclarksville.com') +
-      '&body=' + encodeURIComponent(lines.join('\n'));
-    setTimeout(() => { location.href = mail; }, 400);
-  }, true));
+  /* Custom wizard → explicit, reliable delivery. No hidden redirects:
+     once the confirmation renders, the shopper gets real actions —
+     email the request (prefilled), copy it, text the shop the
+     inspiration photo, and add the pickup date to their calendar.
+     The request text survives even with no mail client installed. */
+  function icsHref(date, time, product, ref) {
+    const d = date.replace(/-/g, '');
+    const dt = time ? d + 'T' + time.replace(':', '') + '00' : d;
+    const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Smallcakes Clarksville//site//EN', 'BEGIN:VEVENT',
+      'UID:' + ref + '@smallcakesclarksville.com',
+      'DTSTAMP:' + d + 'T000000Z',
+      time ? 'DTSTART:' + dt : 'DTSTART;VALUE=DATE:' + dt,
+      'SUMMARY:Smallcakes pickup — ' + (product || 'custom order') + ' (' + ref + '\\, pending confirmation)',
+      'LOCATION:1803 Madison St Suite A\\, Clarksville TN 37043',
+      'DESCRIPTION:Confirm with the bakery first: 931-547-8361',
+      'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+  }
+  document.querySelectorAll('[data-custom-form]').forEach(form => {
+    // The site's own 48-hour lead-time rule, enforced at the input.
+    const dateIn = form.querySelector('input[name="date"]');
+    if (dateIn) dateIn.min = new Date(Date.now() + 2 * 864e5).toISOString().slice(0, 10);
+
+    form.addEventListener('submit', () => {
+      if (!form.checkValidity()) return;
+      const fd = new FormData(form);
+      const rows = [];
+      fd.forEach((v, k) => { if (v && typeof v === 'string' && k !== 'ack') rows.push(k + ': ' + v); });
+      const date = fd.get('date'), time = fd.get('time'), product = fd.get('product');
+      setTimeout(() => {           // demo.js has rendered the confirmation by now
+        const slot = form.querySelector('[data-request-actions]');
+        const refEl = form.querySelector('.sc-ref');
+        if (!slot || !refEl) return;
+        const ref = refEl.textContent;
+        const body = 'Custom order request ' + ref + '\n\n' + rows.join('\n');
+        const links = [];
+        if (SQUARE.email.includes('@')) {
+          links.push('<a class="sc-btn sc-btn--primary" href="mailto:' + SQUARE.email +
+            '?subject=' + encodeURIComponent('Custom order request ' + ref) +
+            '&body=' + encodeURIComponent(body) + '">📧 Email this request</a>');
+        }
+        links.push('<button class="sc-btn sc-btn--ghost" type="button" data-copy>📋 Copy my request</button>');
+        links.push('<a class="sc-btn sc-btn--ghost" href="sms:+19315478361?&body=' +
+          encodeURIComponent(ref + ' — here’s my inspiration photo:') + '">📷 Text us your photo</a>');
+        if (date) links.push('<a class="sc-btn sc-btn--ghost" download="smallcakes-pickup.ics" href="' +
+          icsHref(date, time, product, ref) + '">🗓 Add pickup to my calendar</a>');
+        slot.innerHTML = links.join('');
+        slot.querySelector('[data-copy]').addEventListener('click', () =>
+          navigator.clipboard.writeText(body).then(() => window.SCDemo.toast('Request copied — paste it anywhere.')));
+        window.SCDemo.track('custom_delivery_shown', { ref, email: SQUARE.email.includes('@') });
+      }, 0);
+    });
+  });
 
   /* ── Waking nav + mobar: one observer enforces "one money button
      per viewport". While the hero CTA is on screen the header Order
