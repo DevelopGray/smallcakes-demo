@@ -11,6 +11,21 @@
    · Tier 2 = burgundy outline. Tier 3 = underlined arrow links.
    ═══════════════════════════════════════════════════════════════ */
 
+/* Self-hosted variable fonts — latin subsets, zero third-party render
+   chain. Fallbacks are metric-matched so the swap doesn't shift layout.
+   ponytail: override numbers tuned by eye — recalibrate with fontaine
+   if CLS ever shows in field data. */
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 300 900;
+  font-display: swap; src: url("assets/fonts/fraunces-latin.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces"; font-style: italic; font-weight: 300 900;
+  font-display: swap; src: url("assets/fonts/fraunces-italic-latin.woff2") format("woff2"); }
+@font-face { font-family: "Nunito"; font-style: normal; font-weight: 400 900;
+  font-display: swap; src: url("assets/fonts/nunito-latin.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces Fallback"; src: local("Georgia");
+  size-adjust: 106%; ascent-override: 92%; descent-override: 24%; line-gap-override: 0%; }
+@font-face { font-family: "Nunito Fallback"; src: local("Segoe UI"), local("Arial");
+  size-adjust: 101%; ascent-override: 102%; descent-override: 32%; line-gap-override: 0%; }
+
 :root {
   --cream:     #FFF8F3;   /* page canvas */
   --money:     #D42A78;   /* Tier-1 CTAs ONLY — white text 4.77:1 AA */
@@ -44,11 +59,11 @@
 body {
   background: var(--cream);
   color: var(--ink);
-  font-family: "Nunito", system-ui, sans-serif;
+  font-family: "Nunito", "Nunito Fallback", system-ui, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.6;
 }
-h1, h2, h3 { font-family: "Fraunces", Georgia, serif; color: var(--burg); }
+h1, h2, h3 { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--burg); }
 
 /* ── Utilities ─────────────────────────────────────────────── */
 .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 1.25rem; }
@@ -68,7 +83,7 @@ h1, h2, h3 { font-family: "Fraunces", Georgia, serif; color: var(--burg); }
 
 /* ── Buttons: the three tiers ──────────────────────────────── */
 .sc-btn {
-  border-radius: 999px; font-family: "Nunito", system-ui, sans-serif;
+  border-radius: 999px; font-family: "Nunito", "Nunito Fallback", system-ui, sans-serif;
   font-weight: 800; font-size: 1.0625rem; padding: .95em 1.9em; min-height: 48px;
 }
 /* TIER 1 — the money button. #D42A78 lives here and nowhere else. */
@@ -106,7 +121,7 @@ h1, h2, h3 { font-family: "Fraunces", Georgia, serif; color: var(--burg); }
   max-width: 100%; padding: .6rem clamp(1.25rem, 4vw, 2.5rem); border-bottom: 2px solid var(--line); }
 .brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; margin-right: auto; }
 .brand__logo { height: 48px; width: auto; }
-.brand__loc { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 1.15rem; color: var(--burg); }
+.brand__loc { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; font-weight: 600; font-size: 1.15rem; color: var(--burg); }
 .nav__links { display: none; gap: 1.4rem; }
 .nav__links a { text-decoration: none; font-weight: 700; font-size: .95rem; color: var(--ink); padding: .3rem 0; }
 .nav__links a:hover { color: var(--money-dk); }
@@ -129,7 +144,7 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .drawer__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
 .drawer__head img { height: 44px; width: auto; }
 .drawer__close { background: none; border: 0; font-size: 1.5rem; color: var(--burg); }
-.drawer a { text-decoration: none; font-family: "Fraunces", Georgia, serif; font-weight: 600;
+.drawer a { text-decoration: none; font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; font-weight: 600;
   font-size: 1.5rem; color: var(--burg); padding: .55rem 0; border-bottom: 1px solid var(--line); }
 .drawer__order { margin-top: 1.25rem; }
 
@@ -153,7 +168,7 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .hero__badge { position: absolute; top: -1.1rem; right: .9rem; width: 96px; height: 96px;
   border-radius: 50%; background: var(--cream); border: 3px solid var(--pink);
   outline: 3px solid var(--gold); outline-offset: 3px;
-  font: 700 .78rem/1.25 "Fraunces", Georgia, serif; color: var(--burg); text-align: center;
+  font: 700 .78rem/1.25 "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--burg); text-align: center;
   display: grid; place-items: center; padding: .4rem; rotate: -8deg; cursor: pointer;
   transition: rotate .2s ease, translate .2s ease; }
 .hero__badge:hover { rotate: -4deg; translate: 0 -3px; }
@@ -172,7 +187,7 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
   background: #fff; border-radius: 999px; padding: .28em .8em; }
 .intent__card--now .intent__badge { color: var(--money-dk); }
 .intent__card--plan .intent__badge { color: var(--green); }
-.intent__title { font-family: "Fraunces", Georgia, serif; font-size: 1.55rem; font-weight: 600; color: #fff; margin-top: .25rem; }
+.intent__title { font-family: "Fraunces", "Fraunces Fallback", Georgia, serif; font-size: 1.55rem; font-weight: 600; color: #fff; margin-top: .25rem; }
 .intent__text { font-size: .92rem; opacity: .92; }
 .intent__go { font-weight: 800; margin-top: .35rem; }
 .intent__card:hover .intent__go { text-decoration: underline; text-underline-offset: 3px; }
@@ -230,7 +245,7 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .marquee { overflow: hidden; border-block: 2px solid var(--line); padding-block: .8rem; background: var(--cream); }
 .marquee__track { display: flex; gap: 2.2rem; width: max-content; animation: marquee 46s linear infinite; }
 .marquee:hover .marquee__track { animation-play-state: paused; }
-.marquee__track span { font: italic 600 1.15rem "Fraunces", Georgia, serif; color: var(--burg); white-space: nowrap; }
+.marquee__track span { font: italic 600 1.15rem "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--burg); white-space: nowrap; }
 .marquee__track span::after { content: "·"; color: var(--gold); margin-left: 2.2rem; font-style: normal; }
 .marquee__track span:nth-child(odd) { color: var(--pink); }
 @keyframes marquee { to { transform: translateX(-50%); } }
@@ -272,14 +287,14 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .cta-row { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
 
 /* ── About ─────────────────────────────────────────────────── */
-.pull { font: italic 500 1.35rem "Fraunces", Georgia, serif; color: var(--burg); margin-top: 1rem; }
+.pull { font: italic 500 1.35rem "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--burg); margin-top: 1rem; }
 
 /* ── Reviews ───────────────────────────────────────────────── */
 .reviews__grid { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); margin-block: 1.25rem; }
 .sc-review { background: var(--paper); border: 2px solid var(--line); border-radius: var(--r);
   padding: 1.2rem 1.3rem; margin: 0; }
 .sc-review__stars { color: var(--gold); letter-spacing: .12em; margin-bottom: .5rem; }
-.sc-review__text { font: italic 500 1.02rem/1.55 "Fraunces", Georgia, serif; color: var(--ink); border: 0; padding: 0; margin: 0 0 .7rem; }
+.sc-review__text { font: italic 500 1.02rem/1.55 "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--ink); border: 0; padding: 0; margin: 0 0 .7rem; }
 .sc-review__by { font-size: .82rem; font-weight: 700; color: var(--muted); }
 
 /* ── Visit ─────────────────────────────────────────────────── */
@@ -312,7 +327,7 @@ address { font-style: normal; margin-bottom: 1rem; }
 .crescendo .wrap { position: relative; z-index: 1; }
 .crescendo h2 { font-size: clamp(2rem, 7vw, 3.4rem); margin-bottom: 1.2rem; }
 .crescendo .sc-btn--inverse { min-height: 60px; font-size: 1.2rem; padding: 1em 2.4em; }
-.crescendo__phone { display: block; font: 600 clamp(1.4rem, 5vw, 2.2rem) "Fraunces", Georgia, serif;
+.crescendo__phone { display: block; font: 600 clamp(1.4rem, 5vw, 2.2rem) "Fraunces", "Fraunces Fallback", Georgia, serif;
   color: var(--pink-soft); text-decoration: none; margin-top: 1.4rem; }
 .crescendo__phone:hover { text-decoration: underline; }
 .crescendo__paths { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin-top: 1.6rem; }
@@ -336,7 +351,7 @@ address { font-style: normal; margin-bottom: 1rem; }
 .foot nav { display: grid; gap: .35rem; align-content: start; }
 .foot nav a { text-decoration: none; font-weight: 700; }
 .foot nav a:hover { text-decoration: underline; }
-.foot__tag { font: italic 600 1.15rem "Fraunces", Georgia, serif; color: var(--pink-soft); }
+.foot__tag { font: italic 600 1.15rem "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--pink-soft); }
 .foot__fine { max-width: var(--wrap); margin: 1.6rem auto 0; font-size: .75rem; color: #B9A8B1; }
 @media (min-width: 52rem) { .foot__grid { grid-template-columns: 1.2fr 1fr 1fr; } .foot { padding-bottom: 2.5rem; } }
 
@@ -383,15 +398,15 @@ body.cta-armed .mobar { translate: 0 0; }
 .progress li { flex: 1; height: 6px; border-radius: 999px; background: var(--line); }
 .progress li.is-on { background: var(--pink); }
 .wizard fieldset { border: 0; padding: 0; display: grid; gap: 1rem; }
-.wizard legend { font: 600 1.45rem "Fraunces", Georgia, serif; color: var(--burg); margin-bottom: 1rem; }
+.wizard legend { font: 600 1.45rem "Fraunces", "Fraunces Fallback", Georgia, serif; color: var(--burg); margin-bottom: 1rem; }
 .step-n { display: inline-grid; place-items: center; width: 1.7em; height: 1.7em; border-radius: 50%;
-  background: var(--blush); color: var(--money-dk); font: 800 .8rem "Nunito", sans-serif; margin-right: .4rem; }
+  background: var(--blush); color: var(--money-dk); font: 800 .8rem "Nunito", "Nunito Fallback", sans-serif; margin-right: .4rem; }
 .wizard label { display: grid; gap: .3rem; font-weight: 700; font-size: .92rem; }
 .wizard input, .wizard select, .wizard textarea { border: 2px solid var(--line); border-radius: 12px;
   padding: .7em .9em; background: #fff; font-weight: 400; }
 .wizard input:focus-visible, .wizard select:focus-visible { outline-offset: 0; border-color: var(--burg); }
 .field-row { display: grid; gap: 1rem; } @media (min-width: 40rem) { .field-row { grid-template-columns: 1fr 1fr; } }
-.radios { border: 0; padding: 0; } .radios legend { font: 700 .92rem "Nunito", sans-serif; color: var(--ink); margin-bottom: .4rem; }
+.radios { border: 0; padding: 0; } .radios legend { font: 700 .92rem "Nunito", "Nunito Fallback", sans-serif; color: var(--ink); margin-bottom: .4rem; }
 .radio { display: inline-flex; flex-direction: row; align-items: center; gap: .45rem; margin-right: 1.2rem; font-weight: 600; }
 .check { display: flex; flex-direction: row; gap: .6rem; align-items: start; font-weight: 600; font-size: .88rem; }
 .check input { margin-top: .25rem; }
