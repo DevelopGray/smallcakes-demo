@@ -17,7 +17,10 @@
 window.SCDemo = (function () {
   const SC = window.SC;
 
-  function track(event, detail = {}) { console.log(`[demo] ${event}`, detail); }
+  function track(event, detail = {}) {
+    console.log(`[demo] ${event}`, detail);
+    if (window.scAnalytics) window.scAnalytics(event, detail);  // GA4 bridge (site.js)
+  }
 
   // Deterministic per-day index so "today's flavors" are stable within a day.
   function daySeed() {

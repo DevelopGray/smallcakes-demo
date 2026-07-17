@@ -48,22 +48,73 @@ const SITE = {
   launched: false,          // false → "Opening soon" state everywhere it matters
   sameDayCutoffHour: null,  // e.g. 14 → "Order by 2pm for same-day pickup". null → line hidden (owner must confirm)
   priceAnchor: null,        // e.g. 'Dozens from $42' → shows beside hero CTA. null → hidden (owner must confirm)
-  reviewsLive: true         // demo: show sample reviews. Set false at launch until real Google reviews exist.
+  reviewsLive: true,        // demo: show sample reviews. Set false at launch until real Google reviews exist.
+  ga4: null                 // e.g. 'G-XXXXXXXXXX' → every tracked intent (order_click, phone_click,
+                            // custom_form_submit…) flows to Google Analytics 4. null → console only.
 };
 
-/* Dated local hooks — chips auto-expire the day after the event. */
+/* ═══ 3 · OWNER CONTENT — the numbers the owner edits, one place ═══
+   Hours are single-source: the status pill, cutoff line and "today"
+   highlight all derive from here. (The printed hours tables in the
+   HTML — English and Spanish — are the crawlable baseline; if hours
+   ever change, update those two tables too. See launch-kit.) */
+const HOURS = [                      // Monday first; 24h numbers
+  { d: 'Mon', open: 10, close: 20 },
+  { d: 'Tue', open: 10, close: 20 },
+  { d: 'Wed', open: 10, close: 20 },
+  { d: 'Thu', open: 10, close: 20 },
+  { d: 'Fri', open: 10, close: 21 },
+  { d: 'Sat', open: 10, close: 21 },
+  { d: 'Sun', open: 12, close: 18 }
+];
+/* Holiday closures — the pill and cutoff line tell the truth on these
+   days. Add dates any time; past dates are ignored. */
+const CLOSED_DATES = ['2026-11-26', '2026-12-25', '2027-01-01'];
+
+/* Dated local hooks — chips auto-expire the day after the event.
+   Refresh this list each January (ritual in launch-kit/README). */
 const EVENTS = [
   { label: '🍎 CMCSS back to school · Aug 10', until: '2026-08-10' },
   { label: '🎓 APSU move-in week · Aug 19–21', until: '2026-08-21' },
   { label: '🎪 Riverfest · Sept 9–11',          until: '2026-09-11' },
   { label: '🍂 Clarksville Oktoberfest · Oct 10–13', until: '2026-10-13' },
-  { label: '🎃 Fright on Franklin · Oct 25',    until: '2026-10-25' }
+  { label: '🎃 Fright on Franklin · Oct 25',    until: '2026-10-25' },
+  { label: '🦃 Thanksgiving preorders',          until: '2026-11-25' },
+  { label: '🎄 Holiday dozens & gift cards',     until: '2026-12-24' },
+  { label: '💘 Valentine’s preorders · Feb 14',  until: '2027-02-14' },
+  { label: '🎓 APSU graduation · early May',     until: '2027-05-08' },
+  { label: '💐 Mother’s Day · May 9',            until: '2027-05-09' }
 ];
 
 (function () {
   const SC = window.SC;
   const live = u => typeof u === 'string' && u.startsWith('https://');
   const BASE = (document.currentScript?.src || '').replace(/site\.js.*$/, '');
+
+  /* Hours single-source: derive the display strings and open ranges the
+     shared layer uses, and honor holiday closures. Runs before boot. */
+  const fmtH = h => (h % 12 || 12) + (h < 12 ? 'am' : 'pm');
+  SC.STORE.hours = HOURS.map(x => ({ d: x.d, h: fmtH(x.open) + ' – ' + fmtH(x.close) }));
+  const byDay = [HOURS[6], ...HOURS.slice(0, 6)];          // index by getDay(): 0=Sun
+  SC.STORE.openRanges = byDay.map(x => [x.open, x.close]);
+  const t0 = SC.storeNow();
+  const iso = t0.getFullYear() + '-' + String(t0.getMonth() + 1).padStart(2, '0') + '-' + String(t0.getDate()).padStart(2, '0');
+  if (CLOSED_DATES.includes(iso)) SC.STORE.openRanges[t0.getDay()] = [0, 0];
+
+  /* GA4 bridge: paste a measurement id in SITE.ga4 and every tracked
+     intent flows to Analytics — the owner finally sees what the site
+     earns. Console logging stays either way. */
+  if (SITE.ga4) {
+    const gs = document.createElement('script');
+    gs.src = 'https://www.googletagmanager.com/gtag/js?id=' + SITE.ga4;
+    gs.async = true;
+    document.head.appendChild(gs);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', SITE.ga4);
+    window.scAnalytics = (ev, detail) => window.gtag('event', ev, detail || {});
+  }
 
   /* Offline shell (secure contexts only — GitHub Pages/localhost). */
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
