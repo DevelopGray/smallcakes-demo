@@ -71,12 +71,22 @@ window.SCDemo = (function () {
       thumb.appendChild(im);
     } else { thumb.innerHTML = flavorSwatch(f.name); }
     c.appendChild(thumb);
+    if (f.img) c.id = 'f-' + f.img;   // deep-linkable: cupcakes/#f-lemon-drop
     const b = el('div', 'sc-flavor__body');
     b.appendChild(el('h3', 'sc-flavor__name', f.name));
     b.appendChild(el('p', 'sc-flavor__desc', f.desc));
+    if (f.nuts) b.appendChild(el('span', 'sc-flavor__nuts', '🥜 contains ' + f.nuts));
+    const row = el('div', 'sc-flavor__row');
     const btn = el('button', 'sc-flavor__add', 'Add to order');
     btn.setAttribute('data-order', f.name);
-    b.appendChild(btn);
+    row.appendChild(btn);
+    if (f.img) {
+      const sh = el('button', 'sc-flavor__share', '↗');
+      sh.setAttribute('data-share', 'f-' + f.img);
+      sh.setAttribute('aria-label', 'Share ' + f.name);
+      row.appendChild(sh);
+    }
+    b.appendChild(row);
     c.appendChild(b);
     return c;
   }
@@ -275,6 +285,14 @@ window.SCDemo = (function () {
       if (b) { e.preventDefault(); openOrder(b.getAttribute('data-order') || ''); }
       const t = e.target.closest('[data-t]');
       if (t) track(t.getAttribute('data-t'), { href: t.getAttribute('href') || null });
+      // Cupcakes are bought socially — every flavor is one tap to send.
+      const sh = e.target.closest('[data-share]');
+      if (sh) {
+        const url = location.href.split('#')[0] + '#' + sh.getAttribute('data-share');
+        track('flavor_share', { url });
+        if (navigator.share) navigator.share({ title: 'Smallcakes Clarksville', url }).catch(() => {});
+        else navigator.clipboard.writeText(url).then(() => toast('Link copied — send it to your crew.'));
+      }
       const burger = e.target.closest('[data-burger], .nav__burger');
       if (burger) toggleDrawer(document.querySelector('.drawer')?.hidden);
     });

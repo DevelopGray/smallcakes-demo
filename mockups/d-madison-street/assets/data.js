@@ -53,9 +53,9 @@ window.SC = (function () {
     { name: 'Cookies-N-Cream', desc: 'Chocolate cake, cookie buttercream, chocolate cookie crumbles.', img: 'cookies-n-cream' },
     { name: 'Lemon Drop', desc: 'Vanilla cake, tangy lemon filling, lemon buttercream, a dollop of lemon.', img: 'lemon-drop' },
     { name: '“Famous” Red Velvet', desc: 'Grandma’s red velvet frosted with cream cheese, red velvet crumbles.', img: 'famous-red-velvet' },
-    { name: 'Wedding Cake', desc: 'Almond cake, almond buttercream, sugar pearls.', img: 'wedding-cake' },
-    { name: 'Hot Fudge Sundae', desc: 'Chocolate cake filled with fudge, buttercream, peanuts, fudge drizzle, a cherry.', img: 'hot-fudge-sundae' },
-    { name: 'Peanut Butter Cup', desc: 'Chocolate cake, peanut butter cream cheese, crumbled peanut butter cups.', img: 'peanut-butter-cup' },
+    { name: 'Wedding Cake', desc: 'Almond cake, almond buttercream, sugar pearls.', img: 'wedding-cake' , nuts: 'almonds' },
+    { name: 'Hot Fudge Sundae', desc: 'Chocolate cake filled with fudge, buttercream, peanuts, fudge drizzle, a cherry.', img: 'hot-fudge-sundae' , nuts: 'peanuts' },
+    { name: 'Peanut Butter Cup', desc: 'Chocolate cake, peanut butter cream cheese, crumbled peanut butter cups.', img: 'peanut-butter-cup' , nuts: 'peanuts' },
     { name: 'Chocolate Cream', desc: 'Chocolate cake filled with buttercream, signature fudge, a buttercream swirl.', img: 'chocolate-cream' },
     { name: 'Birthday Cake', desc: 'Vanilla cake, buttercream, rainbow sprinkles.', img: 'birthday-cake' }
   ];

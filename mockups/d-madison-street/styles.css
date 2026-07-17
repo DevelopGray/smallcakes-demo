@@ -246,6 +246,15 @@ body:not(.cta-armed) .nav__order.sc-btn--primary { background: transparent; colo
 .sc-flavor__add:hover { background: var(--burg); color: #FFF8F3; text-decoration: none; }
 .band__cta { text-align: center; margin-top: 1.75rem; }
 
+.sc-flavor__nuts { align-self: flex-start; font-size: .72rem; font-weight: 800; color: var(--heading);
+  background: var(--butter); border-radius: 999px; padding: .25em .7em; margin-bottom: .4rem; }
+.sc-flavor__row { display: flex; gap: .5rem; margin-top: .5rem; }
+.sc-flavor__row .sc-flavor__add { flex: 1; margin-top: 0; }
+.sc-flavor__share { border: 0; background: var(--blush); color: var(--heading); font-weight: 800;
+  min-width: 44px; min-height: 44px; border-radius: 999px; cursor: pointer; }
+.sc-flavor__share:hover { background: var(--glow); }
+.sc-flavor:target { outline: 3px solid var(--pink); outline-offset: 4px; }
+
 /* ── Hometown marquee ──────────────────────────────────────── */
 .marquee { overflow: hidden; border-block: 2px solid var(--line); padding-block: .8rem; background: var(--cream); }
 .marquee__track { display: flex; width: max-content; animation: marquee 46s linear infinite; }
